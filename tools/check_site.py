@@ -18,6 +18,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA = os.path.join(ROOT, "data")
 PAGES = [
     "index.html",
+    "rates-refresh.html",
     "accounts.html",
     "returns.html",
     "bonuses.html",
@@ -102,7 +103,8 @@ def main():
     errors = []
     warnings = []
 
-    for name in ["accounts.json", "institutions.json", "fdic.json", "bonuses.json", "returns.json"]:
+    data_files = ["accounts.json", "institutions.json", "fdic.json", "bonuses.json", "returns.json", "research.json"]
+    for name in data_files:
         path = os.path.join(DATA, name)
         if not os.path.exists(path):
             errors.append(f"missing data file: {name}")
@@ -149,7 +151,7 @@ def main():
     print(f"pages checked        : {len(PAGES)}")
     print(f"tables checked       : {total_tables}")
     print(f"table rows checked   : {total_rows}")
-    print(f"data files validated : 5")
+    print(f"data files validated : {len(data_files)}")
     if warnings:
         print("\nWARNINGS")
         for w in warnings:
