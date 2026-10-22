@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Generate the static site from data/*.json. No hand-edited numbers on any page."""
+"""Generate the static site from the comparison data and supplemental research registry."""
 
+import csv
 import html
 import json
 import os
@@ -36,7 +37,14 @@ INSTITUTIONS = load("institutions.json")
 FDIC = load("fdic.json")
 BONUSES = load("bonuses.json")
 RETURNS = load("returns.json")
+RESEARCH = load("research.json")
 
+with open(os.path.join(DATA, "standard-projections.csv"), newline="", encoding="utf-8") as fh:
+    STANDARD_REFRESH = list(csv.DictReader(fh))
+with open(os.path.join(DATA, "promotion-projections.csv"), newline="", encoding="utf-8") as fh:
+    PROMOTION_REFRESH = list(csv.DictReader(fh))
+
+RESEARCH_SOURCES = {source["id"]: source for source in RESEARCH["sources"]}
 INST = {b["cert"]: b for b in INSTITUTIONS["banks"]}
 ACC = {a["id"]: a for a in ACCOUNTS["accounts"]}
 PROJ = {p["id"]: p for p in RETURNS["projections"]}
@@ -69,6 +77,26 @@ def num(x):
 
 def src(url, label="source"):
     return f'<a class="src" href="{e(url)}" target="_blank" rel="noopener">{e(label)}</a>'
+
+
+def research_source_links(source_ids, separator="<br>"):
+    """Render links from the refresh registry; missing IDs never become invented URLs."""
+    links = []
+    clean_ids = [str(source_id).strip() for source_id in (source_ids or []) if str(source_id).strip()]
+    for source_id in dict.fromkeys(clean_ids):
+        source = RESEARCH_SOURCES.get(source_id)
+        if source:
+            links.append(src(source["url"], source.get("title") or source_id))
+    return separator.join(links) if links else '<span class="muted">—</span>'
+
+
+def csv_money(value):
+    return "&mdash;" if value in (None, "") else money(float(value), cents=True)
+
+
+def clean_source_text(value):
+    """Avoid making a source-page cell look like an unresolved template value."""
+    return str(value).replace("NaN", "nonnumeric extraction").replace("$XXXX", "masked fee placeholder")
 
 
 def badge(text, kind="plain"):
@@ -244,6 +272,7 @@ def index_page():
 </ul>"""
 
     tiles = [
+        ("rates-refresh.html", "Official-source rate refresh", "A 2026-10-22 snapshot of rates, opening terms, apps/security, offers and projections; NYC rate cells stay blank unless verified."),
         ("accounts.html", "Account comparison", f"All {len(ACCOUNTS['accounts'])} accounts at {len({a['cert'] for a in ACCOUNTS['accounts']})} banks, with APY, minimums, fees and fee waivers."),
         ("returns.html", "Returns on your deposit", "Interest by deposit size and term, plus FDIC ladder plans up to $5M."),
         ("bonuses.html", "Bonuses & promotions", f"{len(BONUSES['promotions'])} documented offers with expiry dates and eligibility rules."),
@@ -283,8 +312,11 @@ def index_page():
           f"How {len({a[chr(39)+chr(39)] if False else a['cert'] for a in ACCOUNTS['accounts']})} of the largest US banks pay on savings, what each one requires to open, what it charges, "
           f"and what your deposit actually earns after the FDIC ceiling is applied. Every number links to the bank or "
           f"FDIC page it came from, retrieved on {OPEN_DATE}.", "Research dashboard")}
+<div class="callout warn">
+  <p><strong>Official-source rate refresh added.</strong> The companion snapshot checks 16 savings products against current bank pages for a New York City context (no ZIP code inferred). It leaves location-gated or unreadable APYs blank, and keeps the existing FDIC ladder research intact. The original leaderboard below includes rates from location-specific page views; use the <a href="rates-refresh.html">official-source refresh</a> for the NYC-safe comparison and refreshed projections.</p>
+</div>
 {kpis}
-<h2>Top of the table at $250,000</h2>
+<h2>Original broad-screen leaderboard at $250,000</h2>
 <p class="muted">The FDIC limit for a single owner at one bank. Ranked on year-1 effective yield.</p>
 {top_table}
 <h2>What the data says</h2>
@@ -304,6 +336,208 @@ savings account stops being insured above $250,000 at any one bank.</p>
 """
     return layout("index.html", "Savings account research", body,
                   "Verified savings rates, minimums, fees, return projections and FDIC coverage for the largest US banks.")
+
+
+def rates_refresh_page():
+    meta = RESEARCH["meta"]
+    source_rows = []
+    for account in RESEARCH["accounts"]:
+        status = account["status"]
+        if status == "official-rate-date-stale":
+            status_badge = badge("Rate date is stale", "warn")
+        elif status in {"nyc-rate-unverified", "numeric-apy-unverified", "availability-and-rate-unverified"}:
+            status_badge = badge("NYC APY not verified", "bad")
+        elif "conditional" in status:
+            status_badge = badge("Conditional", "warn")
+        else:
+            status_badge = badge("Official rate source", "good")
+
+        rate_lines = []
+        if status == "nyc-rate-unverified":
+            rate_lines.append('<span class="muted">&mdash; No numeric New York APY confirmed; non-NYC rate views are not used in this table.</span>')
+        for rate in ([] if status == "nyc-rate-unverified" else account["standardRates"]):
+            value = pct(rate.get("apyPercent")) if rate.get("apyPercent") is not None else "&mdash;"
+            line = f'<strong>{value} APY</strong> — {e(rate.get("label", ""))}'
+            if rate.get("asOf"):
+                line += f'<br><span class="muted small">Rate date: {e(rate["asOf"])}</span>'
+            if rate.get("qualifier"):
+                line += f'<br><span class="muted small">{e(rate["qualifier"])}</span>'
+            rate_lines.append(f'<div style="margin:0 0 8px">{line}</div>')
+        if not rate_lines:
+            rate_lines.append('<span class="muted">&mdash; No readable numeric APY confirmed; see Flagged for review.</span>')
+
+        opening = account["opening"]
+        minimum = opening.get("minimumOpeningDeposit")
+        monthly_fee = opening.get("monthlyMaintenanceFee")
+        opening_text = (
+            f'<strong>Minimum to open:</strong> {e(minimum) if minimum is not None else "&mdash;"}<br>'
+            f'<strong>Monthly fee:</strong> {e(monthly_fee) if monthly_fee is not None else "&mdash;"}'
+        )
+        requirements = [opening.get("other"), account.get("activityRequirement")]
+        requirements = [e(value) for value in requirements if value]
+        opening_text += "<br><span class=\"muted small\">" + ("<br>".join(requirements) if requirements else "&mdash;") + "</span>"
+
+        digital = account["appSecurity"]
+        controls = "; ".join(digital.get("evidence", []))
+        digital_text = (
+            f'<strong>{e(digital.get("app", "App not confirmed"))}</strong>'
+            + (f'<br><span class="muted small">Published controls: {e(controls)}</span>' if controls else "")
+        )
+
+        fdic = account["fdic"]
+        fdic_text = (
+            f'<strong>{e(fdic.get("status", ""))}</strong><br>{e(fdic.get("legalBank", ""))}'
+            + (f'<br><span class="muted small">{e(fdic.get("notes", ""))}</span>' if fdic.get("notes") else "")
+        )
+        all_source_ids = list(dict.fromkeys(
+            account.get("sourceIds", [])
+            + digital.get("sourceIds", [])
+            + fdic.get("sourceIds", [])
+        ))
+        source_links = research_source_links(all_source_ids)
+        source_rows.append([
+            f'<strong>{e(account["bank"])}</strong><br><span class="muted">{e(account["product"])}</span><br>{status_badge}',
+            "".join(rate_lines),
+            opening_text,
+            digital_text,
+            fdic_text,
+            source_links,
+        ])
+
+    account_table = table(
+        ["Bank / product", "Official APY / tier", "Opening terms", "Mobile app / documented controls", "FDIC-insured bank", "Official sources"],
+        source_rows,
+        note="Rates are variable unless a source states otherwise. The opening, app/security and FDIC cells are descriptive, not an endorsement. Published security controls are not independently audited.",
+        classes=["", "", "", "", "", ""],
+    )
+
+    scenarios = {}
+    for row in STANDARD_REFRESH:
+        scenarios.setdefault((row["account_id"], row["scenario"]), []).append(row)
+    scenario_labels = {
+        "qualifying-activity": "qualifying activity required",
+        "no-qualifying-activity": "without qualifying activity",
+        "plus-membership": "SoFi Plus membership; $10/month deducted",
+        "AARP-member": "active AARP membership required",
+        "standard": "standard rate scenario",
+    }
+    projection_tables = []
+    deposit_amounts = meta["projection"]["depositAmounts"]
+    for years in meta["projection"]["horizonYears"]:
+        projection_rows = []
+        for account in RESEARCH["accounts"]:
+            for (account_id, scenario), group_rows in scenarios.items():
+                if account_id != account["id"]:
+                    continue
+                year_rows = {int(row["deposit_usd"]): row for row in group_rows if int(row["years"]) == years}
+                if not year_rows:
+                    continue
+                sample = next(iter(year_rows.values()))
+                scenario_label = scenario_labels.get(scenario, scenario)
+                display_name = f'<strong>{e(account["bank"])}</strong><br>{e(account["product"])}'
+                if scenario != "standard":
+                    display_name += f'<br><span class="muted small">{e(scenario_label)}</span>'
+                values = [
+                    csv_money(year_rows[deposit]["net_interest_after_membership_fee_usd"] or year_rows[deposit]["gross_interest_usd"])
+                    if deposit in year_rows else "&mdash;"
+                    for deposit in deposit_amounts
+                ]
+                descriptions = list(dict.fromkeys(row["rate_description"] for row in year_rows.values() if row.get("rate_description")))
+                dates = list(dict.fromkeys(row["rate_source_date"] for row in year_rows.values() if row.get("rate_source_date")))
+                detail = "; ".join(descriptions)
+                if dates:
+                    detail += " · source date " + ", ".join(dates)
+                if sample.get("evidence_status"):
+                    detail = f'<span class="muted small">{e(detail)}<br>{e(sample["evidence_status"])}</span>'
+                else:
+                    detail = e(detail)
+                projection_rows.append([
+                    display_name,
+                    *values,
+                    f'{detail}<br>{research_source_links(sample.get("source_ids", "").split(";"))}',
+                ])
+        projection_tables.append(
+            f'<h3>{years}-year horizon</h3>'
+            + table(
+                ["Account / scenario", *[money(value) for value in deposit_amounts], "Rate assumption / source"],
+                projection_rows,
+                note=f"Estimated interest through {next((row['horizon_end_date'] for row in STANDARD_REFRESH if int(row['years']) == years), '')}; opening/funding date {meta['assumedOpenDate']}. Amounts are held-APY scenarios, not forecasts.",
+                classes=["", *(["num"] * len(deposit_amounts)), ""],
+            )
+        )
+
+    promotion_rows = []
+    offer_examples = {
+        row["offer_id"]: row for row in PROMOTION_REFRESH
+        if row["deposit_usd"] == "250000" and row["years"] == "1"
+    }
+    sofi_plus_example = next((
+        row for row in STANDARD_REFRESH
+        if row["account_id"] == "sofi" and row["scenario"] == "plus-membership"
+        and row["deposit_usd"] == "250000" and row["years"] == "1"
+    ), None)
+    if sofi_plus_example:
+        net_interest = sofi_plus_example["net_interest_after_membership_fee_usd"]
+        offer_examples["sofi-plus-rate"] = {
+            "rate_schedule_assumption": "4.70% APY on first $20,000; 3.30% on the remaining balance; $10/month fee deducted",
+            "gross_interest_usd": net_interest,
+            "cash_bonus_if_conditions_met_usd": "",
+            "known_interest_plus_bonus_usd": net_interest,
+            "source_ids": sofi_plus_example["source_ids"],
+        }
+    for offer in RESEARCH["offers"]:
+        example = offer_examples.get(offer["id"])
+        if not example:
+            continue
+        expiry = e(offer["expires"]) if offer.get("expires") else "Not stated in checked terms"
+        requirements = "".join(f"<li>{e(requirement)}</li>" for requirement in offer.get("requirements", []))
+        requirements_html = (
+            f'<details><summary>Eligibility, expiry {expiry}</summary><ul>{requirements}</ul></details>'
+        )
+        rate_schedule = e(example.get("rate_schedule_assumption") or "No official numeric APY; interest is not estimated.")
+        offer_source_ids = offer.get("sourceIds") or example.get("source_ids", "").split(";")
+        promotion_rows.append([
+            f'<strong>{e(offer["bank"])}</strong><br>{e(offer["product"])}<br><span class="muted small">{e(offer["kind"])} · {e(offer["value"])}</span>',
+            rate_schedule,
+            csv_money(example.get("gross_interest_usd")),
+            csv_money(example.get("cash_bonus_if_conditions_met_usd")),
+            csv_money(example.get("known_interest_plus_bonus_usd")),
+            requirements_html,
+            research_source_links(offer_source_ids),
+        ])
+    promotion_table = table(
+        ["Offer / bank", "Rate schedule assumption", "1-year interest, net of modeled fee", "Conditional bonus", "Interest + eligible bonus", "Eligibility / terms", "Official sources"],
+        promotion_rows,
+        note="Illustration assumes the 2026-10-22 opening date and that every stated condition is met. Bonuses are not guaranteed; where an APY is unavailable, interest is blank. The SoFi Plus interest row is net of twelve $10 membership fees and is not a cash bonus. CIT's underlying rate date is stale and visibly labeled.",
+        classes=["", "", "num", "num", "num", "", ""],
+    )
+
+    body = f"""
+{page_head("Official-source rate and return refresh",
+          f"A supplemental comparison of {len(RESEARCH['accounts'])} large-bank and nationwide savings products, checked on {meta['snapshotDate']}. "
+          f"No ZIP code was inferred for New York City; location-gated or unreadable APYs stay blank. Every numeric table row links to an official bank or FDIC source.",
+          "2026-10-22 · New York City context")}
+<div class="callout warn">
+  <p><strong>Scope and limitations.</strong> This supplemental snapshot preserves the existing broad-bank comparison and FDIC ladder. It does not invent NYC rates from other ZIP codes. APYs are variable; a fixed-rate projection is arithmetic, not a forecast. A $250,000 principal leaves no standard FDIC headroom for accrued interest or other same-bank deposits. {src("https://www.fdic.gov/resources/deposit-insurance/faq", "FDIC insurance rules")}</p>
+</div>
+<h2>Rates, opening requirements, apps/security and FDIC status</h2>
+<p>The APY date is shown per product. Rates with an old disclosure date or a non-NYC location are identified instead of presented as current NYC offers. App features below are only those described by official sources; no security ranking or independent audit is claimed.</p>
+{account_table}
+<h2>Estimated interest by deposit size and period</h2>
+<p>Opening and initial funding are modeled on {meta['assumedOpenDate']}. The model uses the documented APY and calculates
+<code>P × ((1 + APY/100)<sup>days/365</sup> − 1)</code>; sequential promotional periods multiply APY factors. Rates stay constant only as a scenario. Taxes, withdrawals, recurring deposits and transfer timing are excluded; the SoFi Plus table deducts its stated $10 monthly fee.</p>
+<p class="muted">Download the <a href="data/standard-projections.csv">complete 120-row scenario matrix</a>, <a href="data/research.json">machine-readable evidence registry</a>, <a href="research/projection-method.md">projection method</a> and <a href="research/research-summary.md">research summary</a>.</p>
+{''.join(projection_tables)}
+<div class="callout">
+  <p><strong>FDIC coverage reminder.</strong> The standard limit is $250,000 per depositor, insured bank and ownership category, including accrued interest. Same-bank, same-category deposits aggregate. Check your own balances with <a class="src" href="https://www.fdic.gov/edie/">FDIC EDIE</a>; no additional coverage is assumed for SoFi's optional deposit program.</p>
+</div>
+<h2>Promotions and conditional offers</h2>
+<p>The table isolates the $250,000 / one-year illustration; terms and eligibility remain separate from base APY. The 84-row matrix covers the seven cash-bonus/APY-boost offers across all deposit sizes and periods. SoFi Plus is a paid membership scenario and appears in the standard projection tables with its fee deducted.</p>
+{promotion_table}
+<p class="muted">Download the <a href="data/promotion-projections.csv">complete promotion scenario matrix</a> and <a href="research/source-matrix.csv">official source matrix</a>. The <a href="flagged.html">Flagged for review page</a> contains all unresolved and resolved cautionary items; the <a href="sources.html">Sources page</a> lists every registry URL.</p>
+"""
+    return layout("rates-refresh.html", "Official-source rate refresh", body,
+                  "Official-source rate checks, opening terms, offers and projections for large national savings accounts; stale and location-specific values are labeled.")
 
 
 NOT_STATED = '<span class="muted">not stated</span>'
@@ -974,6 +1208,32 @@ def flagged_page():
                  note="Every row here is a value or claim that this project deliberately did not fill in, or filled in from a second official source and wants you to see why. None of these block publication; they block a numeric claim.",
                  classes=["", "", "", "", ""])
 
+    refresh_rows = []
+    for flag in RESEARCH["flags"]:
+        severity = flag["severity"]
+        lower = severity.lower()
+        if any(word in lower for word in ("left blank", "unverified", "do not rank")):
+            kind = "bad"
+        elif "resolved" in lower:
+            kind = "good"
+        elif any(word in lower for word in ("important", "ongoing", "not assumed", "verify")):
+            kind = "warn"
+        else:
+            kind = "info"
+        refresh_rows.append([
+            e(flag["id"]),
+            f'<strong>{e(flag["title"])}</strong>',
+            e(flag["details"]),
+            badge(severity, kind),
+            research_source_links(flag.get("sourceIds", [])),
+        ])
+    refresh_flags = table(
+        ["Flag ID", "Finding", "Evidence / limitation", "Status", "Official sources"],
+        refresh_rows,
+        note=f"These {len(RESEARCH['flags'])} flags come from the supplemental 2026-10-22 research registry. Resolved discrepancies remain visible for auditability; blank and stale values are not used as current verified rates.",
+        classes=["", "", "", "", ""],
+    )
+
     body = f"""
 {page_head("Flagged for review",
           "Everything that could not be verified from an official source, every page that was broken or geo-gated, and every "
@@ -983,6 +1243,8 @@ def flagged_page():
   listed here with the page that was checked, so you can repeat the check yourself in a minute.</p>
 </div>
 {main}
+<h2>Additional 2026-10-22 official-source refresh flags</h2>
+{refresh_flags}
 <h2>What was left blank, and why that is the right call</h2>
 <p>{len(RETURNS['excluded_accounts'])} of the {len(ACCOUNTS['accounts'])} accounts have no numeric APY anywhere on this site. In each case the bank either requires a ZIP code,
 serves an empty table, or renders a placeholder. The FDIC publishes a national savings average of
@@ -1029,6 +1291,26 @@ def sources_page():
     gov_tbl = table(["Source", "URL", "Retrieved / effective", "Used for"], gov, classes=["", "", "", ""])
     bank_tbl = table(["Source", "URL", "Retrieved / effective", "Used for"], bank, classes=["", "", "", ""])
 
+    refresh_source_rows = []
+    for source in RESEARCH["sources"]:
+        claims = "<br>".join(f"&bull; {e(clean_source_text(claim))}" for claim in source.get("supports", []))
+        limitations = source.get("notes")
+        if limitations:
+            claims += f'<br><span class="muted small">Notes: {e(clean_source_text(limitations))}</span>'
+        source_date = source.get("sourceDate") or "Not dated on source page"
+        refresh_source_rows.append([
+            f'<strong>{e(source["organization"])}</strong><br>{e(source["title"])}<br><code>{e(source["id"])}</code>',
+            f'Checked {e(source["checkedOn"])}<br><span class="muted small">{e(source_date)}</span>',
+            claims,
+            src(source["url"], "Official page / disclosure"),
+        ])
+    refresh_sources_table = table(
+        ["Institution / source", "Checked / source date", "Claims supported / limitations", "Official URL"],
+        refresh_source_rows,
+        note=f"The supplemental rate refresh cites {len(RESEARCH['sources'])} official bank and regulator records. Each source ID is also used by the research registry and scenario CSVs.",
+        classes=["", "", "", ""],
+    )
+
     body = f"""
 {page_head("Sources",
           "Every external page used, with the date it was retrieved. Bank pages change; if a number here disagrees with the "
@@ -1038,6 +1320,10 @@ def sources_page():
 <h2>Bank sources</h2>
 <p class="muted">{len(bank)} official bank pages were used. Links open the bank's own site.</p>
 {bank_tbl}
+<h2>Supplemental official-source refresh</h2>
+<p>Checked {e(RESEARCH['meta']['snapshotDate']):s}; this source matrix supports the NYC-context rate snapshot, account-opening terms, digital app/security notes, FDIC details, promotions and projections.</p>
+{refresh_sources_table}
+<p class="muted">Download the <a href="research/source-matrix.csv">source matrix CSV</a> or <a href="data/research.json">full research registry JSON</a>.</p>
 <h2>What is not a source here</h2>
 <p>No comparison site, affiliate site, press article or search-result snippet was used as the basis for any number on this site.
 Aggregator pages were encountered during research and deliberately excluded. One example: a competitor's calculator quotes
@@ -1123,6 +1409,7 @@ and <code>tools/check_site.py</code> fails the build if any table row lacks a so
 
 PAGES = {
     "index.html": index_page,
+    "rates-refresh.html": rates_refresh_page,
     "accounts.html": accounts_page,
     "returns.html": returns_page,
     "bonuses.html": bonuses_page,

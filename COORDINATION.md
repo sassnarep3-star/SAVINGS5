@@ -30,9 +30,11 @@
 | T8 | Build gate: sources on every table row, internal links, unresolved tokens | done | a67a75fe | `tools/check_site.py` |
 | T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
 | T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
-| T11 | Independent second verification of every published rate | done | 291c7881 | `data/session-291c7881/**` |
-| T12 | Integrate the institutions missing from the study (CIT, Barclays, Citizens) | done | 291c7881 | `data/institutions.json`, `data/accounts.json`, `data/bonuses.json` |
-| T13 | Re-run return model, ladder pools and site copy against the enlarged dataset | done | 291c7881 | `tools/build_returns.py`, `tools/build_site.py` |
+| T11 | Supplemental official-source rate, account and offer refresh | done | `arena/3a8e8ff0-savings5` | `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, new `research/` files |
+| T12 | Integrate the supplemental refresh into the already-deployed dashboard | done — PR #11 merged; Pages built | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, `README.md`, `tools/build_site.py`, `tools/check_site.py`, `COORDINATION.md`; preserve all existing research/site pages and data |
+| T13 | Independent second verification of every published rate | done | 291c7881 | `data/session-291c7881/**` |
+| T14 | Integrate the institutions missing from the study (CIT, Barclays, Citizens) | done | 291c7881 | `data/institutions.json`, `data/accounts.json`, `data/bonuses.json` |
+| T15 | Re-run return model, ladder pools and site copy against the enlarged dataset | done | 291c7881 | `tools/build_returns.py`, `tools/build_site.py` |
 
 ### Session log
 
@@ -198,5 +200,50 @@ source link, every internal link resolves, no unresolved tokens.
 
 ### Open requests to other sessions
 
-_None._ Session `291c7881` has completed its integration pass and holds no open claims. The live site and all
-`data/*.json` remain integration-session-only per rule 7.
+_No request is pending. T11/T12 are claimed by `arena/3a8e8ff0-savings5`; no other concurrent session is active.
+
+## Follow-up session activity
+
+### `arena/3a8e8ff0-savings5` — T11 official-source refresh
+
+**Claim and handoff.** This session had claimed the official-source refresh in its pre-rebase coordination board before creating the research files. On reconciling with current `main`, T1–T10 were confirmed complete and no concurrent owner was active. The existing published site, FDIC ladder, and earlier account research are preserved; T11 adds distinct research files only.
+
+**File scope:** `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, and `research/calculate_projections.py`, `research/validate_research.py`, `research/source-matrix.csv`, `research/research-summary.md`, `research/projection-method.md`.
+
+**Verification/status.** Complete: 57 official source records, 16 products, 8 offers, 9 review flags, 120 rate scenarios, and 84 conditional-offer scenarios. `python research/calculate_projections.py`, `python research/validate_research.py`, JSON parsing, and `git diff --check` pass. Unresolved New York/location-specific APYs and unverified opening-term fields remain blank; stale CIT rate, PNC availability conflict, Capital One extraction discrepancy, FDIC headroom, the historical Marcus limit wording discrepancy resolved by the current 2025 agreement/FAQ, and other caveats are disclosed in the registry and research summary.
+
+### T12 — Integrate the supplemental refresh into the already-deployed dashboard
+
+**Claim.** T1–T10 are complete and no other session is concurrently editing the site. This follow-up is limited to adding a clearly discoverable, source-linked view of T11’s rate and projection refresh to the existing GitHub Pages site. It does not replace the original accounts, FDIC coverage/ladder, bonus, or methodology pages. The previous site task is complete; this is a new, separately claimed follow-up and will retain its own build/link checks.
+
+**File scope:** `index.html`, `flagged.html`, `sources.html`, `README.md`, new `rates-refresh.html`, `tools/build_site.py`, `tools/check_site.py`, and this board. The shared builder will regenerate the existing pages; only `index.html`, `flagged.html`, and `sources.html` should change besides the new page. The previous research, account, bonus, FDIC-ladder, and CSS assets remain untouched.
+
+**Implementation and verification (2026-10-22).** Added the discoverable, source-linked rate/requirements/app-security/FDIC snapshot and 1/3/5-year return tables; surfaced all 9 supplemental flags on `flagged.html` and all 57 source records on `sources.html`. The original broad screen and FDIC ladder remain unchanged. `python research/validate_research.py` passes (57 sources, 16 accounts, 8 offers, 9 flags, 120/84 scenarios); `python3 tools/check_site.py` passes (11 pages, 28 tables, 372 data rows); `git diff --check` passes.
+
+**Publish record (T12).**
+
+| Item | Value |
+|---|---|
+| PR | https://github.com/sassnarep3-star/SAVINGS5/pull/11 |
+| PR state | MERGED; merge commit `34c801fc0dcef181f64eb41ecd0fa8b4395cad81` |
+| Merged at | 2026-10-22T00:32:14Z |
+| Pages workflow | run `39700284874`, build and deploy jobs completed successfully |
+| Pages build | `built`, commit `34c801fc0dcef181f64eb41ecd0fa8b4395cad81`, created 2026-10-22T00:32:16Z, completed 2026-10-22T00:33:15Z, no error |
+| Pages status | `built`, source `main` / root, public, HTTPS enforced |
+| Live URL | https://sassnarep3-star.github.io/SAVINGS5/ |
+
+The successful run included only non-blocking GitHub runner/action deprecation notices.
+
+### `arena/291c7881-savings5` — T13-T15 integration (recorded after T11/T12)
+
+**Three-way collision.** Sessions `a67a75fe`, `3a8e8ff0` and `291c7881` all began from commit `8f2dc3a`, when the repo held
+only `README.md` and no board, so each created a board and claimed a full task list without being able to see the others.
+`291c7881` renumbered its rows to T13-T15 on discovering that `3a8e8ff0` had already published T11/T12.
+
+**Nothing from either other session was discarded.** `main` was merged into `arena/291c7881-savings5` twice: once for
+`a67a75fe`'s site and once for `3a8e8ff0`'s supplemental refresh. Both sessions' pages, data files, `research/` scripts and
+builder changes were kept. The three conflicting generated pages (`index.html`, `flagged.html`, `sources.html`) were resolved
+to `main`'s version and then regenerated from the shared builder, so both sessions' builder changes are live. The duplicate
+12-page site `291c7881` had built on its own branch was withdrawn rather than published alongside; its independent capture is
+retained in `data/session-291c7881/` purely as cross-check evidence.
+
