@@ -800,8 +800,8 @@
       "apy_note": "Fifth Third publishes no APY on the savings page and directs customers to a branch or banker for promotional rates. No APY is asserted.",
       "min_open_usd": 0,
       "min_balance_to_avoid_fee_usd": 500,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "$0 monthly maintenance fee if you have a Fifth Third checking account or maintain an account balance of $500 or greater; otherwise $7.50.",
+      "monthly_fee_usd": 7.5,
+      "fee_waiver": "$0 monthly maintenance fee with a Fifth Third checking account or a $500+ account balance; otherwise $7.50 per month. No minimum to open.",
       "withdrawal_limit": null,
       "opening_requirements": "Open a new account online with a $0 minimum opening deposit; promotional rates require a branch visit or call.",
       "mobile_app": {
