@@ -73,4 +73,7 @@ All four parallel sessions forked from initial seed commit `8f2dc3a4237a03c0c40a
 - `python3 tools/build_site.py` -> **PASS** (`11` root HTML pages + `12` `docs/*.html` redirect stubs generated).
 - `python3 research/validate_research.py` -> **PASS** (`57` official sources, `16` accounts, `8` offers, `9` review flags, `120` rate projections, `84` offer projections).
 - `python3 tools/check_site.py` -> **PASS** (`11` root pages + `12` `docs/*.html` redirects, `8` JSON data files, zero broken links, official primary `https://` source link in every single `<tbody><tr>`, zero third-party aggregators, zero duplicate FDIC `CERT`s in any ladder, zero leaked placeholder tokens outside `flagged.html`).
-- Final PR URL, merge commit SHA, and live GitHub Pages HTTP verification appended immediately upon merge to `main`.
+- Final PR URL, merge commit SHA, and live GitHub Pages HTTP verification:
+  - **PR #14:** <https://github.com/sassnarep3-star/SAVINGS5/pull/14> — **MERGED** into `main` at `2026-10-22T00:46:50Z` (merge commit `a46ec8d6f567200ee17151c21261ad5dd1070434`).
+  - **GitHub Pages Build:** `built` on commit `a46ec8d6f567200ee17151c21261ad5dd1070434` at `2026-10-22T00:47:07Z` (`main` branch, root `/`, HTTPS enforced).
+  - **Live Deployment Verification:** Confirmed `200 OK` live serving at <https://sassnarep3-star.github.io/SAVINGS5/> across `index.html`, `accounts.html`, `returns.html`, `bonuses.html`, `rules.html`, `security.html`, `competitiveness.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, and `methodology.html`.
