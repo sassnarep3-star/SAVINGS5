@@ -509,8 +509,10 @@ def returns_page():
 {term}
 
 <h2>FDIC ladder plans</h2>
-<p>Above $250,000 the limiting factor is no longer the rate — it is the insurance ceiling. These plans split a balance across
-enough banks to keep every dollar inside the $250,000 single-owner limit.</p>
+<p>Above $250,000 the limiting factor is no longer the rate — it is the insurance ceiling. Each plan spreads a balance across
+as many distinct banks as this study covers, never more than $250,000 in any one of them. Where that is not enough banks to
+hold the whole balance inside the limit, the shortfall appears in the Uninsured column rather than being spread over duplicate
+rows.</p>
 {ladders}
 
 <h2>Coverage arithmetic</h2>
