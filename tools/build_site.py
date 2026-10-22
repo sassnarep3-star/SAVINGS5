@@ -452,20 +452,24 @@ def returns_page():
             money(l["total_usd"]),
             e(l["kind"]),
             str(l["banks_needed"]),
+            str(l["distinct_banks_used"]),
             money(l["allocation_each_usd"]),
             pct(l["blended_apy_pct"]),
             money(l["year1_interest_usd"]),
+            money(l["uninsured_usd"]) if l["uninsured_usd"] else "&mdash;",
             status,
             alloc,
             src(l["allocations"][0]["source"], "top source"),
         ])
-    ladders = table(["Total deposit", "Plan", "Banks needed", "Per bank", "Blended APY", "Year-1 interest", "FDIC status at this dataset", "Allocation", "Source"],
+    ladders = table(["Total deposit", "Plan", "Banks required", "Banks used", "Per bank", "Blended APY", "Year-1 interest", "Uninsured", "FDIC status at this dataset", "Allocation", "Source"],
                     lad_rows,
                     note="Each plan puts at most $250,000 in any one bank, which is the single-owner FDIC limit. "
                          "&ldquo;No-conditions&rdquo; uses only accounts whose published APY has no relationship, new-customer or direct-deposit requirement. "
                          "&ldquo;Max-rate&rdquo; also allows those conditional rates. Where a plan needs more banks than the study covers, the row is marked "
-                         "not fully covered rather than pretending the excess is insured.",
-                    classes=["num", "", "num", "num", "num", "num", "", "", ""])
+                         "not fully covered rather than pretending the excess is insured. One account per FDIC certificate: two products at the same "
+                         "bank share a single $250,000 limit, so a plan never counts the same certificate twice. Interest is computed only on the "
+                         "amount actually placed inside the FDIC limit.",
+                    classes=["num", "", "num", "num", "num", "num", "num", "num", "", "", ""])
 
     cov_rows = [
         [money(c["deposit_usd"]), money(c["single_owner_coverage_usd"]), money(c["uninsured_if_one_bank_usd"]),
