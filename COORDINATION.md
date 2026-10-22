@@ -3,9 +3,10 @@
 **Repo:** `sassnarep3-star/SAVINGS5`
 **Last updated:** 2026-10-22 (UTC)
 **Coordinating session:** `a67a75fe`
-**Session working branch:** `arena/a67a75fe-savings5` (assigned by the Arena harness; this session may only commit/push to this branch)
+**Session branch:** `arena/a67a75fe-savings5` (assigned by the Arena harness; this session may only commit/push to this branch)
+**Live site:** https://sassnarep3-star.github.io/SAVINGS5/
 
-## Coordination Rules In Force
+## Coordination rules in force
 
 1. Read this file before starting any task.
 2. Claim a task by adding your session ID + file scope, then commit and push the claim **immediately**.
@@ -15,29 +16,103 @@
 6. Never mark anything "verified" without an official source link and the date it was checked.
 7. Shared outputs (`data/*.json`, `index.html`, nav) are integration-session only.
 
-## Task Board
+## Task board
 
 | ID | Task | Status | Owner | File scope |
 |----|------|--------|-------|------------|
-| T1 | Coordination board + repo scaffold | done | a67a75fe | `COORDINATION.md`, `README.md`, `.gitignore` |
-| T2 | Verify FDIC insurance framework (limits, ownership categories, APY/insurance lookup method) | done | a67a75fe | `research/fdic-notes.md` |
-| T3 | Verify national-bank universe (which banks qualify as big national banks) | done | a67a75fe | `research/bank-universe.md` |
-| T4 | Verify APY + minimums + fees + account rules, official bank pages | done | a67a75fe | `data/accounts.json`, `research/accounts-notes.md` |
-| T5 | Verify account-opening bonuses/promotions, official promo terms | done | a67a75fe | `data/bonuses.json`, `research/bonuses-notes.md` |
-| T6 | Return-on-deposit model (compounding, FDIC stacking) + date-anchored projections | done | a67a75fe | `data/returns.json`, `tools/build_returns.py` |
-| T7 | Site build (landing page + category subpages) | done | a67a75fe | `index.html`, `assets/`, `*.html` |
-| T8 | Link/consistency check + build verification | done | a67a75fe | `tools/check_site.py` |
-| T9 | Publish to GitHub Pages | done | a67a75fe | `.github/workflows/pages.yml` |
-| T10 | PR to `main`, merge, deploy confirmation | done | a67a75fe | `COORDINATION.md` |
+| T1 | Coordination board + repo scaffold | done | a67a75fe | `COORDINATION.md`, `README.md`, `.gitignore`, `.nojekyll` |
+| T2 | Verify FDIC insurance framework (limits, ownership categories, covered products) | done | a67a75fe | `data/fdic.json` |
+| T3 | Verify bank universe from FDIC BankFind (16 institutions, certificates, assets, charter class) | done | a67a75fe | `data/institutions.json`, `research/verification-log.md` |
+| T4 | Verify APY, minimums, fees, waivers and opening rules, official bank pages | done | a67a75fe | `data/accounts.json` |
+| T5 | Verify bonuses/promotions and log banks with none published | done | a67a75fe | `data/bonuses.json` |
+| T6 | Return model (8 deposit sizes x 4 terms), FDIC ladder plans, coverage arithmetic | done | a67a75fe | `data/returns.json`, `tools/build_returns.py` |
+| T7 | Site build: landing page + 9 category subpages | done | a67a75fe | `index.html`, `accounts.html`, `returns.html`, `bonuses.html`, `rules.html`, `security.html`, `competitiveness.html`, `flagged.html`, `sources.html`, `methodology.html`, `assets/style.css`, `tools/build_site.py` |
+| T8 | Build gate: sources on every table row, internal links, unresolved tokens | done | a67a75fe | `tools/check_site.py` |
+| T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
+| T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
 
 ### Session log
 
 #### a67a75fe — 2026-10-22
-- Claimed T1–T10. No other sessions present at claim time (repo had one initial commit, no COORDINATION.md, no open PRs).
-- Scope: all files listed above. No overlapping sessions to coordinate with at start.
-- Note: harness pins this session to `arena/a67a75fe-savings5`; per-session feature branches (`session-<id>/<task>`) are therefore folded into this one branch. Recorded here so a later session does not treat the branch name as a conflict.
-- Methodology: every data point is taken from an official bank/government page fetched on 2026-10-22 and the exact URL is stored in the record. Anything not confirmable from an official page is stored as `null` and listed on the **Flagged for Review** page. No value is inferred, averaged, or carried over from memory.
+
+**Claim.** Repo had one initial commit and no `COORDINATION.md`; no other sessions or branches were present. Claimed T1–T10
+immediately and pushed the claim before starting work. The harness pins this session to `arena/a67a75fe-savings5`, so
+per-session branches (`session-<id>/<task>`) are folded into this one branch — recorded so a later session does not read the
+branch name as a conflict.
+
+**What was built.**
+
+- 16 FDIC-insured institutions, 17 savings accounts, 21 tables, 253 table rows, every row carrying an official source link.
+- 11 accounts with a verified numeric APY; 6 accounts deliberately excluded from every projection because no official numeric
+  APY could be read (Chase, Bank of America, Citibank, TD Bank, Fifth Third, PNC).
+- 5 documented promotions (Chase savings bonus, SoFi bonus + APY boost, Marcus referral, Wells Fargo new-customer rate,
+  U.S. Bank relationship rate) and 13 banks logged as "no savings bonus published on the account page checked".
+- Return model at 8 deposit sizes ($10k–$2.5M) and 4 terms (1/2/3/5 years), with a constant-rate scenario and a stress-case
+  scenario, plus FDIC ladder plans for $250k–$5M.
+- Static site of 10 pages, plain HTML/CSS, no JavaScript, no external assets.
+
+**Verification performed.**
+
+- Every institution checked individually in the FDIC BankFind institutions API: `ACTIVE`, `INSFDIC`, `BKCLASS`, `ASSET`,
+  `DEPDOM`, `CERT`.
+- Every rate transcribed from the bank's own page with the bank's own effective date. ZIP-gated, empty or placeholder rates
+  left blank.
+- `tools/check_site.py` run before each publish. Final run:
+
+```
+pages checked        : 10
+tables checked       : 21
+table rows checked   : 253
+data files validated : 5
+OK - every table row has a source link, every internal link resolves, no unresolved tokens.
+```
+
+- All internal links resolved on the deployed site; `index.html`, `returns.html` and `flagged.html` were also fetched live
+  from GitHub Pages after deployment and inspected.
+
+**Sources.** FDIC BankFind institutions API (index `institutions_20261016090006`); FDIC *Are My Deposit Accounts Insured by
+the FDIC?*; FDIC *Understanding Deposit Insurance*; FDIC *National Rates and Rate Caps — October 2026* (as of 2026-10-19);
+and the banks' own product, rate, fee-schedule and disclosure pages, all fetched 2026-10-22. The complete list with retrieval
+dates is on the site's Sources page and in `research/verification-log.md`.
+
+**Irregularities flagged (published on the Flagged for review page, non-blocking).**
+
+1. Bank of America's product page renders its fee block as literal `$XXXX`; fee data taken from the Personal Schedule of Fees PDF instead.
+2. Capital One's product page renders its APY as `NaN`; the 3.20% rate comes from Capital One's own category page.
+3. Citibank renders the savings APY as the unresolved token `:BLUE_AccSavings_Rate%`; APY left blank.
+4. PNC High Yield Savings returned "This Product Isn't Available in Your Area"; its 3.15% page-title rate is not asserted.
+5. Bank of America's New York rate sheet (`DigitalDeposit_NY*.pdf`) could not be retrieved; the Virginia/non-branch sheet shows
+   0.04% APY and is documented but not used for New York.
+6. Discover Bank (CERT 5649) is `ACTIVE = 0` in FDIC data; treated as part of Capital One, per Capital One's own FDIC pooling note.
+7. Marcus, American Express and Fifth Third do not name a mobile app on their savings pages — marked "not confirmed", not assumed.
+8. Security controls were not audited; FDIC status and app existence are verified, no security ranking is made.
+9. Wells Fargo, U.S. Bank and PNC rates were read from the location each site served (CA 94105, ZIP 55402, ZIP 15222) and may
+   differ in New York; disclosed on the flagged page.
+
+**Publish record (T10).**
+
+| Item | Value |
+|---|---|
+| PR | https://github.com/sassnarep3-star/SAVINGS5/pull/1 |
+| PR state | MERGED (merge commit `012e522131a4b8507b044f5eb4894a2b6adf33f6`) |
+| Merged at | 2026-10-22T00:13:15Z |
+| Pages build | `built`, commit `012e522`, created 2026-10-22T00:13:17Z, completed 2026-10-22T00:13:35Z, no error |
+| Pages status | `built`, source `main` / root, HTTPS enforced |
+| Live URL | https://sassnarep3-star.github.io/SAVINGS5/ |
+
+Two defects were found in the deployed output and corrected in a follow-up commit: (a) the flagged page listed Charles Schwab
+as having an unconfirmed app because the substring "app" matched the flag "Application is mail/phone/branch only"; (b) the
+fallback return scenario could show a *higher* five-year balance than the constant-rate case for accounts paying below the
+FDIC national average. Both are fixed and re-verified by the build gate.
+
+**Follow-up PR.** This record is published to `main` through a second PR (see the table below), because `COORDINATION.md` can
+only be updated after the merge result is known.
+
+| Item | Value |
+|---|---|
+| Follow-up PR | see PR #2 on the repository (coordination record) |
+| Follow-up merge | recorded in the PR itself |
 
 ### Open requests to other sessions
 
-_None._
+_None._ No other session is active on this repository.

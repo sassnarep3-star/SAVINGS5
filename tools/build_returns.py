@@ -162,7 +162,10 @@ def build():
                 if y == 1:
                     fb = bal
                 else:
-                    fb = fv(p, year1_rate, 1) * ((1 + national_savings / 100.0) ** (y - 1))
+                    # stress case: rate moves to the FDIC national average but never
+                    # above today's rate, so a low-rate account cannot "gain" from it
+                    fb_rate = min(best, national_savings)
+                    fb = fv(p, year1_rate, 1) * ((1 + fb_rate / 100.0) ** (y - 1))
                 row[f"fallback_balance_{y}y"] = round2(fb)
                 row[f"fallback_interest_{y}y"] = round2(fb - p)
             rows.append(row)
@@ -294,7 +297,7 @@ def build():
         "assumptions": {
             "compounding": "Future value uses APY as an annual compounded rate: balance = deposit * (1 + APY)^years.",
             "constant_rate": "Scenario 'constant' holds today's APY unchanged for the whole term. Savings APYs are variable; this is a mechanical projection, not a forecast.",
-            "fallback_rate": "Scenario 'fallback' applies today's APY for year 1 and the FDIC national savings rate afterwards.",
+            "fallback_rate": "Scenario 'fallback' applies today's APY for year 1, then the lower of today's APY and the FDIC national savings rate - a stress case that can only reduce the balance relative to the constant-rate case.",
             "fallback_rate_pct": national_savings,
             "fallback_source": "https://www.fdic.gov/national-rates-and-rate-caps",
             "fdic_limit": "Single-owner coverage of $250,000 per depositor, per bank, per ownership category.",
