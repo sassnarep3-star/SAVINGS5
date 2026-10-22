@@ -971,7 +971,7 @@ def flagged_page():
 <h2>What was left blank, and why that is the right call</h2>
 <p>{len(RETURNS['excluded_accounts'])} of the {len(ACCOUNTS['accounts'])} accounts have no numeric APY anywhere on this site. In each case the bank either requires a ZIP code,
 serves an empty table, or renders a placeholder. The FDIC publishes a national savings average of
-{pct(FDIC['national_rates']['rows'][0]['national_deposit_rate_pct'])}; plugging that into the four mega-bank rows would have made
+{pct(FDIC['national_rates']['rows'][0]['national_deposit_rate_pct'])}; plugging it into the {sum(1 for a in ACCOUNTS['accounts'] if a['apy_regular_pct'] is None)} blank rows would have made
 the table look complete and would have been an invention. Their fee, minimum and rule data — which <em>is</em> published — is
 still included, because it is verifiable.</p>
 """
@@ -1037,7 +1037,7 @@ def methodology_page():
         ("Open date used for every projection", OPEN_DATE),
         ("Accounts in the comparison", str(len(ACCOUNTS["accounts"]))),
         ("Accounts with a verified numeric APY", str(len(RETURNS["projections"]))),
-        ("Institutions verified in FDIC BankFind", str(len(ACCOUNTS["accounts"]))),
+        ("Institutions verified in FDIC BankFind", str(sum(1 for b in INSTITUTIONS["banks"] if b.get("active") == 1))),
         ("Promotions documented", str(len(BONUSES["promotions"]))),
         ("Deposit sizes modelled", "8, from $10,000 to $2,500,000"),
         ("Terms modelled", "1, 2, 3 and 5 years"),
