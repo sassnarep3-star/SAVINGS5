@@ -243,6 +243,16 @@ def index_page():
     )
 
     _rated = [a for a in ACCOUNTS["accounts"] if a["apy_regular_pct"] is not None]
+    _ranked3, _seen3 = [], set()
+    for _a in sorted(_rated, key=lambda a: account_rate(a["id"], 250000)[0], reverse=True):
+        if _a["cert"] in _seen3:      # one entry per FDIC certificate
+            continue
+        _seen3.add(_a["cert"])
+        _ranked3.append(_a)
+        if len(_ranked3) == 3:
+            break
+    _top3 = ", ".join(f'{a["brand"]} at {pct(account_rate(a["id"], 250000)[0])}' for a in _ranked3[:-1])
+    _top3 += f' or {_ranked3[-1]["brand"]} at {pct(account_rate(_ranked3[-1]["id"], 250000)[0])}' 
     _hi = max(_rated, key=lambda a: account_rate(a["id"], 250000)[0])
     _lo = min(_rated, key=lambda a: account_rate(a["id"], 250000)[0])
     _hi_apy, _lo_apy = account_rate(_hi["id"], 250000)[0], account_rate(_lo["id"], 250000)[0]
@@ -329,7 +339,7 @@ savings account stops being insured above $250,000 at any one bank.</p>
 {cov_table}
 <div class="callout">
   <p><strong>Bottom line.</strong> For a balance at or below $250,000, a single high-rate online account from a large
-  FDIC-insured bank — Synchrony at {pct(3.55)}, Marcus at {pct(3.50)} or SoFi with its direct-deposit boost — produces
+  FDIC-insured bank — {_top3} — produces
   several times the interest of a legacy branch account at the same institution size. Above $250,000 the constraint
   stops being rate and becomes structure: the money has to be split across banks.</p>
 </div>
