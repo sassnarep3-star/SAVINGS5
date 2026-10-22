@@ -1,0 +1,191 @@
+{
+  "metadata": {
+    "reference_open_date": "2026-10-22",
+    "verified_at_utc": "2026-10-22T00:07:00Z",
+    "verification_policy": "All figures extracted directly from official U.S. government (.gov) primary publications on 2026-10-22; zero inferred or third-party aggregator values."
+  },
+  "fdic_insurance_rules": {
+    "standard_individual_max_usd": 250000,
+    "joint_two_owners_max_usd": 500000,
+    "joint_per_co_owner_usd": 250000,
+    "trust_per_beneficiary_usd": 250000,
+    "trust_max_single_owner_five_plus_beneficiaries_usd": 1250000,
+    "trust_rule_effective_date": "2024-04-01",
+    "aggregation_rule": "All deposit accounts held in the same ownership category at the same FDIC-insured charter (same FDIC Certificate Number) are added together toward the $250,000 limit, including accounts opened under different brand names or divisions of the same chartered bank.",
+    "official_sources": [
+      {
+        "label": "FDIC — Understanding Deposit Insurance",
+        "url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+        "verified_date": "2026-10-22"
+      },
+      {
+        "label": "FDIC — Deposit Insurance At A Glance (Trust Rule Effective April 1, 2024)",
+        "url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance",
+        "verified_date": "2026-10-22"
+      },
+      {
+        "label": "FDIC — Electronic Deposit Insurance Estimator (EDIE)",
+        "url": "https://edie.fdic.gov/",
+        "verified_date": "2026-10-22"
+      }
+    ]
+  },
+  "fdic_national_rates": {
+    "effective_date": "2026-10-19",
+    "verified_date": "2026-10-22",
+    "source_label": "FDIC National Rates and Rate Caps – October 2026 (Revised October 19, 2026)",
+    "source_url": "https://www.fdic.gov/national-rates-and-rate-caps",
+    "rates_pct": {
+      "savings": {
+        "national_rate": 0.38,
+        "rate_cap": 4.63,
+        "reference_rate": 3.88
+      },
+      "interest_checking": {
+        "national_rate": 0.07,
+        "rate_cap": 4.63,
+        "reference_rate": 3.88
+      },
+      "money_market": {
+        "national_rate": 0.63,
+        "rate_cap": 4.63,
+        "reference_rate": 3.88
+      },
+      "cd_1m": {
+        "national_rate": 0.23,
+        "treasury_yield": 4.02,
+        "rate_cap": 5.57
+      },
+      "cd_3m": {
+        "national_rate": 1.14,
+        "treasury_yield": 4.20,
+        "rate_cap": 5.79
+      },
+      "cd_6m": {
+        "national_rate": 1.39,
+        "treasury_yield": 4.33,
+        "rate_cap": 5.95
+      },
+      "cd_12m": {
+        "national_rate": 1.76,
+        "treasury_yield": 4.54,
+        "rate_cap": 6.20
+      },
+      "cd_24m": {
+        "national_rate": 1.55,
+        "treasury_yield": 4.88,
+        "rate_cap": 6.61
+      },
+      "cd_36m": {
+        "national_rate": 1.39,
+        "treasury_yield": 5.00,
+        "rate_cap": 6.75
+      },
+      "cd_48m": {
+        "national_rate": 1.31,
+        "treasury_yield": 5.00,
+        "rate_cap": 6.75
+      },
+      "cd_60m": {
+        "national_rate": 1.41,
+        "treasury_yield": 5.09,
+        "rate_cap": 6.86
+      }
+    }
+  },
+  "federal_reserve_policy": {
+    "fomc_last_change_date": "2026-09-17",
+    "change_bps": 25,
+    "target_range_low_pct": 3.75,
+    "target_range_high_pct": 4.00,
+    "target_range_display": "3.75%–4.00%",
+    "prior_2025_dec_11_range": "3.50%–3.75%",
+    "verified_date": "2026-10-22",
+    "source_label": "Board of Governors of the Federal Reserve System — Open Market Operations",
+    "source_url": "https://www.federalreserve.gov/monetarypolicy/openmarket.htm"
+  },
+  "us_treasury_par_yield_curve": {
+    "curve_date": "2026-10-21",
+    "verified_date": "2026-10-22",
+    "source_label": "U.S. Department of the Treasury — Daily Treasury Par Yield Curve Rates (October 2026)",
+    "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
+    "yields_pct": {
+      "1m": 4.09,
+      "1_5m": 4.12,
+      "2m": 4.16,
+      "3m": 4.25,
+      "4m": 4.34,
+      "6m": 4.35,
+      "1y": 4.52,
+      "2y": 4.81,
+      "3y": 4.89,
+      "5y": 4.95,
+      "7y": 5.03,
+      "10y": 5.13,
+      "20y": 5.47,
+      "30y": 5.42
+    }
+  },
+  "investment_horizons": [
+    {
+      "id": "3m",
+      "label": "3 Months",
+      "years": 0.25,
+      "open_date": "2026-10-22",
+      "end_date": "2027-01-22",
+      "calendar_days": 92,
+      "treasury_benchmark_pct": 4.25,
+      "fdic_cd_national_rate_pct": 1.14
+    },
+    {
+      "id": "6m",
+      "label": "6 Months",
+      "years": 0.5,
+      "open_date": "2026-10-22",
+      "end_date": "2027-04-22",
+      "calendar_days": 182,
+      "treasury_benchmark_pct": 4.35,
+      "fdic_cd_national_rate_pct": 1.39
+    },
+    {
+      "id": "1y",
+      "label": "1 Year",
+      "years": 1.0,
+      "open_date": "2026-10-22",
+      "end_date": "2027-10-22",
+      "calendar_days": 365,
+      "treasury_benchmark_pct": 4.52,
+      "fdic_cd_national_rate_pct": 1.76
+    },
+    {
+      "id": "2y",
+      "label": "2 Years",
+      "years": 2.0,
+      "open_date": "2026-10-22",
+      "end_date": "2028-10-22",
+      "calendar_days": 731,
+      "treasury_benchmark_pct": 4.81,
+      "fdic_cd_national_rate_pct": 1.55
+    },
+    {
+      "id": "3y",
+      "label": "3 Years",
+      "years": 3.0,
+      "open_date": "2026-10-22",
+      "end_date": "2029-10-22",
+      "calendar_days": 1096,
+      "treasury_benchmark_pct": 4.89,
+      "fdic_cd_national_rate_pct": 1.39
+    },
+    {
+      "id": "5y",
+      "label": "5 Years",
+      "years": 5.0,
+      "open_date": "2026-10-22",
+      "end_date": "2031-10-22",
+      "calendar_days": 1826,
+      "treasury_benchmark_pct": 4.95,
+      "fdic_cd_national_rate_pct": 1.41
+    }
+  ]
+}

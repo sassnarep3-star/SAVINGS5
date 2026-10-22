@@ -1,0 +1,36 @@
+{
+  "baseline_commit_sha": "8f2dc3a4237a03c0c40a7ef29af9d403b9c433ca",
+  "audited_at_utc": "2026-10-22T00:07:00Z",
+  "audited_by_session": "arena/5f0ee759-savings5",
+  "github_pages_configuration": {
+    "url": "https://sassnarep3-star.github.io/SAVINGS5/",
+    "source_branch": "main",
+    "source_path": "/",
+    "build_type": "legacy",
+    "https_enforced": true
+  },
+  "files_inspected": [
+    {
+      "path": "README.md",
+      "bytes": 10,
+      "lines": [
+        {
+          "line_number": 1,
+          "raw_text": "# SAVINGS5",
+          "status": "verified_placeholder",
+          "notes": "Initial repository title header created at 2026-10-22T00:00:17Z with no trailing newline and zero pre-existing bank rate claims, unverified numbers, or broken URLs."
+        }
+      ]
+    }
+  ],
+  "irregularities_in_baseline_repo": [
+    {
+      "id": "REPO-BASE-01",
+      "severity": "info",
+      "file": "README.md",
+      "line": 1,
+      "description": "Baseline repository contained only a 10-byte title stub ('# SAVINGS5' without trailing newline) and no structured savings account dataset, verification links, or static GitHub Pages index.html.",
+      "resolution": "Replaced stub with full documented repository overview while preserving complete baseline commit audit history."
+    }
+  ]
+}
