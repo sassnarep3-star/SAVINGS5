@@ -1994,6 +1994,19 @@
         "sofi_savings",
         "fdic_faq"
       ]
+    },
+    {
+      "id": "opening-terms-not-reverified",
+      "severity": "minimum/fee cells left blank",
+      "title": "Some account-opening minimums and monthly fees were not independently reverified",
+      "details": "This refresh leaves the minimum opening deposit and monthly maintenance fee blank for Chase Savings, Bank of America Advantage Savings, Citi consumer savings (the exact product is not uniquely confirmed), Wells Fargo Way2Save, and PNC High Yield Savings. Their linked official product/rate pages were checked for this comparison, but those specific terms were not fully reverified in the refresh; no values were copied from a different comparison or inferred. PNC availability is separately unresolved. Confirm the current official account disclosures before applying.",
+      "sourceIds": [
+        "chase_product",
+        "bofa_product",
+        "citi_rates",
+        "wells_product",
+        "pnc_hys"
+      ]
     }
   ],
   "findings": {

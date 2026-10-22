@@ -31,7 +31,7 @@
 | T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
 | T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
 | T11 | Supplemental official-source rate, account and offer refresh | done | `arena/3a8e8ff0-savings5` | `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, new `research/` files |
-| T12 | Integrate the supplemental refresh into the already-deployed dashboard | in progress | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, `README.md`, `tools/build_site.py`, `tools/check_site.py`, `COORDINATION.md`; preserve all existing research/site pages and data |
+| T12 | Integrate the supplemental refresh into the already-deployed dashboard | in progress — build checked; publication pending | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, `README.md`, `tools/build_site.py`, `tools/check_site.py`, `COORDINATION.md`; preserve all existing research/site pages and data |
 
 ### Session log
 
@@ -143,10 +143,12 @@ _No request is pending. T11/T12 are claimed by `arena/3a8e8ff0-savings5`; no oth
 
 **File scope:** `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, and `research/calculate_projections.py`, `research/validate_research.py`, `research/source-matrix.csv`, `research/research-summary.md`, `research/projection-method.md`.
 
-**Verification/status.** Complete: 57 official source records, 16 products, 8 offers, 8 review flags, 120 rate scenarios, and 84 conditional-offer scenarios. `python research/calculate_projections.py`, `python research/validate_research.py`, JSON parsing, and `git diff --check` pass. Unresolved New York/location-specific APYs remain blank; stale CIT rate, PNC availability conflict, Capital One extraction discrepancy, FDIC headroom, and a historical Marcus limit wording discrepancy resolved by the current 2025 agreement/FAQ are disclosed in the registry and research summary.
+**Verification/status.** Complete: 57 official source records, 16 products, 8 offers, 9 review flags, 120 rate scenarios, and 84 conditional-offer scenarios. `python research/calculate_projections.py`, `python research/validate_research.py`, JSON parsing, and `git diff --check` pass. Unresolved New York/location-specific APYs and unverified opening-term fields remain blank; stale CIT rate, PNC availability conflict, Capital One extraction discrepancy, FDIC headroom, the historical Marcus limit wording discrepancy resolved by the current 2025 agreement/FAQ, and other caveats are disclosed in the registry and research summary.
 
 ### T12 — Integrate the supplemental refresh into the already-deployed dashboard
 
 **Claim.** T1–T10 are complete and no other session is concurrently editing the site. This follow-up is limited to adding a clearly discoverable, source-linked view of T11’s rate and projection refresh to the existing GitHub Pages site. It does not replace the original accounts, FDIC coverage/ladder, bonus, or methodology pages. The previous site task is complete; this is a new, separately claimed follow-up and will retain its own build/link checks.
 
 **File scope:** `index.html`, `flagged.html`, `sources.html`, `README.md`, new `rates-refresh.html`, `tools/build_site.py`, `tools/check_site.py`, and this board. The shared builder will regenerate the existing pages; only `index.html`, `flagged.html`, and `sources.html` should change besides the new page. The previous research, account, bonus, FDIC-ladder, and CSS assets remain untouched.
+
+**Implementation and verification (2026-10-22).** Added the discoverable, source-linked rate/requirements/app-security/FDIC snapshot and 1/3/5-year return tables; surfaced all 9 supplemental flags on `flagged.html` and all 57 source records on `sources.html`. The original broad screen and FDIC ladder remain unchanged. `python research/validate_research.py` passes (57 sources, 16 accounts, 8 offers, 9 flags, 120/84 scenarios); `python3 tools/check_site.py` passes (11 pages, 28 tables, 372 data rows); `git diff --check` passes. Publication and Pages verification are pending.

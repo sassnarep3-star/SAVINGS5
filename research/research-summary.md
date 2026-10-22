@@ -96,3 +96,5 @@ Promotional first-year illustrations for $250,000 are in [`data/promotion-projec
 5. Capital One has a separate `NaN` extraction path; the explicit 3.20% table/effective-date disclosure is used and the application screen should be rechecked.
 6. The official SoFi Insured Deposit Program is separate from standard FDIC coverage and is not assumed.
 7. All savings APYs/offers are variable and may change; re-open the official source on the day of application.
+8. A $250,000 principal has no FDIC headroom for accrued interest or other same-bank deposits; coverage must be checked by ownership category.
+9. Minimum opening deposits/monthly fees were not independently reverified in this refresh for Chase, Bank of America, Citi, Wells Fargo Way2Save, and PNC; the corresponding cells stay blank and should be checked in the linked current disclosures before applying.

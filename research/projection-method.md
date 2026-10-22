@@ -46,5 +46,6 @@ This regenerates:
 
 - [`data/standard-projections.csv`](../data/standard-projections.csv): 120 account/scenario/amount/horizon rows.
 - [`data/promotion-projections.csv`](../data/promotion-projections.csv): 84 offer/amount/horizon rows, including blank interest when an official APY was not retrieved.
+- [`research/source-matrix.csv`](source-matrix.csv): 57 source records, exported from the canonical evidence registry.
 
-Both files include source IDs and official URLs on every row. Source metadata and checked/effective dates are in [`source-matrix.csv`](source-matrix.csv); underlying verified facts are in [`data/research.json`](../data/research.json).
+Both projection CSVs include source IDs and official URLs on every row. The source matrix carries the checked/effective dates and claims; the underlying verified facts are in [`data/research.json`](../data/research.json).
