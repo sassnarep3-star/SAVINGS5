@@ -31,7 +31,7 @@
 | T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
 | T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
 | T11 | Supplemental official-source rate, account and offer refresh | done | `arena/3a8e8ff0-savings5` | `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, new `research/` files |
-| T12 | Integrate the supplemental refresh into the already-deployed dashboard | in progress — build checked; publication pending | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, `README.md`, `tools/build_site.py`, `tools/check_site.py`, `COORDINATION.md`; preserve all existing research/site pages and data |
+| T12 | Integrate the supplemental refresh into the already-deployed dashboard | done — PR #11 merged; Pages built | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, `README.md`, `tools/build_site.py`, `tools/check_site.py`, `COORDINATION.md`; preserve all existing research/site pages and data |
 
 ### Session log
 
@@ -151,4 +151,18 @@ _No request is pending. T11/T12 are claimed by `arena/3a8e8ff0-savings5`; no oth
 
 **File scope:** `index.html`, `flagged.html`, `sources.html`, `README.md`, new `rates-refresh.html`, `tools/build_site.py`, `tools/check_site.py`, and this board. The shared builder will regenerate the existing pages; only `index.html`, `flagged.html`, and `sources.html` should change besides the new page. The previous research, account, bonus, FDIC-ladder, and CSS assets remain untouched.
 
-**Implementation and verification (2026-10-22).** Added the discoverable, source-linked rate/requirements/app-security/FDIC snapshot and 1/3/5-year return tables; surfaced all 9 supplemental flags on `flagged.html` and all 57 source records on `sources.html`. The original broad screen and FDIC ladder remain unchanged. `python research/validate_research.py` passes (57 sources, 16 accounts, 8 offers, 9 flags, 120/84 scenarios); `python3 tools/check_site.py` passes (11 pages, 28 tables, 372 data rows); `git diff --check` passes. Publication and Pages verification are pending.
+**Implementation and verification (2026-10-22).** Added the discoverable, source-linked rate/requirements/app-security/FDIC snapshot and 1/3/5-year return tables; surfaced all 9 supplemental flags on `flagged.html` and all 57 source records on `sources.html`. The original broad screen and FDIC ladder remain unchanged. `python research/validate_research.py` passes (57 sources, 16 accounts, 8 offers, 9 flags, 120/84 scenarios); `python3 tools/check_site.py` passes (11 pages, 28 tables, 372 data rows); `git diff --check` passes.
+
+**Publish record (T12).**
+
+| Item | Value |
+|---|---|
+| PR | https://github.com/sassnarep3-star/SAVINGS5/pull/11 |
+| PR state | MERGED; merge commit `34c801fc0dcef181f64eb41ecd0fa8b4395cad81` |
+| Merged at | 2026-10-22T00:32:14Z |
+| Pages workflow | run `39700284874`, build and deploy jobs completed successfully |
+| Pages build | `built`, commit `34c801fc0dcef181f64eb41ecd0fa8b4395cad81`, created 2026-10-22T00:32:16Z, completed 2026-10-22T00:33:15Z, no error |
+| Pages status | `built`, source `main` / root, public, HTTPS enforced |
+| Live URL | https://sassnarep3-star.github.io/SAVINGS5/ |
+
+The successful run included only non-blocking GitHub runner/action deprecation notices.
