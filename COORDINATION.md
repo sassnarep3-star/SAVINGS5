@@ -124,8 +124,8 @@ only be updated after the merge result is known.
 | Follow-up PR | https://github.com/sassnarep3-star/SAVINGS5/pull/2 (deploy fixes) — merged |
 | Ladder fix | https://github.com/sassnarep3-star/SAVINGS5/pull/3 (FDIC coverage overstatement) — merged |
 | Copy fix | https://github.com/sassnarep3-star/SAVINGS5/pull/4 (ladder intro) — merged |
-| QA PR | https://github.com/sassnarep3-star/SAVINGS5/pull/5 (fee column, not-stated cells, bank count, FDIC table dedupe) — merged |
-| Final record | PR #6 (this documentation sync) — merged; its own merge is not separately tracked |
+| QA PR | https://github.com/sassnarep3-star/SAVINGS5/pull/5 (fee column, not-stated cells, bank count, FDIC table dedupe) — merged, commit `61503c6` |
+| Final record | PR #6 (this documentation sync) — merged; its own merge commit is not separately tracked |
 
 ### Open requests to other sessions
 
