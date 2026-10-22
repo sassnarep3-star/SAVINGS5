@@ -219,8 +219,9 @@ def index_page():
     Synchrony pays {pct(3.55)} and Wells Fargo Way2Save pays {pct(0.01)} — a difference of about
     {money(250000 * (3.55 - 0.01) / 100)} of interest on $250,000 in one year. {src("https://www.synchrony.com/banking/products/hys-core", "Synchrony")} {src("https://www.wellsfargo.com/savings-cds/way2save/", "Wells Fargo")}</li>
   <li><strong>Several of the largest banks do not publish a consumer-readable savings APY.</strong>
-    Chase, Bank of America and Citibank require a ZIP code, and TD serves an empty rate table, before showing a rate.
-    Those four cells are left blank rather than estimated. {src("https://www.chase.com/personal/savings/savings-account/interest-rates", "Chase")} {src("https://www.bankofamerica.com/deposits/bank-account-interest-rates/", "BofA")}</li>
+    Chase, Bank of America and Citibank require a ZIP code, TD serves an empty rate table, PNC replaces its page with a
+    geo-restriction notice, and Fifth Third quotes promotional rates only in a branch. All {len(RETURNS["excluded_accounts"])}
+    of those APY cells are left blank rather than estimated. {src("https://www.chase.com/personal/savings/savings-account/interest-rates", "Chase")} {src("https://www.bankofamerica.com/deposits/bank-account-interest-rates/", "BofA")}</li>
   <li><strong>The highest rate is not always the highest first-year return.</strong>
     SoFi's {pct(3.30)} base rate plus a 1.10% six-month direct-deposit boost produces a
     {pct(3.85)} year-1 blended yield — about {money(250000 * (3.8485 - 3.55) / 100)} more than the
