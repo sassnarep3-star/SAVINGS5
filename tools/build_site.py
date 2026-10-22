@@ -297,6 +297,9 @@ savings account stops being insured above $250,000 at any one bank.</p>
                   "Verified savings rates, minimums, fees, return projections and FDIC coverage for the largest US banks.")
 
 
+NOT_STATED = '<span class="muted">not stated</span>'
+
+
 def accounts_page():
     rows = []
     for a in sorted_accounts():
@@ -316,10 +319,10 @@ def accounts_page():
                 f'<strong>{e(a["brand"])}</strong><br><span class="muted small">{e(a["account_name"])}</span>',
                 apy_cell,
                 asof,
-                money(a["min_open_usd"]),
-                money(a["monthly_fee_usd"], cents=True) if a["monthly_fee_usd"] else ("$0" if a["monthly_fee_usd"] == 0 else "&mdash;"),
-                f'{money(a["min_balance_to_avoid_fee_usd"])}' if a["min_balance_to_avoid_fee_usd"] else ("none" if a["min_balance_to_avoid_fee_usd"] == 0 else "&mdash;"),
-                e(a["fee_waiver"] or "&mdash;"),
+                money(a["min_open_usd"]) if a["min_open_usd"] is not None else NOT_STATED,
+                money(a["monthly_fee_usd"], cents=True) if a["monthly_fee_usd"] is not None else NOT_STATED,
+                money(a["min_balance_to_avoid_fee_usd"]) if a["min_balance_to_avoid_fee_usd"] else ("none" if a["min_balance_to_avoid_fee_usd"] == 0 else NOT_STATED),
+                e(a["fee_waiver"]) if a["fee_waiver"] else '<span class="muted">not published</span>',
                 src(a["sources"][0]["url"], "rate page"),
             ]
         )
@@ -329,7 +332,8 @@ def accounts_page():
         note="APY shown is the best published rate that applies at a $250,000 balance; the condition is printed under the rate. "
         "SoFi is shown at its 3.30% base rate: its 4.40% six-month boost is a time-limited promotion, modelled on the Returns page as a 3.85% year-1 blended yield. "
         "Where the bank does not publish a readable rate, the cell says 'not published' and the reason is on the Flagged for review page. "
-        "&ldquo;Fee&rdquo; is the monthly maintenance fee before any waiver.",
+        "&ldquo;Fee&rdquo; is the monthly maintenance fee before any waiver. The date column is the bank's own stated effective date where the page "
+        "publishes one; where it does not, it is the date this site read the page (2026-10-22).",
         classes=["", "num", "", "num", "num", "num", "", ""],
     )
 
@@ -372,7 +376,8 @@ def accounts_page():
 <div class="callout warn">
   <p><strong>Read the APY column carefully.</strong> A bold rate without a condition is the bank's standard published rate.
   A rate with a condition underneath is the best tier the bank publishes for that balance — it is not available to every customer.
-  Four large banks publish no readable savings rate at all, so their APY is left blank.</p>
+  {sum(1 for a in ACCOUNTS["accounts"] if a["apy_status"] != "verified")} of the {len(ACCOUNTS["accounts"])} accounts publish no readable rate on a
+page that can be reached without a ZIP code, so their APY is left blank instead of estimated.</p>
 </div>
 {main}
 <h2>Detail by account</h2>
@@ -452,20 +457,24 @@ def returns_page():
             money(l["total_usd"]),
             e(l["kind"]),
             str(l["banks_needed"]),
+            str(l["distinct_banks_used"]),
             money(l["allocation_each_usd"]),
             pct(l["blended_apy_pct"]),
             money(l["year1_interest_usd"]),
+            money(l["uninsured_usd"]) if l["uninsured_usd"] else "&mdash;",
             status,
             alloc,
             src(l["allocations"][0]["source"], "top source"),
         ])
-    ladders = table(["Total deposit", "Plan", "Banks needed", "Per bank", "Blended APY", "Year-1 interest", "FDIC status at this dataset", "Allocation", "Source"],
+    ladders = table(["Total deposit", "Plan", "Banks required", "Banks used", "Per bank", "Blended APY", "Year-1 interest", "Uninsured", "FDIC status at this dataset", "Allocation", "Source"],
                     lad_rows,
                     note="Each plan puts at most $250,000 in any one bank, which is the single-owner FDIC limit. "
                          "&ldquo;No-conditions&rdquo; uses only accounts whose published APY has no relationship, new-customer or direct-deposit requirement. "
                          "&ldquo;Max-rate&rdquo; also allows those conditional rates. Where a plan needs more banks than the study covers, the row is marked "
-                         "not fully covered rather than pretending the excess is insured.",
-                    classes=["num", "", "num", "num", "num", "num", "", "", ""])
+                         "not fully covered rather than pretending the excess is insured. One account per FDIC certificate: two products at the same "
+                         "bank share a single $250,000 limit, so a plan never counts the same certificate twice. Interest is computed only on the "
+                         "amount actually placed inside the FDIC limit.",
+                    classes=["num", "", "num", "num", "num", "num", "num", "num", "", "", ""])
 
     cov_rows = [
         [money(c["deposit_usd"]), money(c["single_owner_coverage_usd"]), money(c["uninsured_if_one_bank_usd"]),
@@ -505,8 +514,10 @@ def returns_page():
 {term}
 
 <h2>FDIC ladder plans</h2>
-<p>Above $250,000 the limiting factor is no longer the rate — it is the insurance ceiling. These plans split a balance across
-enough banks to keep every dollar inside the $250,000 single-owner limit.</p>
+<p>Above $250,000 the limiting factor is no longer the rate — it is the insurance ceiling. Each plan spreads a balance across
+as many distinct banks as this study covers, never more than $250,000 in any one of them. Where that is not enough banks to
+hold the whole balance inside the limit, the shortfall appears in the Uninsured column rather than being spread over duplicate
+rows.</p>
 {ladders}
 
 <h2>Coverage arithmetic</h2>
@@ -633,21 +644,32 @@ def rules_page():
 
 def security_page():
     rows = []
+    by_cert = {}
     for a in sorted_accounts():
-        b = INST.get(a["cert"], {})
-        app = badge("confirmed", "good") if a["mobile_app"]["value"] == "yes" else badge("not confirmed", "warn")
+        by_cert.setdefault(a["cert"], []).append(a)
+    for cert, accts in by_cert.items():
+        a = accts[0]
+        b = INST.get(cert, {})
+        yes = sum(1 for x in accts if x["mobile_app"]["value"] == "yes")
+        if yes == len(accts):
+            app = badge("confirmed", "good")
+        elif yes == 0:
+            app = badge("not confirmed", "warn")
+        else:
+            app = badge(f"confirmed for {yes} of {len(accts)}", "warn")
+        products = "<br>".join(e(x["account_name"]) for x in accts)
         rows.append([
             f'<strong>{e(a["brand"])}</strong><br><span class="muted small">{e(a["institution"])}</span>',
-            f'<a class="src" href="https://banks.data.fdic.gov/bankfind-suite/bankfind/details/{a["cert"]}" target="_blank" rel="noopener">{a["cert"]}</a>',
+            f'<a class="src" href="https://banks.data.fdic.gov/bankfind-suite/bankfind/details/{cert}" target="_blank" rel="noopener">{cert}</a>',
             badge("active", "good") if b.get("active") == 1 else badge("inactive", "bad"),
             badge("FDIC insured", "good") if b.get("insfdic") == 1 else badge("not insured", "bad"),
             e(b.get("bkclass_label", "")),
             money(b.get("assets_usd")),
             money(b.get("deposits_usd")),
+            products,
             app,
-            src(a["mobile_app"]["source"], "app source"),
         ])
-    main = table(["Bank", "FDIC cert.", "Status", "Insurance", "Charter", "Total assets", "Domestic deposits", "Mobile app", "App source"],
+    main = table(["Bank", "FDIC cert.", "Status", "Insurance", "Charter", "Total assets", "Domestic deposits", "Products in study", "Mobile app"],
                  rows,
                  note=f"All institution fields are from the FDIC BankFind Suite institutions API, index {e(INSTITUTIONS['dataset_index'])}, retrieved 2026-10-22. "
                       f"Assets and deposits are the API's thousands figure multiplied by 1,000. "
@@ -730,7 +752,7 @@ def competitiveness_page():
             "{:+.0f} bp".format(vs12),
             "{:+.0f} bp".format(vs_t),
             "{:.0f}%".format(share),
-            "{:.1f} yrs".format(years_double),
+            ("> 1,000 yrs" if years_double > 1000 else "{:.1f} yrs".format(years_double)),
             src(a["sources"][0]["url"]),
         ])
     main = table(["Bank / account", "APY at $250k", "vs FDIC savings average", "Spread vs savings average", "vs 12-mo CD average", "vs 12-mo Treasury", "APY as % of Treasury yield", "Years to double", "Source"],
@@ -874,6 +896,17 @@ def flagged_page():
             "sources": [
                 {"label": "FDIC BankFind record (ACTIVE = 0)", "url": "https://api.fdic.gov/banks/institutions?filters=CERT%3A5649", "as_of": "2026-10-22"},
                 {"label": "Capital One FDIC pooling note", "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/", "as_of": "2026-10-22"},
+            ],
+        },
+        {
+            "area": "Third-party data",
+            "item": "Bank of America 0.04% and Chase 0.02% appear in a competitor's calculator",
+            "detail": "Marcus's published comparison calculator lists Bank of America at 0.04% APY and Chase at 0.02% APY for New York savings, sourced from Curinos as of 2026-10-20. Those are third-party figures attributed to the banks, not rates published by Bank of America or Chase, and they are not used anywhere in this study. Both banks' APY cells stay blank. The figures are recorded here because a reader may encounter them and wonder why this site disagrees.",
+            "status": "Not used — third-party attribution, not an official bank rate",
+            "sources": [
+                {"label": "Marcus referral page containing the calculator", "url": "https://www.marcus.com/us/en/savings/referrals", "as_of": "2026-10-21"},
+                {"label": "Bank of America rate page (ZIP-gated)", "url": "https://www.bankofamerica.com/deposits/bank-account-interest-rates/", "as_of": "2026-10-22"},
+                {"label": "Chase rate page (ZIP-gated)", "url": "https://www.chase.com/personal/savings/savings-account/interest-rates", "as_of": "2026-10-22"},
             ],
         },
         {
@@ -1023,7 +1056,9 @@ def methodology_page():
 <h2>1. How banks were selected</h2>
 <p>The starting universe was the largest active FDIC-insured institutions by total assets, pulled from the FDIC BankFind Suite
 institutions API rather than from any ranking article. Every institution in the study sits between $56.8 billion and $4.09
-trillion in total assets, and 13 of the 16 are chartered as national banks. The intent was to answer the question as asked:
+trillion in total assets, and {sum(1 for b in INSTITUTIONS["banks"] if b.get("active") == 1 and b.get("bkclass_label") == "National bank")}
+of the {sum(1 for b in INSTITUTIONS["banks"] if b.get("active") == 1)} active institutions are chartered as national banks; the rest are
+state-chartered banks that still fall inside the same size screen. The intent was to answer the question as asked:
 big national banks, no small local banks, no credit unions, and no fintech front-ends whose deposits sit at a partner bank.</p>
 <p class="muted">Deliberately excluded: fintechs that are not banks (their deposits are held at a partner institution, which is
 where the FDIC coverage actually applies), credit unions (NCUA-insured, a different scheme), and brokerage cash-sweep programs.</p>
