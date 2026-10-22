@@ -1025,8 +1025,9 @@ def sources_page():
 {bank_tbl}
 <h2>What is not a source here</h2>
 <p>No comparison site, affiliate site, press article or search-result snippet was used as the basis for any number on this site.
-Aggregator pages were encountered during research and deliberately excluded — one example: a third-party page reported a Truist
-savings APY that Truist itself does not publish, so the Truist APY is blank here.</p>
+Aggregator pages were encountered during research and deliberately excluded. One example: a competitor's calculator quotes
+Bank of America and Chase savings rates, but neither bank publishes a rate this study could read without a ZIP code, so both
+cells are blank here even though a number was available from the aggregator.</p>
 """
     return layout("sources.html", "Sources", body,
                   "Every official government and bank page used, with retrieval dates.")
