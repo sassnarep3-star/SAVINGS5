@@ -430,10 +430,10 @@ def returns_page():
             money(row["fallback_balance_5y"]),
             src(p["apy_source"]),
         ])
-    term = table(["Bank", "Year-1 effective APY", "Ongoing APY", "Interest, year 1", "Balance after 2 years", "After 3 years", "After 5 years (constant rate)", "After 5 years (rate falls to 0.38% in year 2)", "Source"],
+    term = table(["Bank", "Year-1 effective APY", "Ongoing APY", "Interest, year 1", "Balance after 2 years", "After 3 years", "After 5 years (constant rate)", "After 5 years (rate drops to the lower of today's APY and 0.38% in year 2)", "Source"],
                  term_rows,
                  note=f"Deposit $250,000, opened {OPEN_DATE}. The last column applies the FDIC national savings rate of "
-                      f"{FDIC['national_rates']['rows'][0]['national_deposit_rate_pct']}% after year 1 — a stress case, not a prediction. "
+                      f"{FDIC['national_rates']['rows'][0]['national_deposit_rate_pct']}% after year 1, but never above the account's own rate — a stress case that can only lower the balance, not raise it. "
                       f"{src(FDIC['national_rates']['source'], 'FDIC national rates, 2026-10-19')}",
                  classes=["", "num", "num", "num", "num", "num", "num", "num", ""])
 
@@ -798,15 +798,14 @@ def flagged_page():
                 "status": "Unverified — left blank",
                 "sources": a["sources"],
             })
-        for f in a["flags"]:
-            if "app" in f.lower():
-                items.append({
-                    "area": "Digital app",
-                    "item": f'{a["brand"]} — {a["account_name"]}',
-                    "detail": a["mobile_app"]["note"],
-                    "status": "Unverified — not confirmed on the official page",
-                    "sources": [{"label": "Page checked", "url": a["mobile_app"]["source"], "as_of": "2026-10-22"}],
-                })
+        if a["mobile_app"]["value"] != "yes":
+            items.append({
+                "area": "Digital app",
+                "item": f'{a["brand"]} — {a["account_name"]}',
+                "detail": a["mobile_app"]["note"],
+                "status": "Unverified — not confirmed on the official page",
+                "sources": [{"label": "Page checked", "url": a["mobile_app"]["source"], "as_of": "2026-10-22"}],
+            })
 
     items += [
         {
