@@ -31,7 +31,7 @@
 | T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
 | T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
 | T11 | Supplemental official-source rate, account and offer refresh | done | `arena/3a8e8ff0-savings5` | `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, new `research/` files |
-| T12 | Integrate the supplemental refresh into the already-deployed dashboard | in progress | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `assets/`, `tools/`, `COORDINATION.md`; preserve all existing research/site pages and data |
+| T12 | Integrate the supplemental refresh into the already-deployed dashboard | in progress | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `flagged.html`, `sources.html`, `README.md`, `tools/build_site.py`, `tools/check_site.py`, `COORDINATION.md`; preserve all existing research/site pages and data |
 
 ### Session log
 
@@ -149,4 +149,4 @@ _No request is pending. T11/T12 are claimed by `arena/3a8e8ff0-savings5`; no oth
 
 **Claim.** T1–T10 are complete and no other session is concurrently editing the site. This follow-up is limited to adding a clearly discoverable, source-linked view of T11’s rate and projection refresh to the existing GitHub Pages site. It does not replace the original accounts, FDIC coverage/ladder, bonus, or methodology pages. The previous site task is complete; this is a new, separately claimed follow-up and will retain its own build/link checks.
 
-**File scope:** `index.html`, new `rates-refresh.html`, `assets/` (only if needed), and `tools/` (only if a supplemental check is needed), plus this board. Any additional existing site file will be logged here before editing.
+**File scope:** `index.html`, `flagged.html`, `sources.html`, `README.md`, new `rates-refresh.html`, `tools/build_site.py`, `tools/check_site.py`, and this board. The shared builder will regenerate the existing pages; only `index.html`, `flagged.html`, and `sources.html` should change besides the new page. The previous research, account, bonus, FDIC-ladder, and CSS assets remain untouched.
