@@ -1,0 +1,100 @@
+{
+  "verified_on": "2026-10-22",
+  "scope": "FDIC deposit-insurance rules and the official national rate benchmarks used throughout this project.",
+  "coverage_limits": [
+    {
+      "category": "Single account",
+      "rule": "All single accounts owned by the same person at the same bank are added together and insured up to $250,000.",
+      "limit_usd": 250000,
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    },
+    {
+      "category": "Joint account (2 owners)",
+      "rule": "Each co-owner's shares of every joint account at the same insured bank are added together and insured up to $250,000 per co-owner.",
+      "limit_usd": 500000,
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    },
+    {
+      "category": "Certain retirement accounts (e.g., IRA)",
+      "rule": "All retirement accounts listed by the FDIC owned by the same person at the same bank are added together and insured up to $250,000.",
+      "limit_usd": 250000,
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    },
+    {
+      "category": "Trust account (revocable / irrevocable)",
+      "rule": "FDIC formula: # of owners x # of beneficiaries x $250,000, not to exceed $1,250,000 per owner for all trust accounts.",
+      "limit_usd": 1250000,
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    },
+    {
+      "category": "Employee benefit plan account",
+      "rule": "Each participant's non-contingent interest is insured up to $250,000 per bank; for contingent interests (e.g., health and welfare plans) coverage is $250,000 for the plan itself.",
+      "limit_usd": 250000,
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    }
+  ],
+  "covered_products": [
+    "Checking accounts",
+    "Savings accounts",
+    "Money Market Deposit Accounts",
+    "Certificates of Deposit (CD)",
+    "Prepaid cards (assuming certain FDIC requirements are met)"
+  ],
+  "not_covered_products": [
+    "Stock investments",
+    "Bond investments",
+    "Mutual funds",
+    "Annuities",
+    "Life insurance policies",
+    "Safe deposit boxes or their contents",
+    "U.S. Treasury bills, bonds or notes",
+    "Municipal securities",
+    "Crypto assets"
+  ],
+  "key_rules": [
+    {
+      "text": "FDIC insurance is automatic for deposit accounts at an FDIC-insured bank; depositors do not apply for it.",
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    },
+    {
+      "text": "Coverage is at least $250,000 per depositor, per ownership category, at each FDIC-insured bank.",
+      "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance"
+    },
+    {
+      "text": "All deposits in the same ownership category at the same bank are added together when coverage is calculated.",
+      "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance"
+    },
+    {
+      "text": "A single-ownership savings account at one bank is therefore capped at $250,000 of FDIC insurance; amounts above that at the same bank in the same category are uninsured.",
+      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+    }
+  ],
+  "national_rates": {
+    "as_of": "2026-10-19",
+    "publication": "FDIC National Rates and Rate Caps - October 2026 (revised rule October 19, 2026)",
+    "source": "https://www.fdic.gov/national-rates-and-rate-caps",
+    "rows": [
+      {"product": "Savings", "national_deposit_rate_pct": 0.38, "national_rate_cap_pct": 4.63},
+      {"product": "Interest checking", "national_deposit_rate_pct": 0.07, "national_rate_cap_pct": 4.63},
+      {"product": "Money market", "national_deposit_rate_pct": 0.63, "national_rate_cap_pct": 4.63},
+      {"product": "1 month CD", "national_deposit_rate_pct": 0.23, "national_rate_cap_pct": 5.57},
+      {"product": "3 month CD", "national_deposit_rate_pct": 1.14, "national_rate_cap_pct": 5.79},
+      {"product": "6 month CD", "national_deposit_rate_pct": 1.39, "national_rate_cap_pct": 5.95},
+      {"product": "12 month CD", "national_deposit_rate_pct": 1.76, "national_rate_cap_pct": 6.20},
+      {"product": "24 month CD", "national_deposit_rate_pct": 1.55, "national_rate_cap_pct": 6.61},
+      {"product": "36 month CD", "national_deposit_rate_pct": 1.39, "national_rate_cap_pct": 6.75},
+      {"product": "48 month CD", "national_deposit_rate_pct": 1.31, "national_rate_cap_pct": 6.75},
+      {"product": "60 month CD", "national_deposit_rate_pct": 1.41, "national_rate_cap_pct": 6.86}
+    ],
+    "treasury_yields_pct": {
+      "as_of": "2026-10-19",
+      "note": "Treasury yields published in the same FDIC table; used here only as a benchmark, not as an FDIC-insured product.",
+      "by_maturity_months": {"12": 4.54, "24": 4.88, "36": 5.00, "60": 5.09},
+      "source": "https://www.fdic.gov/national-rates-and-rate-caps"
+    }
+  },
+  "rate_cap_note": {
+    "text": "The FDIC national rate cap applies to less-than-well-capitalized institutions and is not a market rate for consumers. For savings it is 4.63% as of 2026-10-19.",
+    "source": "https://www.fdic.gov/national-rates-and-rate-caps"
+  }
+}
