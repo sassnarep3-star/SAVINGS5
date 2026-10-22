@@ -1,53 +1,58 @@
 {
   "verified_on": "2026-10-22",
-  "scope": "FDIC deposit-insurance rules and the official national rate benchmarks used throughout this project.",
+  "scope": "FDIC deposit-insurance rules, Federal Reserve monetary policy benchmarks, U.S. Treasury daily par yield curve benchmarks, and official national rate benchmarks anchored to Account Open Date 2026-10-22.",
   "coverage_limits": [
     {
-      "category": "Single account",
-      "rule": "All single accounts owned by the same person at the same bank are added together and insured up to $250,000.",
+      "category": "Single account (individual ownership)",
+      "rule": "All single accounts owned by the same person at the same insured bank charter (CERT) — including principal plus accrued interest — are added together and insured up to $250,000.",
       "limit_usd": 250000,
+      "max_day1_principal_at_425bps_usd": 239808.15,
       "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
     },
     {
-      "category": "Joint account (2 owners)",
-      "rule": "Each co-owner's shares of every joint account at the same insured bank are added together and insured up to $250,000 per co-owner.",
+      "category": "Joint account (2 co-owners)",
+      "rule": "Each co-owner's shares of every joint account at the same insured bank are added together and insured up to $250,000 per co-owner ($500,000 total for two equal co-owners).",
       "limit_usd": 500000,
+      "max_day1_principal_at_425bps_usd": 479616.31,
       "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
     },
     {
       "category": "Certain retirement accounts (e.g., IRA)",
-      "rule": "All retirement accounts listed by the FDIC owned by the same person at the same bank are added together and insured up to $250,000.",
+      "rule": "All self-directed retirement deposit accounts owned by the same person at the same bank charter are added together and insured up to $250,000.",
       "limit_usd": 250000,
+      "max_day1_principal_at_425bps_usd": 239808.15,
       "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
     },
     {
-      "category": "Trust account (revocable / irrevocable)",
-      "rule": "FDIC formula: # of owners x # of beneficiaries x $250,000, not to exceed $1,250,000 per owner for all trust accounts.",
+      "category": "Trust account (revocable POD / irrevocable, up to 5 beneficiaries)",
+      "rule": "Unified FDIC trust rule: # of grantors/owners x # of unique eligible beneficiaries x $250,000, capped at $1,250,000 per grantor per bank charter across 5+ beneficiaries ($2,500,000 for 2 co-grantors with 5+ beneficiaries).",
       "limit_usd": 1250000,
+      "max_day1_principal_at_425bps_usd": 1199040.77,
       "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
     },
     {
       "category": "Employee benefit plan account",
-      "rule": "Each participant's non-contingent interest is insured up to $250,000 per bank; for contingent interests (e.g., health and welfare plans) coverage is $250,000 for the plan itself.",
+      "rule": "Each participant's non-contingent interest is insured up to $250,000 per bank charter; for contingent interests coverage is $250,000 for the plan itself.",
       "limit_usd": 250000,
+      "max_day1_principal_at_425bps_usd": 239808.15,
       "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
     }
   ],
   "covered_products": [
     "Checking accounts",
-    "Savings accounts",
-    "Money Market Deposit Accounts",
-    "Certificates of Deposit (CD)",
-    "Prepaid cards (assuming certain FDIC requirements are met)"
+    "Savings accounts (including High-Yield Savings Accounts)",
+    "Money Market Deposit Accounts (MMDAs)",
+    "Certificates of Deposit (CDs)",
+    "Cashier's checks, money orders, and prepaid cards meeting FDIC pass-through rules"
   ],
   "not_covered_products": [
     "Stock investments",
     "Bond investments",
-    "Mutual funds",
+    "Mutual funds (including money market mutual funds)",
     "Annuities",
     "Life insurance policies",
     "Safe deposit boxes or their contents",
-    "U.S. Treasury bills, bonds or notes",
+    "U.S. Treasury bills, bonds or notes (backed by full faith and credit of the U.S. Government, not FDIC)",
     "Municipal securities",
     "Crypto assets"
   ],
@@ -57,21 +62,21 @@
       "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
     },
     {
-      "text": "Coverage is at least $250,000 per depositor, per ownership category, at each FDIC-insured bank.",
+      "text": "Coverage is $250,000 per depositor, per ownership category, per separately chartered FDIC-insured bank (CERT) — principal plus unpaid accrued interest count toward the $250,000 ceiling.",
       "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance"
     },
     {
-      "text": "All deposits in the same ownership category at the same bank are added together when coverage is calculated.",
-      "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance"
+      "text": "Divisions or online sub-brands sharing the same FDIC Certificate (such as Capital One & merged Discover Bank under CERT 4297, or BMO & Alto by BMO under CERT 16571) share a single $250,000 limit per ownership category.",
+      "source": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
     },
     {
-      "text": "A single-ownership savings account at one bank is therefore capped at $250,000 of FDIC insurance; amounts above that at the same bank in the same category are uninsured.",
-      "source": "https://www.fdic.gov/resources/deposit-insurance/financial-products-insured"
+      "text": "Depositing exact $250,000.00 principal into a single-owner account leaves Year-1 accrued interest ($8,750–$10,625 at 3.50%–4.25% APY) uninsured unless capped at $250,000 / (1 + APY) or swept monthly.",
+      "source": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance"
     }
   ],
   "national_rates": {
     "as_of": "2026-10-19",
-    "publication": "FDIC National Rates and Rate Caps - October 2026 (revised rule October 19, 2026)",
+    "publication": "FDIC National Rates and Rate Caps - October 2026 (published third Monday, October 19, 2026)",
     "source": "https://www.fdic.gov/national-rates-and-rate-caps",
     "rows": [
       {"product": "Savings", "national_deposit_rate_pct": 0.38, "national_rate_cap_pct": 4.63},
@@ -88,13 +93,44 @@
     ],
     "treasury_yields_pct": {
       "as_of": "2026-10-19",
-      "note": "Treasury yields published in the same FDIC table; used here only as a benchmark, not as an FDIC-insured product.",
-      "by_maturity_months": {"12": 4.54, "24": 4.88, "36": 5.00, "60": 5.09},
+      "note": "Treasury yields published inside the FDIC National Rates table (as of 2026-10-19); latest daily U.S. Treasury par curve (2026-10-21) is also provided in daily_treasury_par_curve below.",
+      "by_maturity_months": {"3": 4.25, "6": 4.35, "12": 4.54, "24": 4.88, "36": 5.00, "60": 5.09, "120": 5.13},
       "source": "https://www.fdic.gov/national-rates-and-rate-caps"
     }
   },
+  "fomc_policy": {
+    "meeting_date": "2026-09-17",
+    "target_range_pct": "3.75% - 4.00%",
+    "lower_pct": 3.75,
+    "upper_pct": 4.00,
+    "action": "Raised target federal funds range by +25 bps to 3.75%-4.00%; reserve balances rate set to 3.90% effective 2026-09-18.",
+    "source": "https://www.federalreserve.gov/newsevents/pressreleases/monetary20260917a.htm"
+  },
+  "daily_treasury_par_curve": {
+    "as_of": "2026-10-21",
+    "source": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610",
+    "yields_pct": {
+      "1M": 4.10,
+      "3M": 4.25,
+      "6M": 4.35,
+      "1Y": 4.52,
+      "2Y": 4.81,
+      "3Y": 4.89,
+      "5Y": 4.95,
+      "10Y": 5.13
+    }
+  },
+  "horizon_schedule": [
+    {"id": "3m", "label": "3 Months", "years": 0.25, "open_date": "2026-10-22", "end_date": "2027-01-22"},
+    {"id": "6m", "label": "6 Months", "years": 0.50, "open_date": "2026-10-22", "end_date": "2027-04-22"},
+    {"id": "1y", "label": "1 Year", "years": 1.00, "open_date": "2026-10-22", "end_date": "2027-10-22"},
+    {"id": "2y", "label": "2 Years", "years": 2.00, "open_date": "2026-10-22", "end_date": "2028-10-22"},
+    {"id": "3y", "label": "3 Years", "years": 3.00, "open_date": "2026-10-22", "end_date": "2029-10-22"},
+    {"id": "5y", "label": "5 Years", "years": 5.00, "open_date": "2026-10-22", "end_date": "2031-10-22"},
+    {"id": "10y", "label": "10 Years", "years": 10.00, "open_date": "2026-10-22", "end_date": "2036-10-22"}
+  ],
   "rate_cap_note": {
-    "text": "The FDIC national rate cap applies to less-than-well-capitalized institutions and is not a market rate for consumers. For savings it is 4.63% as of 2026-10-19.",
+    "text": "The FDIC national rate cap applies to less-than-well-capitalized institutions and is not a market rate for consumers. For savings it is 4.63% as of 2026-10-19 (national average 0.38% + 75 bps or 120% of Treasury).",
     "source": "https://www.fdic.gov/national-rates-and-rate-caps"
   }
 }
