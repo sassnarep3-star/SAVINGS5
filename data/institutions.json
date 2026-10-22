@@ -1,6 +1,6 @@
 {
   "verified_on": "2026-10-22",
-  "method": "Every institution below was pulled from the FDIC BankFind Suite institutions API on 2026-10-22. Fields NAME, CERT, ASSET (USD thousands), DEPDOM (USD thousands), ACTIVE, INSFDIC, BKCLASS, INSDATE, ESTYMD, CITY, STALP and WEBADDR are reproduced exactly as returned. assets_usd and deposits_usd are the API values multiplied by 1,000 to convert thousands to dollars; that conversion is the only transformation applied.",
+  "method": "Every institution below was pulled from the FDIC BankFind Suite institutions API on 2026-10-22 (Q2 2026 Call Report REPDTE 06/30/2026). Fields NAME, CERT, ASSET (USD thousands), DEPDOM (USD thousands), ACTIVE, INSFDIC, BKCLASS, INSDATE, ESTYMD, CITY, STALP and WEBADDR are reproduced exactly as returned. assets_usd and deposits_usd are the API values multiplied by 1,000. assets_rank and banks_larger are computed strictly across active insured banks (filters=ACTIVE:1 AND INSFDIC:1, sort_by=ASSET DESC).",
   "api_endpoint": "https://api.fdic.gov/banks/institutions",
   "dataset_index": "institutions_20261016090006 (FDIC BankFind index created 2026-10-16T11:58:03Z)",
   "manual_review_url_pattern": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/{cert}",
@@ -22,7 +22,11 @@
       "established": "1824-01-01",
       "website": "www.jpmorganchase.com",
       "assets_rank": 1,
-      "banks_larger": 0
+      "banks_larger": 0,
+      "ios_app_name": "Chase Mobile\u00ae",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/chase-mobile-bank-invest/id298867247",
+      "security_url": "https://www.chase.com/digital/resources/privacy-security"
     },
     {
       "brand": "Bank of America",
@@ -40,7 +44,11 @@
       "established": "1904-10-17",
       "website": "www.bankofamerica.com",
       "assets_rank": 2,
-      "banks_larger": 1
+      "banks_larger": 1,
+      "ios_app_name": "Bank of America Mobile Banking",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/bank-of-america-mobile-banking/id284847138",
+      "security_url": "https://www.bankofamerica.com/security-center/overview/"
     },
     {
       "brand": "Citibank",
@@ -58,7 +66,11 @@
       "established": "1812-06-16",
       "website": "www.citibank.com",
       "assets_rank": 3,
-      "banks_larger": 2
+      "banks_larger": 2,
+      "ios_app_name": "Citi Mobile\u00ae",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/citi-mobile/id301724680",
+      "security_url": "https://online.citi.com/US/JRS/pands/detail.do?ID=SecurityCenter"
     },
     {
       "brand": "Wells Fargo",
@@ -76,7 +88,11 @@
       "established": "1870-01-01",
       "website": "www.wellsfargo.com",
       "assets_rank": 4,
-      "banks_larger": 3
+      "banks_larger": 3,
+      "ios_app_name": "Wells Fargo Mobile\u00ae",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/wells-fargo-mobile/id311548709",
+      "security_url": "https://www.wellsfargo.com/privacy-security/fraud/security-tools-and-options/"
     },
     {
       "brand": "Marcus by Goldman Sachs",
@@ -94,7 +110,11 @@
       "established": "1990-08-30",
       "website": "www.marcus.com",
       "assets_rank": 5,
-      "banks_larger": 4
+      "banks_larger": 4,
+      "ios_app_name": "Marcus by Goldman Sachs\u00ae",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/marcus-by-goldman-sachs/id1489511701",
+      "security_url": "https://www.marcus.com/us/en/marcus-mobile-banking-app"
     },
     {
       "brand": "U.S. Bank",
@@ -112,7 +132,11 @@
       "established": "1863-07-13",
       "website": "www.usbank.com",
       "assets_rank": 6,
-      "banks_larger": 5
+      "banks_larger": 5,
+      "ios_app_name": "U.S. Bank Mobile Banking",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/u-s-bank-mobile-banking/id458734623",
+      "security_url": "https://www.usbank.com/online-mobile-banking/security-fraud-prevention.html"
     },
     {
       "brand": "Capital One",
@@ -130,7 +154,11 @@
       "established": "1933-05-22",
       "website": "www.capitalone.com",
       "assets_rank": 7,
-      "banks_larger": 6
+      "banks_larger": 6,
+      "ios_app_name": "Capital One Mobile",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/capital-one-mobile/id407558537",
+      "security_url": "https://www.capitalone.com/digital/fraud-protection/"
     },
     {
       "brand": "PNC",
@@ -148,7 +176,11 @@
       "established": "1804-01-01",
       "website": "www.pnc.com",
       "assets_rank": 8,
-      "banks_larger": 7
+      "banks_larger": 7,
+      "ios_app_name": "PNC Mobile Banking",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/pnc-mobile-banking/id303113127",
+      "security_url": "https://www.pnc.com/en/security-privacy.html"
     },
     {
       "brand": "Truist",
@@ -166,7 +198,11 @@
       "established": "1872-01-01",
       "website": "www.Truist.com",
       "assets_rank": 9,
-      "banks_larger": 8
+      "banks_larger": 8,
+      "ios_app_name": "Truist Mobile",
+      "ios_rating": null,
+      "ios_app_url": "https://www.truist.com/digital-banking",
+      "security_url": "https://www.truist.com/digital-banking"
     },
     {
       "brand": "TD Bank",
@@ -184,7 +220,11 @@
       "established": "1852-01-01",
       "website": "www.td.com/us/en/personal-banking/",
       "assets_rank": 13,
-      "banks_larger": 12
+      "banks_larger": 12,
+      "ios_app_name": "TD Bank (US)",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/td-bank-us/id382107453",
+      "security_url": "https://www.td.com/us/en/personal-banking/security-center"
     },
     {
       "brand": "Fifth Third",
@@ -202,7 +242,33 @@
       "established": "1865-01-01",
       "website": "www.53.com",
       "assets_rank": 14,
-      "banks_larger": 13
+      "banks_larger": 13,
+      "ios_app_name": "Fifth Third: 53 Mobile Banking",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/fifth-third-53-mobile-banking/id468738585",
+      "security_url": "https://www.53.com/content/fifth-third/en/customer-service/mobile-banking-faqs.html"
+    },
+    {
+      "brand": "Alto by BMO",
+      "name": "BMO Bank National Association",
+      "cert": 16571,
+      "city": "Chicago",
+      "state": "IL",
+      "assets_usd": 254972746000,
+      "deposits_usd": 194140429000,
+      "active": 1,
+      "insfdic": 1,
+      "bkclass": "N",
+      "bkclass_label": "National bank",
+      "insured_since": "1934-01-01",
+      "established": "1882-06-05",
+      "website": "www.alto.bmo.com",
+      "assets_rank": 16,
+      "banks_larger": 15,
+      "ios_app_name": "None for Alto (web-only division; BMO Digital Banking is separate)",
+      "ios_rating": null,
+      "ios_app_url": "https://www.alto.bmo.com/en-us/",
+      "security_url": "https://www.alto.bmo.com/en-us/"
     },
     {
       "brand": "Charles Schwab Bank",
@@ -220,10 +286,14 @@
       "established": "2003-04-28",
       "website": "www.schwabbank.com",
       "assets_rank": 17,
-      "banks_larger": 16
+      "banks_larger": 16,
+      "ios_app_name": "Schwab Mobile",
+      "ios_rating": null,
+      "ios_app_url": "https://www.schwab.com/mobile",
+      "security_url": "https://www.schwab.com/schwabsafe"
     },
     {
-      "brand": "CIT Bank",
+      "brand": "CIT Bank (First Citizens)",
       "name": "First-Citizens Bank & Trust Company",
       "cert": 11063,
       "city": "Raleigh",
@@ -235,10 +305,14 @@
       "bkclass": "NM",
       "bkclass_label": "State nonmember bank",
       "insured_since": "1934-01-01",
-      "established": "1898-01-01",
-      "website": "www.firstcitizens.com",
+      "established": "1898-03-01",
+      "website": "www.cit.com",
       "assets_rank": 19,
-      "banks_larger": 18
+      "banks_larger": 18,
+      "ios_app_name": "CIT Bank Mobile Banking",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://www.cit.com/cit-bank/resources/services/mobile",
+      "security_url": "https://www.cit.com/cit-bank/resources/fraud-prevention"
     },
     {
       "brand": "Citizens",
@@ -255,8 +329,12 @@
       "insured_since": "2005-05-13",
       "established": "2005-05-13",
       "website": "www.citizensbank.com",
-      "assets_rank": 20,
-      "banks_larger": 19
+      "assets_rank": 17,
+      "banks_larger": 16,
+      "ios_app_name": "Citizens Bank Mobile Banking",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/citizens-bank-mobile-banking/id388082488",
+      "security_url": "https://www.citizensbank.com/savings/savings-accounts/one-deposit.aspx"
     },
     {
       "brand": "American Express",
@@ -274,7 +352,11 @@
       "established": "1989-03-20",
       "website": "www.americanexpress.com",
       "assets_rank": 22,
-      "banks_larger": 21
+      "banks_larger": 21,
+      "ios_app_name": "Amex",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/amex/id362348516",
+      "security_url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/"
     },
     {
       "brand": "Ally Bank",
@@ -291,8 +373,12 @@
       "insured_since": "2004-08-02",
       "established": "2004-08-02",
       "website": "www.ally.com",
-      "assets_rank": 34,
-      "banks_larger": 33
+      "assets_rank": 24,
+      "banks_larger": 23,
+      "ios_app_name": "Ally: Banking & Investing",
+      "ios_rating": 4.7,
+      "ios_app_url": "https://apps.apple.com/us/app/ally-mobile-banking/id554383286",
+      "security_url": "https://www.ally.com/security/our-approach.html"
     },
     {
       "brand": "Synchrony Bank",
@@ -309,26 +395,12 @@
       "insured_since": "1988-08-01",
       "established": "1988-08-01",
       "website": "www.synchronybank.com",
-      "assets_rank": 49,
-      "banks_larger": 48
-    },
-    {
-      "brand": "Barclays",
-      "name": "Barclays Bank Delaware",
-      "cert": 57203,
-      "city": "Wilmington",
-      "state": "DE",
-      "assets_usd": 43454000000,
-      "deposits_usd": 35315000000,
-      "active": 1,
-      "insfdic": 1,
-      "bkclass": "NM",
-      "bkclass_label": "State nonmember bank",
-      "insured_since": "2001-05-23",
-      "established": "2001-05-23",
-      "website": "www.barclaysus.com/deposits",
-      "assets_rank": 55,
-      "banks_larger": 54
+      "assets_rank": 30,
+      "banks_larger": 29,
+      "ios_app_name": "My Synchrony Banking",
+      "ios_rating": 4.8,
+      "ios_app_url": "https://apps.apple.com/us/app/my-synchrony-banking/id1496010924",
+      "security_url": "https://www.synchrony.com/banking/products/hys-core"
     },
     {
       "brand": "SoFi Bank",
@@ -345,8 +417,34 @@
       "insured_since": "1986-12-29",
       "established": "1986-12-29",
       "website": "www.sofi.com",
-      "assets_rank": 89,
-      "banks_larger": 88
+      "assets_rank": 46,
+      "banks_larger": 45,
+      "ios_app_name": "SoFi: Banking, Investing, Loan",
+      "ios_rating": 4.7,
+      "ios_app_url": "https://apps.apple.com/us/app/sofi-invest-trade-borrow/id1191985736",
+      "security_url": "https://www.sofi.com/banking/high-yield-savings-account/"
+    },
+    {
+      "brand": "Barclays",
+      "name": "Barclays Bank Delaware",
+      "cert": 57203,
+      "city": "Wilmington",
+      "state": "DE",
+      "assets_usd": 43453000000,
+      "deposits_usd": 31837000000,
+      "active": 1,
+      "insfdic": 1,
+      "bkclass": "NM",
+      "bkclass_label": "State nonmember bank",
+      "insured_since": "2001-05-03",
+      "established": "2001-05-03",
+      "website": "banking.us.barclays",
+      "assets_rank": 56,
+      "banks_larger": 55,
+      "ios_app_name": "Barclays US App",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/barclays-us-credit-cards/id565884592",
+      "security_url": "https://banking.us.barclays/"
     },
     {
       "brand": "Discover Bank (inactive)",
@@ -364,29 +462,20 @@
       "established": "1911-08-30",
       "website": "",
       "assets_rank": null,
-      "banks_larger": null
+      "banks_larger": null,
+      "ios_app_name": "Discover Mobile (merged charter CERT 4297)",
+      "ios_rating": 4.9,
+      "ios_app_url": "https://apps.apple.com/us/app/discover-mobile/id338010821",
+      "security_url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
     }
   ],
   "discover_note": {
-    "finding": "Discover Bank (FDIC certificate 5649) is returned by the FDIC BankFind API with ACTIVE = 0. Capital One's own savings page states that Discover Bank deposit accounts opened on or after May 18, 2025 are counted together with Capital One deposit accounts for FDIC coverage.",
+    "finding": "Discover Bank (FDIC certificate 5649) merged into Capital One, National Association (CERT 4297) on May 18, 2025 and is returned by the FDIC BankFind API with ACTIVE = 0. Visiting discover.com/online-banking/savings-account/ redirects to Capital One 360 Performance Savings, and Capital One states that Discover Bank deposit accounts opened on or after May 18, 2025 are aggregated together with Capital One deposit accounts under CERT 4297 for the $250,000 FDIC coverage limit.",
     "sources": [
       "https://api.fdic.gov/banks/institutions?filters=CERT%3A5649",
+      "https://api.fdic.gov/banks/history?filters=CERT%3A5649&limit=5",
       "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
     ],
-    "flag": "Discover-branded savings accounts are therefore not listed as a separate bank in this comparison; the surviving institution is Capital One, National Association (CERT 4297)."
-  },
-  "added_by_session_291c7881": {
-    "banks": [
-      11063,
-      57957,
-      57203
-    ],
-    "note": "Added by the integration session. All FDIC fields were re-pulled from the same BankFind index (institutions_20261016090006) as the original rows; assets_rank/banks_larger were derived from live ACTIVE=1 AND INSFDIC:1 asset-range counts on that index.",
-    "api_queries": [
-      "https://api.fdic.gov/banks/institutions?filters=CERT:(11063%20OR%2057203%20OR%2057957)&fields=NAME,CERT,CITY,STALP,ASSET,DEPDOM,ACTIVE,INSFDIC,BKCLASS,INSDATE,ESTYMD,WEBADDR,OFFICES&format=json",
-      "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1%20AND%20INSFDIC:1%20AND%20ASSET:%5B236317001%20TO%20*%5D&fields=CERT&format=json",
-      "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1%20AND%20INSFDIC:1%20AND%20ASSET:%5B232517439%20TO%20*%5D&fields=CERT&format=json",
-      "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1%20AND%20INSFDIC:1%20AND%20ASSET:%5B43454001%20TO%20*%5D&fields=CERT&format=json"
-    ]
+    "flag": "Discover-branded savings accounts share Capital One's single $250,000 FDIC charter limit (CERT 4297) and must never be counted as an independent second bank slot."
   }
 }

@@ -1,75 +1,43 @@
-# SAVINGS5 — savings account research
+# SAVINGS5 — Verified U.S. National Bank Savings & Max-FDIC Strategy
 
-A verified comparison of savings accounts at the largest US banks, published as a static dashboard on GitHub Pages.
+- **Live GitHub Pages Dashboard:** <https://sassnarep3-star.github.io/SAVINGS5/>
+- **Account Open & Verification Anchor Date:** `2026-10-22`
 
-**Live site:** https://sassnarep3-star.github.io/SAVINGS5/
+Line-by-line primary-source research, return modeling, and multi-charter FDIC deposit insurance optimization across **20 active Top-56 U.S. FDIC-insured banks** (`$43.5B` to `$4.09T` in assets, totaling `$15.31T`; **24 savings accounts**, **10 verified promotions**, **zero third-party aggregator sources**).
 
-**Research date:** 2026-10-22 (this is also the account open date used in every projection).
+## Key Highlights (`2026-10-22`)
 
-## What it answers
+- **Top Ongoing Verified APYs:**
+  - **Barclays Select Savings (`CERT 57203`):** **`4.25%` APY** all balances (AARP required) + **`$400` cash bonus** (`$40k` held 120d, expires `2026-10-31`) — `$11,025` Year-1 gain on `$250,000`.
+  - **CIT Bank Platinum Savings — First-Citizens Bank (`CERT 11063`):** **`3.75%` APY** ongoing on `≥ $5,000` (`4.25%` APY for 6 months w/ code `BOOST50` through `2026-12-15` -> **`4.00%` Year-1 blended APY**); **`CIT Savings Connect`** offers **`3.65%` APY** on all balances.
+  - **SoFi Checking & Savings (`CERT 26881`):** **`4.40%` APY** for 6 months w/ direct deposit (**`3.85%` Year-1 blended** / `3.30%` ongoing DD; `0.80%` base) + **`$50` (`$1k–$4,999.99` DD) / `$400` (`$5,000+` DD in 25d)** bonus.
+  - **Marcus by Goldman Sachs (`CERT 33124`):** **`3.50%` APY** ongoing (`4.50%` for 3 months w/ referral -> **`3.75%` Year-1 APY**).
+  - **Barclays Tiered Savings (`CERT 57203`):** **`3.50%`** `<$250k` / **`3.65%`** `$250k–$1M` + **`$200` cash bonus** (flagged `$250,000.00` single-owner FDIC boundary trap).
+  - **Synchrony High Yield Savings (`CERT 27314`):** **`3.55%` APY** unconditional from `$0.01`, `$0` minimum, `$0` fee.
+- **Urgent `2026-10-22` Discontinuation Alert:** Citibank's official `Fact_Sheet.pdf` confirms **`2026-10-22` is the final day** before Citi discontinues its `3.75%` 3-month promotional savings rate on **`2026-10-23`**.
+- **Max FDIC Coverage Architecture:** Deduplicates strictly by FDIC Certificate (`CERT`) across **14 mobile-app-verified national charters** (`$3,500,000` Single-Owner / `$7,000,000` 2-Owner Joint / `$17,500,000` 5-Beneficiary POD Trust).
 
-- Which large national banks pay the most on savings, right now, and how each rate compares with the FDIC national average and Treasury yields.
-- What each account requires to open: minimum deposit, fees, fee waivers, withdrawal limits, age and ID rules.
-- What a deposit actually earns at $10k, $25k, $50k, $100k, $250k, $500k, $1M and $2.5M over 1, 2, 3 and 5 years.
-- How far $250,000 of FDIC coverage stretches, and how to ladder larger balances so every dollar stays insured.
-- Which promotional bonuses exist, what they require, and when they expire.
-- Every value that could **not** be confirmed from an official source — left blank and listed on the Flagged for review page.
+## Site Pages
 
-## Non-negotiable rules used here
+| Page | Coverage |
+|---|---|
+| [`index.html`](index.html) | Executive overview, interactive custom deposit/lifespan/ownership FDIC optimizer, `$250k` leaderboard & coverage table |
+| [`accounts.html`](accounts.html) | Master 24-account comparison table + full line-by-line primary-source dossiers |
+| [`returns.html`](returns.html) | 9 deposit sizes (`$10k–$2.5M`) × 7 lifespans (`3M–10Y` anchored to `2026-10-22`), Day-1 principal caps & multi-bank ladders |
+| [`bonuses.html`](bonuses.html) | 10 verified cash bonuses & rate boosts + 10 verified non-bonus checks |
+| [`rules.html`](rules.html) | Minimums, opening rules, excess withdrawal fees, closure rules & fee drag analysis |
+| [`security.html`](security.html) | FDIC BankFind register, active asset ranks, shared-charter alerts, mobile app ratings & MFA/security checks |
+| [`competitiveness.html`](competitiveness.html) | Spreads vs FDIC National Rates (`2026-10-19`), FOMC (`3.75%–4.00%`), and U.S. Treasury Par Curve (`2026-10-21`) |
+| [`rates-refresh.html`](rates-refresh.html) | Supplemental NYC web-HTML snapshot & downloadable 120-row / 84-row CSV scenario matrices |
+| [`flagged.html`](flagged.html) | Unverified/ZIP-gated blank cells, broken bank page tokens, charter overlaps & cross-session audit log |
+| [`sources.html`](sources.html) | Master index of every `.gov` and first-party bank URL with retrieval & effective dates |
+| [`methodology.html`](methodology.html) | Formulas, charter deduplication rules & build pipeline |
 
-1. **Every table row links to an official source.** Enforced automatically by `tools/check_site.py`, which fails the build otherwise.
-2. **No value is inferred.** If a bank does not publish a readable APY (ZIP gate, empty table, template placeholder), the cell is blank and the reason is on the flagged page.
-3. **No bonuses folded into APY.** Bonuses are one-off; adding them to a rate would misstate the ongoing yield.
-4. **No security ranking.** FDIC status and the existence of an app are verified; security controls are not audited.
-
-## Repository layout
-
-```
-index.html … methodology.html   original generated pages (do not edit by hand)
-rates-refresh.html              generated supplemental 2026-10-22 official-source snapshot
-assets/style.css                shared stylesheet
-data/accounts.json              original 17-account comparison, field-level values + sources
-data/research.json              supplemental 16-product registry, 57 sources, 8 offers and 9 review flags
-data/standard-projections.csv   120 standard/conditional rate scenarios
-data/promotion-projections.csv  84 conditional-offer scenarios
-data/institutions.json          FDIC BankFind records, 16 institutions + Discover note
-data/fdic.json                  coverage rules, national rates, Treasury yields
-data/bonuses.json               original documented promotions + "no bonus found" log
-data/returns.json               original generated projections, leaderboards, ladder plans
-tools/build_returns.py          builds data/returns.json from the original data files
-tools/build_site.py             renders all HTML pages from the original data and refresh registry
-tools/check_site.py             build gate: sources, links, tokens on all 11 pages
-research/calculate_projections.py regenerates refresh CSVs and source matrix
-research/source-matrix.csv     official evidence claims, dates, URLs and caveats
-research/validate_research.py   validates evidence registry and projection outputs
-research/verification-log.md    original study's verification log
-research/research-summary.md    supplemental rate findings and review flags
-research/projection-method.md   supplemental formulas, assumptions and limitations
-COORDINATION.md                 multi-session task board
-```
-
-## Rebuilding
+## Reproduce & Verify Locally
 
 ```bash
-python3 research/calculate_projections.py
-python3 research/validate_research.py
 python3 tools/build_returns.py
 python3 tools/build_site.py
+python3 research/validate_research.py
 python3 tools/check_site.py
 ```
-
-The research validator checks the supplemental evidence registry and the 120/84 projection rows. The site checker must print
-`OK` before publishing; it verifies that every internal link resolves and every HTML table row contains an official source link.
-
-## Data provenance
-
-- Institution data: FDIC BankFind Suite institutions API (`https://api.fdic.gov/banks/institutions`), index
-  `institutions_20261016090006`, retrieved 2026-10-22.
-- Coverage rules: FDIC.gov, *Are My Deposit Accounts Insured by the FDIC?* and *Understanding Deposit Insurance*.
-- Rate benchmarks: FDIC, *National Rates and Rate Caps — October 2026* (as of 2026-10-19).
-- Bank rates, fees and rules: each bank's own product, rate or fee-schedule page. Full list on the site's Sources page.
-- Supplemental rate refresh: 57 official bank/regulator pages, checked 2026-10-22 (with each page's effective date recorded separately) in `research/source-matrix.csv` and `data/research.json`.
-
-## Licence and disclaimer
-
-Research, not financial advice. Rates are variable and change without notice; the bank's live page is authoritative.

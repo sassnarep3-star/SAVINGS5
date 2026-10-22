@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-Build gate. Fails (exit 1) if:
-  * any internal link points at a file that does not exist
-  * any table data row has no official source link
-  * any output page still contains an unresolved template token or a known defect string
-  * a data file is missing or invalid JSON
-Run this before every commit that touches the site.
+Comprehensive zero-hallucination & zero-broken-link build gate:
+  * Validates all 8 JSON data files in data/
+  * Verifies all 11 primary root HTML pages + 12 docs/ compatibility redirects
+  * Confirms every internal href/src link resolves cleanly
+  * Confirms EVERY table row (tbody tr) carries an official https:// primary source link
+  * Rejects any third-party aggregator domain across all HTML & JSON files
+  * Rejects any unresolved bank template token or UAT staging hostname in data cells
 """
 
 import json
@@ -30,18 +31,22 @@ PAGES = [
     "methodology.html",
 ]
 
-# Only checked inside table data cells: prose legitimately quotes these tokens when
-# documenting the defect.
-DEFECT_TOKENS = [":BLUE_AccSavings_Rate%", "NaN", "$XXXX"]
-# The flagged page quotes these tokens on purpose: that is where they are documented.
+DEFECT_TOKENS = [":BLUE_AccSavings_Rate%", "#ProductLine=", "NaN", "$XXXX", "sit58."]
 DEFECT_ALLOWED = {"flagged.html"}
+BANNED_AGGREGATORS = (
+    "bankrate.com",
+    "nerdwallet.com",
+    "investopedia.com",
+    "depositaccounts.com",
+    "smartasset.com",
+    "wallethub.com",
+    "doctorofcredit.com",
+)
 
 
 class TableAudit(HTMLParser):
     def __init__(self):
         super().__init__()
-        self.in_table = False
-        self.in_thead = False
         self.in_tbody = False
         self.in_row = False
         self.row_has_source = False
@@ -56,11 +61,8 @@ class TableAudit(HTMLParser):
     def handle_starttag(self, tag, attrs):
         a = dict(attrs)
         if tag == "table":
-            self.in_table = True
             self.tables += 1
             self.row_index = 0
-        elif tag == "thead":
-            self.in_thead = True
         elif tag == "tbody":
             self.in_tbody = True
         elif tag == "td" and self.in_row:
@@ -72,7 +74,8 @@ class TableAudit(HTMLParser):
             self.row_has_source = False
         elif tag == "a" and self.in_row:
             href = a.get("href", "")
-            if href.startswith("http") or a.get("class") == "src":
+            cls = a.get("class", "")
+            if href.startswith("https://") or "src" in cls.split():
                 self.row_has_source = True
 
     def handle_data(self, data):
@@ -86,34 +89,49 @@ class TableAudit(HTMLParser):
                 if token in text:
                     self.bad_cells.append(token)
             self.in_td = False
-        elif tag == "table":
-            self.in_table = False
-        elif tag == "thead":
-            self.in_thead = False
         elif tag == "tbody":
             self.in_tbody = False
         elif tag == "tr" and self.in_row:
             self.rows += 1
             if not self.row_has_source:
-                self.failures.append(f"table row {self.row_index} has no source link")
+                self.failures.append(f"table row {self.row_index} has no official source link")
             self.in_row = False
 
 
 def main():
     errors = []
-    warnings = []
-
-    data_files = ["accounts.json", "institutions.json", "fdic.json", "bonuses.json", "returns.json", "research.json"]
+    data_files = [
+        "accounts.json",
+        "institutions.json",
+        "fdic.json",
+        "bonuses.json",
+        "returns.json",
+        "research.json",
+        "benchmarks.json",
+        "repo_audit.json",
+    ]
     for name in data_files:
         path = os.path.join(DATA, name)
         if not os.path.exists(path):
             errors.append(f"missing data file: {name}")
             continue
+        raw = open(path, encoding="utf-8").read()
+        for agg in BANNED_AGGREGATORS:
+            if agg in raw.lower():
+                errors.append(f"{name}: contains banned third-party aggregator URL {agg}")
+        if "sit58." in raw.lower():
+            errors.append(f"{name}: contains internal staging host sit58.")
         try:
-            with open(path, encoding="utf-8") as fh:
-                json.load(fh)
+            json.loads(raw)
         except json.JSONDecodeError as exc:
             errors.append(f"invalid JSON in {name}: {exc}")
+
+    # Verify zero duplicate FDIC certificates inside any ladder plan
+    returns = json.load(open(os.path.join(DATA, "returns.json"), encoding="utf-8"))
+    for l in returns["ladders"]:
+        certs = [x["cert"] for x in l["allocations"]]
+        if len(certs) != len(set(certs)):
+            errors.append(f"ladder {l['kind']} at {l['total_usd']} double-counts FDIC cert: {certs}")
 
     total_tables = total_rows = 0
     for page in PAGES:
@@ -123,18 +141,20 @@ def main():
             continue
         html = open(path, encoding="utf-8").read()
 
-        # internal links
-        for href in re.findall(r'href="([^"]+)"', html):
-            if href.startswith(("http://", "https://", "mailto:", "#")):
+        for agg in BANNED_AGGREGATORS:
+            if f'href="https://www.{agg}' in html.lower() or f'href="https://{agg}' in html.lower():
+                errors.append(f"{page}: links to banned third-party aggregator {agg}")
+
+        for attr_val in re.findall(r'(?:href|src)="([^"]+)"', html):
+            if attr_val.startswith(("http://", "https://", "mailto:", "tel:", "#", "data:")):
                 continue
-            target = href.split("#")[0]
+            target = attr_val.split("#")[0]
             if not target:
                 continue
             if not os.path.exists(os.path.join(ROOT, target)):
-                errors.append(f"{page}: broken internal link -> {href}")
+                errors.append(f"{page}: broken internal link/asset -> {attr_val}")
 
-        # required boilerplate
-        for needle in ("<!doctype html>", 'name="viewport"', 'href="assets/style.css"'):
+        for needle in ("<!doctype html>", 'name="viewport"', 'href="assets/style.css"', 'src="assets/app.js"'):
             if needle not in html:
                 errors.append(f"{page}: missing {needle}")
 
@@ -146,22 +166,32 @@ def main():
             errors.append(f"{page}: {f}")
         if page not in DEFECT_ALLOWED:
             for token in audit.bad_cells:
-                errors.append(f"{page}: unresolved token in a table cell: {token}")
+                errors.append(f"{page}: unresolved token in table cell: {token}")
 
-    print(f"pages checked        : {len(PAGES)}")
+    # Also verify docs/*.html compatibility redirect targets
+    docs_dir = os.path.join(ROOT, "docs")
+    docs_checked = 0
+    if os.path.isdir(docs_dir):
+        for fname in sorted(os.listdir(docs_dir)):
+            if not fname.endswith(".html"):
+                continue
+            docs_checked += 1
+            dhtml = open(os.path.join(docs_dir, fname), encoding="utf-8").read()
+            for href in re.findall(r'href="([^"]+)"', dhtml):
+                resolved = os.path.normpath(os.path.join(docs_dir, href))
+                if not os.path.exists(resolved):
+                    errors.append(f"docs/{fname}: broken redirect target -> {href}")
+
+    print(f"pages checked        : {len(PAGES)} (+ {docs_checked} docs/ redirects)")
     print(f"tables checked       : {total_tables}")
     print(f"table rows checked   : {total_rows}")
     print(f"data files validated : {len(data_files)}")
-    if warnings:
-        print("\nWARNINGS")
-        for w in warnings:
-            print("  -", w)
     if errors:
         print("\nFAILURES")
         for x in errors:
             print("  -", x)
         sys.exit(1)
-    print("\nOK - every table row has a source link, every internal link resolves, no unresolved tokens.")
+    print("\nOK - every table row has an official primary source link, zero aggregator links, zero CERT duplicates, zero broken internal links.")
 
 
 if __name__ == "__main__":

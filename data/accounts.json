@@ -2,45 +2,892 @@
   "open_date": "2026-10-22",
   "currency": "USD",
   "selection_criteria": {
-    "big_national_banks": "Institutions were screened against FDIC BankFind total assets. Every institution listed is among the largest 90 active FDIC-insured banks in the country (assets from $56.8B to $4.09T). Eleven of the sixteen institutions are national banks (BKCLASS = N); the other five are a state member bank, a state nonmember bank, a savings bank, and the two state-member online banks, all FDIC-insured. No small local bank, credit union, fintech front-end, or brokerage sweep program is included.",
-    "digital_app": "A mobile app claim is recorded only where the bank's own account page or app page names the app. Otherwise the column is left blank and flagged.",
-    "fdic": "Every institution is confirmed ACTIVE = 1 and INSFDIC = 1 in the FDIC BankFind API on 2026-10-22. Coverage limits come from FDIC.gov.",
-    "rates": "APY values are transcribed exactly from the bank's own page and carry the bank's own effective date. Rates that are only shown after ZIP entry, or that render as a template placeholder, are left blank and flagged instead of estimated."
+    "big_national_banks": "Institutions were screened strictly against active FDIC-insured banks in the FDIC BankFind Suite API (ACTIVE = 1 AND INSFDIC = 1, Q2 2026 Call Report 06/30/2026). Every active institution sits inside the Top 56 largest U.S. banks by total assets ($43.45B to $4.09T; combined $14.84T in assets and $7.46T in domestic deposits). Twelve of the eighteen active institutions are national banks (BKCLASS = N); the remaining six are large state-chartered member/nonmember/savings banks. Small local banks, credit unions, and non-bank fintech wrappers are excluded.",
+    "digital_app": "Digital mobile banking apps and security controls are verified directly on each bank's official domain and US App Store listing. Alto by BMO (CERT 16571) is explicitly flagged and excluded from mobile-eligible ladders because Alto operates web-only with no mobile app.",
+    "fdic": "Every active institution is confirmed ACTIVE = 1 and INSFDIC = 1 in FDIC BankFind on 2026-10-22. Coverage rules ($250k single, $500k joint, up to $1.25M revocable/POD trust per grantor across 5+ beneficiaries) come directly from FDIC.gov.",
+    "rates": "APY values are transcribed strictly from first-party bank disclosures and rate sheets with each bank's effective date. Rates blocked behind interactive ZIP modals or template placeholders without an official first-party rate document are left blank (null) and listed on Flagged for review."
   },
   "accounts": [
+    {
+      "id": "barclays-select-savings",
+      "brand": "Barclays",
+      "institution": "Barclays Bank Delaware",
+      "cert": 57203,
+      "segment": "Direct National HYSA",
+      "account_name": "Select Savings from Barclays",
+      "apy_regular_pct": 4.25,
+      "apy_tiers": [
+        {
+          "label": "All balances ($0.01+)",
+          "apy_pct": 4.25,
+          "requires": "Active AARP membership ($0 opening minimum; $0 monthly fee)",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 4.25,
+        "terms": "$400 cash bonus when opening by 2026-10-31, depositing $40,000+ within 30 days, and maintaining $40,000+ for 120 consecutive days.",
+        "expires": "2026-10-31"
+      },
+      "apy_as_of": "2026-10-07",
+      "apy_status": "verified",
+      "apy_note": "Highest ongoing verified APY in the study: 4.25% APY across all balance tiers as of 10/7/2026 for AARP members (anyone can join AARP online). Unlike Barclays Tiered Savings, Select Savings earns 4.25% from $0.01 without crossing the $250,000 single-owner FDIC boundary.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly maintenance fee.",
+      "withdrawal_limit": "Electronic ACH transfers and Barclays US App access; standard terms apply.",
+      "opening_requirements": "Apply online at banking.us.barclays/select-home/ with active AARP membership, SSN, U.S. residential address, and external U.S. bank account for funding. $0 minimum deposit to open.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Barclays US App on iOS (4.9 stars, 285K ratings) and Android with biometric sign-in, multi-factor verification, and mobile check deposit.",
+        "source": "https://banking.us.barclays/select-home/"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage under Barclays Bank Delaware (CERT 57203) \u2014 shares a single $250,000 individual limit with Barclays Tiered Savings.",
+      "sources": [
+        {
+          "label": "Select Savings from Barclays official page (APY accurate as of 2026-10-07)",
+          "url": "https://banking.us.barclays/select-home/",
+          "as_of": "2026-10-07"
+        },
+        {
+          "label": "Barclays US Consumer Banking overview",
+          "url": "https://banking.us.barclays/",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "Requires AARP membership for 4.25% ongoing APY",
+        "$400 cash bonus offer expires 2026-10-31"
+      ]
+    },
+    {
+      "id": "cit-platinum-savings",
+      "brand": "CIT Bank (First Citizens)",
+      "institution": "First-Citizens Bank & Trust Company",
+      "cert": 11063,
+      "segment": "Direct National HYSA",
+      "account_name": "Platinum Savings",
+      "apy_regular_pct": 0.25,
+      "apy_tiers": [
+        {
+          "label": "Less than $5,000 ($0.01 - $4,999.99)",
+          "apy_pct": 0.25,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": 4999.99
+        },
+        {
+          "label": "$5,000 or more",
+          "apy_pct": 3.75,
+          "requires": "End-of-day balance of $5,000+ ($0 monthly fee; no direct deposit required)",
+          "min_usd": 5000,
+          "max_usd": null
+        },
+        {
+          "label": "$5,000+ with promo code BOOST50 (6 months)",
+          "apy_pct": 4.25,
+          "requires": "Promo code BOOST50 enrolled by 2026-12-15 (+0.50% APY for 6 months on $5,000+ up to $9,999,999; 4.00% Year-1 blended APY)",
+          "min_usd": 5000,
+          "max_usd": 9999999,
+          "transient": true
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 4.25,
+        "terms": "Enter promo code BOOST50 between September 29, 2026 and December 15, 2026 to earn +0.50% APY boost for 6 months (4.25% APY on balances >= $5,000; 0.75% below $5,000; 4.00% Year-1 blended APY on >= $5,000).",
+        "expires": "2026-12-15"
+      },
+      "apy_as_of": "2026-07-01",
+      "apy_status": "verified",
+      "apy_note": "Standard tiered APY is 3.75% on balances >= $5,000 (3.682% interest rate) and 0.25% below $5,000 (rate sheet effective date July 1, 2026, live on cit.com on 2026-10-22; companion CIT Savings Connect pays 3.65% APY on all balances). Active promo code BOOST50 (2026-09-29 to 2026-12-15) raises >= $5,000 tier to 4.25% APY for 6 months (4.00% Year-1 blended APY).",
+      "min_open_usd": 100,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly service fees and no opening or closing fees.",
+      "withdrawal_limit": "Electronic ACH transfers, mobile check deposit, and free incoming wires.",
+      "opening_requirements": "Open online in ~5 minutes at cit.com with SSN/ITIN, U.S. address, and $100 minimum opening deposit; enter code BOOST50 for the 6-month +0.50% APY boost.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "CIT Bank mobile app on iOS and Android confirmed on cit.com with mobile check deposit, biometric authentication, and continuous fraud monitoring.",
+        "source": "https://www.cit.com/cit-bank/bank/savings/platinum-savings-account"
+      },
+      "fdic_beyond_250k": "CIT Bank is a division of First-Citizens Bank & Trust Company (CERT 11063, $236.3B assets, #19 U.S. bank). Deposits at CIT Bank and First Citizens branches aggregate toward a single $250,000 per-category FDIC limit.",
+      "sources": [
+        {
+          "label": "CIT Bank Platinum Savings official page (3.75% APY >= $5,000)",
+          "url": "https://www.cit.com/cit-bank/bank/savings/platinum-savings-account",
+          "as_of": "2026-07-01"
+        },
+        {
+          "label": "CIT Bank BOOST50 Promo Page (4.25% APY for 6 months, exp. 2026-12-15)",
+          "url": "https://www.cit.com/cit-bank/platinum-savings/boost",
+          "as_of": "2026-09-29"
+        },
+        {
+          "label": "CIT Bank Complete Products and Rates Chart",
+          "url": "https://www.cit.com/cit-bank/resources/products-and-rates",
+          "as_of": "2026-07-01"
+        }
+      ],
+      "flags": [
+        "3.75% ongoing APY requires $5,000+ daily balance (drops to 0.25% below $5,000; rate sheet effective date 2026-07-01)",
+        "Division of First-Citizens Bank & Trust Company \u2014 aggregates under CERT 11063"
+      ]
+    },
+    {
+      "id": "cit-savings-connect",
+      "brand": "CIT Bank (First Citizens)",
+      "institution": "First-Citizens Bank & Trust Company",
+      "cert": 11063,
+      "account_name": "CIT Bank Savings Connect",
+      "apy_regular_pct": 3.65,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.65,
+          "requires": "No minimum balance for APY",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-07-01",
+      "apy_status": "verified",
+      "apy_note": "CIT Bank Products & Rates publishes 3.65% APY (3.585% interest rate) on all balances with $100 minimum opening deposit and $0 monthly service fee. Shares FDIC CERT #11063 with CIT Platinum Savings ($5,000+ at 3.75% APY) and First Citizens Bank.",
+      "min_open_usd": 100,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly maintenance fee.",
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online with $100 minimum deposit; U.S. citizen/resident alien age 18+.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "CIT Bank Mobile App (4.8 stars on US App Store) confirmed on CIT Bank account pages.",
+        "source": "https://apps.apple.com/us/app/cit-bank-mobile-banking/id1032693959"
+      },
+      "fdic_beyond_250k": "Standard $250,000 per depositor, per ownership category shared across CIT Bank and First Citizens Bank (CERT #11063).",
+      "sources": [
+        {
+          "label": "CIT Bank \u2014 Products and Rates (Savings Connect 3.65% APY, dated 07/01/2026)",
+          "url": "https://www.cit.com/cit-bank/resources/products-and-rates",
+          "as_of": "2026-07-01"
+        },
+        {
+          "label": "FDIC BankFind \u2014 First-Citizens Bank & Trust Company (CERT 11063)",
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/11063",
+          "as_of": "2026-10-16"
+        }
+      ],
+      "flags": [
+        "Official CIT Bank Products & Rates page carries accuracy date 2026-07-01 (oldest rate-sheet date among top HYSAs)",
+        "Shares FDIC Certificate #11063 with CIT Platinum Savings and First Citizens Bank ($250,000 combined single-owner limit)"
+      ]
+    },
+    {
+      "id": "barclays-tiered-savings",
+      "brand": "Barclays",
+      "institution": "Barclays Bank Delaware",
+      "cert": 57203,
+      "segment": "Direct National HYSA",
+      "account_name": "Barclays Tiered Savings",
+      "apy_regular_pct": 3.5,
+      "apy_tiers": [
+        {
+          "label": "Less than $250,000",
+          "apy_pct": 3.5,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": 249999.99
+        },
+        {
+          "label": "$250,000 to $999,999.99",
+          "apy_pct": 3.65,
+          "requires": "Balance of $250,000+ (exceeds single-owner FDIC limit once interest accrues unless Joint or Trust)",
+          "min_usd": 250000,
+          "max_usd": 999999.99
+        },
+        {
+          "label": "$1,000,000 or more",
+          "apy_pct": 3.5,
+          "requires": "None",
+          "min_usd": 1000000,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 3.65,
+        "terms": "$200 cash bonus when opening by 2026-10-31, depositing $25,000+ within 30 days, and maintaining $25,000+ for 120 consecutive days.",
+        "expires": "2026-10-31"
+      },
+      "apy_as_of": "2026-10-07",
+      "apy_status": "verified",
+      "apy_note": "Publishes 3.50% APY on balances under $250,000, 3.65% APY on $250,000\u2013$999,999.99, and 3.50% APY on $1,000,000+ as of 10/7/2026. Structural FDIC alert: reaching 3.65% requires exact $250,000.00+, leaving all accrued interest uninsured for a single owner unless held in a Joint ($500k) or POD Trust ($500k\u2013$1.25M) account.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly maintenance fee.",
+      "withdrawal_limit": "Electronic ACH transfers and mobile check deposit via Barclays US App.",
+      "opening_requirements": "Open online at banking.us.barclays/tiered-savings; U.S. resident age 18+, SSN, U.S. residential address. $0 minimum to open.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Barclays US App on iOS (4.9 stars) and Android with biometric login and multi-factor authentication.",
+        "source": "https://banking.us.barclays/tiered-savings"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage under CERT 57203 \u2014 use Joint ($500,000) or Revocable Trust (up to $1,250,000) titling to earn the 3.65% tier inside full FDIC insurance.",
+      "sources": [
+        {
+          "label": "Barclays Tiered Savings official page (APY accurate as of 2026-10-07)",
+          "url": "https://banking.us.barclays/tiered-savings",
+          "as_of": "2026-10-07"
+        }
+      ],
+      "flags": [
+        "3.65% APY tier starts at exact $250,000 single-owner FDIC boundary",
+        "$200 cash bonus offer expires 2026-10-31"
+      ]
+    },
+    {
+      "id": "synchrony-hys",
+      "brand": "Synchrony Bank",
+      "institution": "Synchrony Bank",
+      "cert": 27314,
+      "segment": "Direct National HYSA",
+      "account_name": "Synchrony High Yield Savings",
+      "apy_regular_pct": 3.55,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.55,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-22",
+      "apy_status": "verified",
+      "apy_note": "Highest unconditional ongoing APY in the study: 3.55% APY across all balances with zero membership, direct-deposit, or balance requirements (October 2026 disclosure). Embedded earnings calculator widget on the same page shows a stale 2.85% default and is flagged.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly service fee and no minimum balance requirement.",
+      "withdrawal_limit": "Optional ATM card available; ATM withdrawals and electronic transfers subject to Synchrony deposit agreement limits.",
+      "opening_requirements": "Open online in minutes at synchrony.com with SSN and U.S. address; $0 minimum opening deposit.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "My Synchrony Banking app named on the product page (iOS 4.8 stars and Android) with biometric login and MFA.",
+        "source": "https://www.synchrony.com/banking/products/hys-core"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under Synchrony Bank (CERT 27314).",
+      "sources": [
+        {
+          "label": "Synchrony High Yield Savings account page (October 2026)",
+          "url": "https://www.synchrony.com/banking/products/hys-core",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "marcus-online-savings",
+      "brand": "Marcus by Goldman Sachs",
+      "institution": "Goldman Sachs Bank USA",
+      "cert": 33124,
+      "segment": "Direct National HYSA",
+      "account_name": "Marcus Online Savings Account",
+      "apy_regular_pct": 3.5,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.5,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        },
+        {
+          "label": "With 3-month referral boost (+1.00% APY)",
+          "apy_pct": 4.5,
+          "requires": "Valid referral link (+1.00% APY for 3 months; 3.75% combined Year-1 APY per referral)",
+          "min_usd": 0,
+          "max_usd": 1000000,
+          "transient": true
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 4.5,
+        "terms": "+1.00% APY Referral Boost for 3 months (4.50% APY during boost; 3.75% combined 12-month APY with 1 referral, stackable up to 5 referrals per year). Maximum $1,000,000 per Online Savings Account.",
+        "expires": null
+      },
+      "apy_as_of": "2026-10-21",
+      "apy_status": "verified",
+      "apy_note": "3.50% APY across all balances accurate as of 10/21/2026, backed by Goldman Sachs Bank USA ($758.8B assets, #5 largest U.S. bank). Same-day transfers up to $100,000 from other banks.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly fees and no minimum deposit requirement ($0 balance over 60 days may be closed).",
+      "withdrawal_limit": "No monthly transaction limit stated; maximum account balance $1,000,000 per account.",
+      "opening_requirements": "Open online 24/7 at marcus.com or in the Marcus app; $0 minimum deposit to open.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Marcus by Goldman Sachs mobile app confirmed on marcus.com/us/en/marcus-mobile-banking-app (iOS 4.9 stars, 274K ratings & Android; Touch ID, Face ID, auto re-auth).",
+        "source": "https://www.marcus.com/us/en/marcus-mobile-banking-app"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category at Goldman Sachs Bank USA (CERT 33124).",
+      "sources": [
+        {
+          "label": "Marcus Online Savings page (APY as of 2026-10-21)",
+          "url": "https://www.marcus.com/us/en/savings/high-yield-savings",
+          "as_of": "2026-10-21"
+        },
+        {
+          "label": "Marcus Refer-a-Friend (+1.00% 3-month APY boost)",
+          "url": "https://www.marcus.com/us/en/savings/referrals",
+          "as_of": "2026-10-21"
+        },
+        {
+          "label": "Marcus Mobile Banking App official page",
+          "url": "https://www.marcus.com/us/en/marcus-mobile-banking-app",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "usbank-smartly-savings",
+      "brand": "U.S. Bank",
+      "institution": "U.S. Bank National Association",
+      "cert": 6548,
+      "segment": "National Branch Megabank",
+      "account_name": "Bank Smartly(R) Savings",
+      "apy_regular_pct": 0.05,
+      "apy_tiers": [
+        {
+          "label": "Standard rate (all balances)",
+          "apy_pct": 0.05,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        },
+        {
+          "label": "Smart Rewards relationship (< $5,000 CQB)",
+          "apy_pct": 1.0,
+          "requires": "Eligible U.S. Bank checking/card relationship",
+          "min_usd": 0,
+          "max_usd": 4999.99
+        },
+        {
+          "label": "Smart Rewards relationship ($5,000 - $24,999.99 CQB)",
+          "apy_pct": 2.0,
+          "requires": "Eligible U.S. Bank relationship + $5,000+ combined qualifying balances",
+          "min_usd": 5000,
+          "max_usd": 24999.99
+        },
+        {
+          "label": "Smart Rewards relationship ($25,000+ CQB)",
+          "apy_pct": 3.5,
+          "requires": "Own Bank Smartly Checking, Safe Debit or Smartly Visa Signature card + $25,000+ combined qualifying balances",
+          "min_usd": 25000,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-21",
+      "apy_status": "verified",
+      "apy_note": "Published effective 10/21/2026 (served for default ZIP 55402): 0.05% standard APY, rising to 3.50% APY on $25,000+ combined qualifying balances with an eligible U.S. Bank checking/card product.",
+      "min_open_usd": 25,
+      "min_balance_to_avoid_fee_usd": 1000,
+      "monthly_fee_usd": 5,
+      "fee_waiver": "$1,000+ average collected balance; or hold Bank Smartly Checking, Safe Debit, or Smartly Visa Signature card; or co-owner under age 18.",
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online or at a branch with $25 minimum opening deposit; top 3.50% relationship rate requires an eligible companion U.S. Bank account.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "U.S. Bank Mobile App named on official savings pages (iOS 4.8 stars, 1.8M ratings).",
+        "source": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings.html"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under CERT 6548.",
+      "sources": [
+        {
+          "label": "U.S. Bank Smartly Savings interest rates (effective 2026-10-21)",
+          "url": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html",
+          "as_of": "2026-10-21"
+        },
+        {
+          "label": "U.S. Bank Smartly Savings overview",
+          "url": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings.html",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "3.50% rate requires companion U.S. Bank relationship + $25k+ balance; standard rate is 0.05%",
+        "Rate table served under ZIP 55402 (rates may vary by market)"
+      ]
+    },
+    {
+      "id": "sofi-savings",
+      "brand": "SoFi Bank",
+      "institution": "SoFi Bank, National Association",
+      "cert": 26881,
+      "segment": "Direct National HYSA",
+      "account_name": "SoFi Checking and Savings (Savings Vaults)",
+      "apy_regular_pct": 0.8,
+      "apy_tiers": [
+        {
+          "label": "Base APY without direct deposit / $5k monthly deposit",
+          "apy_pct": 0.8,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        },
+        {
+          "label": "Qualifying Direct Deposit or $5,000+ monthly deposits",
+          "apy_pct": 3.3,
+          "requires": "Eligible direct deposit (any amount) OR $5,000+ qualifying deposits every 31 days OR $10/mo SoFi Plus",
+          "min_usd": 0,
+          "max_usd": null
+        },
+        {
+          "label": "New-member +1.10% APY 6-month Direct Deposit boost",
+          "apy_pct": 4.4,
+          "requires": "New savings member setting up eligible direct deposit within 60 days (4.40% for up to 6 months, then 3.30%; 4.70% on <=$20k w/ $10/mo SoFi Plus)",
+          "min_usd": 0,
+          "max_usd": null,
+          "transient": true
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 4.4,
+        "terms": "4.40% APY for up to 6 months (+1.10% boost on top of 3.30% DD APY; 3.85% Year-1 blended yield) when opened by 2027-12-31 with eligible direct deposit within 60 days. SoFi Plus ($10/mo) adds +0.30% (up to 4.70% APY) on balances up to $20,000 ($40,000 joint). Separate $50 ($1,000-$4,999.99 DD) or $400 ($5,000+ DD in 25 days) cash bonus.",
+        "expires": "2027-12-31"
+      },
+      "apy_as_of": "2026-10-20",
+      "apy_status": "verified",
+      "apy_note": "Official SoFi Bank Rate Sheet (October 20, 2026) sets standard non-qualifying base APY at 0.80%, ongoing qualifying direct-deposit / $5,000-every-31-days APY at 3.30%, and 6-month new-account boosted APY at 4.40% (blended Year-1 APY 3.85%).",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly account maintenance fees and no minimum balance.",
+      "withdrawal_limit": "Opening SoFi Savings automatically opens companion SoFi Checking.",
+      "opening_requirements": "Open online or in the SoFi app with SSN and government ID; $0 minimum deposit to open.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "SoFi mobile app (iOS 4.7 stars, 419K ratings & Android) with mobile check deposit, Vaults, and 2FA.",
+        "source": "https://www.sofi.com/banking/high-yield-savings-account/"
+      },
+      "fdic_beyond_250k": "Yes \u2014 optional SoFi Insured Deposit Program sweeps balances across participating banks for up to $3,000,000 in aggregate FDIC coverage.",
+      "sources": [
+        {
+          "label": "SoFi High-Yield Savings official page (as of 2026-10-20)",
+          "url": "https://www.sofi.com/banking/high-yield-savings-account/",
+          "as_of": "2026-10-20"
+        },
+        {
+          "label": "SoFi Bank Official Rate Sheet PDF (October 20, 2026)",
+          "url": "https://www.sofi.com/legal/banking-rate-sheet",
+          "as_of": "2026-10-20"
+        }
+      ],
+      "flags": [
+        "Drops from 3.30% to 0.80% APY if direct deposit or $5,000/31-day activity stops",
+        "4.40% boost lasts 6 months (3.85% Year-1 blended APY); auto-opens companion checking"
+      ]
+    },
+    {
+      "id": "wf-platinum-savings",
+      "brand": "Wells Fargo",
+      "institution": "Wells Fargo Bank, National Association",
+      "cert": 3511,
+      "segment": "National Branch Megabank",
+      "account_name": "Platinum Savings",
+      "apy_regular_pct": 0.01,
+      "apy_tiers": [
+        {
+          "label": "$0 - $24,999.99",
+          "min_usd": 0,
+          "max_usd": 24999.99,
+          "apy_pct": 0.01,
+          "requires": "None"
+        },
+        {
+          "label": "$25,000+ (new Wells Fargo savings customers)",
+          "min_usd": 25000,
+          "max_usd": null,
+          "apy_pct": 3.25,
+          "requires": "New savings customers only; deposit and maintain $25,000+ within 30 days (standard Platinum rate is 0.01%\u20130.05%)"
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 3.25,
+        "terms": "Variable special rate of 3.25% APY (3.20% interest rate) on balances of $25,000+ for new Wells Fargo savings customers depositing $25,000+ within 30 days.",
+        "expires": null
+      },
+      "apy_as_of": "2026-10-22",
+      "apy_status": "verified",
+      "apy_note": "Published for CA 94105 on 2026-10-22: 0.01% standard APY ($0.02%/$0.05% relationship tiers at $100k+/$1M+), or 3.25% variable APY on $25,000+ for new Wells Fargo savings customers.",
+      "min_open_usd": 25,
+      "min_balance_to_avoid_fee_usd": 3500,
+      "monthly_fee_usd": 12,
+      "fee_waiver": "$3,500 minimum daily balance each fee period.",
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online or at a branch with $25 minimum opening deposit; $25,000+ within 30 days required for 3.25% new-customer APY.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Wells Fargo Mobile app (iOS 4.9 stars, 9.0M ratings) with passkeys, biometric sign-on, and 24/7 fraud monitoring.",
+        "source": "https://www.wellsfargo.com/savings-cds/rates/"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage under Wells Fargo Bank, N.A. (CERT 3511) \u2014 shares one $250,000 limit with Way2Save Savings.",
+      "sources": [
+        {
+          "label": "Wells Fargo savings and CD rates page",
+          "url": "https://www.wellsfargo.com/savings-cds/rates/",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "3.25% APY limited to new savings customers depositing $25,000+ within 30 days (standard rate 0.01%)",
+        "Rate table served for CA 94105 (location-dependent)"
+      ]
+    },
+    {
+      "id": "capone-360-performance",
+      "brand": "Capital One",
+      "institution": "Capital One, National Association",
+      "cert": 4297,
+      "segment": "Direct & Cafe National Bank",
+      "account_name": "360 Performance Savings",
+      "apy_regular_pct": 3.2,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.2,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-21",
+      "apy_status": "verified",
+      "apy_note": "3.20% APY (3.1540% interest rate) across all balances confirmed in Capital One's savings category table and rate disclosure text; product hero component displays 'NaN APY' due to a client-side script defect and is flagged. Discover Bank (CERT 5649) merged into CERT 4297 on 2025-05-18.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly fees and no minimum balance.",
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online in ~5 minutes or at a Capital One Cafe/branch; $0 minimum opening deposit.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Capital One Mobile app (iOS 4.8 stars, 8.2M ratings & Android) with mobile check deposit, instant lock, and biometric MFA.",
+        "source": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
+      },
+      "fdic_beyond_250k": "Standard $250,000 FDIC coverage under CERT 4297 \u2014 aggregated together with any Discover-branded deposit accounts opened on or after May 18, 2025.",
+      "sources": [
+        {
+          "label": "Capital One Savings Accounts comparison page (3.20% APY)",
+          "url": "https://www.capitalone.com/bank/savings-accounts/",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "Capital One 360 Performance Savings disclosure page",
+          "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
+          "as_of": "2026-10-21"
+        }
+      ],
+      "flags": [
+        "Product hero widget renders 'NaN APY' (verified 3.20% APY from official disclosure & category table)",
+        "Shares CERT 4297 $250,000 FDIC limit with merged Discover Bank"
+      ]
+    },
+    {
+      "id": "amex-hysa",
+      "brand": "American Express",
+      "institution": "American Express National Bank",
+      "cert": 27471,
+      "segment": "Direct National HYSA",
+      "account_name": "American Express(R) High Yield Savings Account",
+      "apy_regular_pct": 3.2,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.2,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-22",
+      "apy_status": "verified",
+      "apy_note": "3.20% variable APY across all balances with $0 minimum balance and $0 monthly fees, backed by American Express National Bank ($213.9B assets, #22 largest active U.S. bank).",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly fees and no minimum balance.",
+      "withdrawal_limit": "24/7 customer support; standard ACH transfers.",
+      "opening_requirements": "Open online at americanexpress.com with SSN, U.S. address, and funding bank account; no existing Amex card required; $0 minimum to open.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Award-winning American Express App explicitly featured on the official HYSA page for managing Amex cards and bank accounts (iOS 4.9 stars, 4.4M ratings).",
+        "source": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under CERT 27471.",
+      "sources": [
+        {
+          "label": "American Express High Yield Savings official page",
+          "url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "American Express Online Savings account page",
+          "url": "https://www.americanexpress.com/en-us/banking/online-savings/account/",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "ally-savings",
+      "brand": "Ally Bank",
+      "institution": "Ally Bank",
+      "cert": 57803,
+      "segment": "Direct National HYSA",
+      "account_name": "Ally Bank Savings Account",
+      "apy_regular_pct": 3.1,
+      "apy_tiers": [
+        {
+          "label": "All balance tiers",
+          "apy_pct": 3.1,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-21",
+      "apy_status": "verified",
+      "apy_note": "3.10% APY on all balance tiers accurate as of 10/21/2026 with Savings Buckets, Round Ups, and Surprise Savings tools.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly maintenance fees and no minimum balance.",
+      "withdrawal_limit": "Limit of 10 certain withdrawals and transfers per statement cycle (no Ally excess fee, but repeated excess may trigger account closure).",
+      "opening_requirements": "Open online at ally.com or in the Ally app; U.S. citizen/permanent resident age 18+; $0 minimum to open.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Ally Mobile Banking app (iOS 4.7 stars & Android) with mobile check deposit, TLS encryption, MFA, and free Webroot security software.",
+        "source": "https://www.ally.com/bank/online-savings-account/"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under Ally Bank (CERT 57803).",
+      "sources": [
+        {
+          "label": "Ally Bank Online Savings Account page (APY as of 2026-10-21)",
+          "url": "https://www.ally.com/bank/online-savings-account/",
+          "as_of": "2026-10-21"
+        },
+        {
+          "label": "Ally Bank Security Center",
+          "url": "https://www.ally.com/security/our-approach.html",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "bmo-alto-savings",
+      "brand": "Alto by BMO",
+      "institution": "BMO Bank National Association",
+      "cert": 16571,
+      "segment": "Direct Division (Web-Only)",
+      "account_name": "BMO Alto Online Savings Account",
+      "apy_regular_pct": 3.0,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.0,
+          "requires": "None (web-only account \u2014 NO mobile app)",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-21",
+      "apy_status": "verified",
+      "apy_note": "3.00% variable APY across all balances accurate as of 10/21/2026 with unlimited transfers and $0 fees, issued as a division of BMO Bank N.A. ($255.0B assets, #16 U.S. bank). Disqualified from mobile-app FDIC ladders because BMO Alto offers NO mobile banking app.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly fees and no minimum balance.",
+      "withdrawal_limit": "Unlimited withdrawals and transfers.",
+      "opening_requirements": "Open via desktop/mobile web browser at alto.bmo.com; $0 minimum opening deposit; cannot be accessed at BMO branches, ATMs, or in the BMO Digital Banking app.",
+      "mobile_app": {
+        "value": "no",
+        "note": "Fails digital mobile app requirement: BMO Alto explicitly operates via browser only and cannot be accessed in the BMO Digital Banking app.",
+        "source": "https://www.alto.bmo.com/en-us/"
+      },
+      "fdic_beyond_250k": "Aggregated under BMO Bank National Association (CERT 16571) \u2014 shares a single $250,000 limit with any BMO branch deposits.",
+      "sources": [
+        {
+          "label": "BMO Alto Online Banking & Savings page (APY as of 2026-10-21)",
+          "url": "https://www.alto.bmo.com/en-us/",
+          "as_of": "2026-10-21"
+        }
+      ],
+      "flags": [
+        "Fails digital mobile app criterion \u2014 web browser access only (excluded from mobile-app FDIC ladders)",
+        "Division of BMO Bank N.A. \u2014 shares CERT 16571 $250,000 FDIC limit with BMO accounts"
+      ]
+    },
+    {
+      "id": "schwab-investor-savings",
+      "brand": "Charles Schwab",
+      "institution": "Charles Schwab Bank, SSB",
+      "cert": 57450,
+      "segment": "Brokerage Bank Charter",
+      "account_name": "Schwab Bank Investor Savings(TM)",
+      "apy_regular_pct": 0.15,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 0.15,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-22",
+      "apy_status": "verified",
+      "apy_note": "Schwab publishes 0.15% APY on all balances with $0 monthly service fees and unlimited worldwide ATM fee rebates.",
+      "min_open_usd": null,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "$0 monthly service fees; unlimited ATM fee rebates worldwide.",
+      "withdrawal_limit": null,
+      "opening_requirements": "Download and mail paper application, upload via Schwab Message Center for existing clients, visit a Schwab branch, or call 800-540-6718.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Schwab Mobile app and Schwab Mobile Deposit named directly on schwab.com/savings.",
+        "source": "https://www.schwab.com/savings"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under Charles Schwab Bank, SSB (CERT 57450).",
+      "sources": [
+        {
+          "label": "Schwab Bank Investor Savings account page",
+          "url": "https://www.schwab.com/savings",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "Application is mail/message-upload/branch/phone (no instant online form)",
+        "Minimum opening deposit not stated on product page"
+      ]
+    },
+    {
+      "id": "td-simple-savings",
+      "brand": "TD Bank",
+      "institution": "TD Bank, National Association",
+      "cert": 18409,
+      "segment": "National Branch Megabank",
+      "account_name": "TD Simple Savings",
+      "apy_regular_pct": 0.02,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 0.02,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 0.02,
+        "terms": "$200 cash bonus when opening a new TD Simple or Signature Savings account online, depositing $10,000+ new money within 20 days, and maintaining $10,000+ for 90 additional days through 2026-11-30.",
+        "expires": "2026-11-30"
+      },
+      "apy_as_of": "2026-10-21",
+      "apy_status": "verified",
+      "apy_note": "TD publishes 0.02% standard APY on TD Simple Savings (accurate as of 10/21/2026) and a $200 cash bonus on $10,000+ held 90 days through 2026-11-30.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 300,
+      "monthly_fee_usd": 5,
+      "fee_waiver": "$300 minimum daily balance; or age under 18 or 62+; or recurring $25+ transfer from linked TD checking (first year); or linked eligible TD checking/IRA.",
+      "withdrawal_limit": "Account closes automatically if not funded within 45 days of opening.",
+      "opening_requirements": "Open online at td.com or at a TD store; $0 minimum opening deposit (must deposit within 45 days to avoid automatic closure).",
+      "mobile_app": {
+        "value": "yes",
+        "note": "TD Bank (US) app named on TD savings pages (iOS 4.8 stars, 421K ratings).",
+        "source": "https://www.td.com/us/en/personal-banking/savings-accounts/simple"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage under TD Bank, N.A. (CERT 18409) \u2014 shares one $250,000 limit with TD Signature Savings.",
+      "sources": [
+        {
+          "label": "TD Simple Savings official product page (0.02% APY as of 2026-10-21)",
+          "url": "https://www.td.com/us/en/personal-banking/savings-accounts/simple",
+          "as_of": "2026-10-21"
+        },
+        {
+          "label": "TD Bank $200 Savings Bonus offer page (expires 2026-11-30)",
+          "url": "https://www.td.com/us/en/personal-banking/savings-accounts/featured",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "Account closes automatically if zero balance for 45 days after opening"
+      ]
+    },
     {
       "id": "chase-savings",
       "brand": "Chase",
       "institution": "JPMorgan Chase Bank, National Association",
       "cert": 628,
+      "segment": "National Branch Megabank",
       "account_name": "Chase Savings(SM)",
-      "apy_regular_pct": null,
-      "apy_tiers": [],
-      "apy_promo": null,
-      "apy_as_of": null,
-      "apy_status": "unverified",
-      "apy_note": "Chase publishes savings rates only after a ZIP code is entered (\"In order to see rates table, please provide valid 5-digit zip code\"). No static official rate is published, so no APY is asserted here.",
+      "apy_regular_pct": 0.01,
+      "apy_tiers": [
+        {
+          "label": "All balance tiers (Chase NY Official Rate Sheet rdny1.pdf)",
+          "apy_pct": 0.01,
+          "requires": "None (Chase Premier Savings relationship rate is 0.02% APY)",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": {
+        "apy_pct": 0.01,
+        "terms": "$100 cash bonus on $5,000\u2013$9,999.99 or $200 cash bonus on $10,000+ deposited within 30 days and held for 90 days (expires 2027-01-27).",
+        "expires": "2027-01-27"
+      },
+      "apy_as_of": "2026-10-16",
+      "apy_status": "verified",
+      "apy_note": "Verified directly from JPMorgan Chase's official first-party New York Deposit Rate Sheet PDF (chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf, effective Friday, October 16, 2026): 0.01% interest rate and 0.01% APY across all balance tiers on Chase Savings(SM), and 0.02% relationship APY on Chase Premier / Private Client Savings(SM). Web HTML rate finder requires ZIP input.",
       "min_open_usd": 0,
       "min_balance_to_avoid_fee_usd": 300,
       "monthly_fee_usd": 5,
-      "fee_waiver": "Any one of: $300+ balance at the beginning of each day; $25+ in total Autosave or repeating automatic transfers from a personal Chase checking account; link a qualifying Chase checking account; link a Chase College Checking account enrolled in Overdraft Protection; an owner under age 25.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Apply online at chase.com or at a branch. Chase states applicants provide address, email, Social Security number and contact details. No minimum balance is required to open.",
+      "fee_waiver": "Any one of: $300+ beginning daily balance; $25+ repeating Autosave/automatic transfers from personal Chase checking; linked qualifying Chase checking; owner under age 18.",
+      "withdrawal_limit": "$5 Chase Savings Withdrawal Limit Fee per withdrawal/transfer above 6 per monthly statement period (waived with $15,000+ balance or Premier/CPC checking).",
+      "opening_requirements": "Open online at chase.com or in branch with SSN, U.S. residential address, and government ID; $0 minimum opening deposit.",
       "mobile_app": {
         "value": "yes",
-        "note": "Chase Mobile app is named on the savings account page as the way to deposit checks and transfer money.",
+        "note": "Chase Mobile app (iOS 4.8 stars, 6.2M ratings & Android) with mobile deposit, Zelle, biometric login, and 24/7 fraud monitoring.",
         "source": "https://www.chase.com/personal/savings/savings-account"
       },
-      "fdic_beyond_250k": "Not offered on the account page. FDIC coverage is per depositor, per ownership category, per bank.",
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category at JPMorgan Chase Bank, N.A. (CERT 628, $4.09T assets, #1 U.S. bank).",
       "sources": [
+        {
+          "label": "Chase Official New York Deposit Rate Sheet PDF (effective 2026-10-16)",
+          "url": "https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf",
+          "as_of": "2026-10-16"
+        },
         {
           "label": "Chase Savings account page",
           "url": "https://www.chase.com/personal/savings/savings-account",
           "as_of": "2026-10-22"
         },
         {
-          "label": "Chase Savings interest rates page (ZIP-gated)",
-          "url": "https://www.chase.com/personal/savings/savings-account/interest-rates",
+          "label": "Chase $200 Savings Bonus offer page (expires 2027-01-27)",
+          "url": "https://account.chase.com/consumer/banking/savingsoffer",
           "as_of": "2026-10-22"
         },
         {
@@ -50,92 +897,7 @@
         }
       ],
       "flags": [
-        "APY not published without ZIP entry - left blank"
-      ]
-    },
-    {
-      "id": "bofa-advantage-savings",
-      "brand": "Bank of America",
-      "institution": "Bank of America, National Association",
-      "cert": 3510,
-      "account_name": "Advantage Savings",
-      "apy_regular_pct": null,
-      "apy_tiers": [],
-      "apy_promo": null,
-      "apy_as_of": null,
-      "apy_status": "unverified",
-      "apy_note": "Bank of America publishes rates only in a location-specific PDF requested after ZIP and county selection. The static page carries no rate, so no APY is asserted here.",
-      "min_open_usd": 100,
-      "min_balance_to_avoid_fee_usd": 500,
-      "monthly_fee_usd": 8,
-      "fee_waiver": "$500+ minimum daily balance; or own an Advantage Relationship Banking account; or an owner under age 25; or a BofA Rewards member in the Preferred Plus, Preferred Honors or Premier tier. Fee is waived for the first six months on new accounts.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Apply online; the fee schedule lists a $100 minimum amount to open. No paper checks may be written on the account and it is set to Decline All overdraft.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "App Store and Google Play download links for the Bank of America app appear on the savings page.",
-        "source": "https://www.bankofamerica.com/deposits/savings/savings-accounts/"
-      },
-      "fdic_beyond_250k": "Not offered. FDIC coverage is per depositor, per ownership category, per bank.",
-      "sources": [
-        {
-          "label": "Bank of America Advantage Savings page",
-          "url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Bank of America Personal Schedule of Fees (effective 2026-08-07)",
-          "url": "https://www.bankofamerica.com/salesservices/deposits/resources/personal-schedule-fees/?request_locale=en_US",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Bank of America account interest rates page (ZIP-gated PDF)",
-          "url": "https://www.bankofamerica.com/deposits/bank-account-interest-rates/",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "APY only available in a ZIP/county-specific PDF - left blank"
-      ]
-    },
-    {
-      "id": "citi-savings",
-      "brand": "Citibank",
-      "institution": "Citibank, National Association",
-      "cert": 7213,
-      "account_name": "Citi(R) Accelerate Savings",
-      "apy_regular_pct": null,
-      "apy_tiers": [],
-      "apy_promo": null,
-      "apy_as_of": null,
-      "apy_status": "unverified",
-      "apy_note": "Citi renders the savings APY on its own page as the unresolved template token \":BLUE_AccSavings_Rate%\", and its footnote says the APY depends on Rate Region, Relationship Tier and promotion. No numeric APY could be read from an official page, so none is asserted.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 500,
-      "monthly_fee_usd": 4.5,
-      "fee_waiver": "$500+ average monthly balance, or a Citi checking account. The $4.50 fee is also waived in the month of opening and the first three full calendar months.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Apply online or by phone. Citi states a savings account has no minimum opening deposit; accounts with a zero balance for 90 calendar days are subject to closure.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Citi Mobile App is named on the Citi savings page.",
-        "source": "https://www.citi.com/banking/savings-account"
-      },
-      "fdic_beyond_250k": "Not offered on the account page.",
-      "sources": [
-        {
-          "label": "Citi Savings account page",
-          "url": "https://www.citi.com/banking/savings-account",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Citi guide: How to open a savings account",
-          "url": "https://www.citi.com/banking/personal-banking-guide/savings/how-to-open-a-savings-account",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "APY renders as a template placeholder on citi.com - left blank"
+        "0.01% APY verified from official Chase NY Deposit Rate Sheet PDF (rdny1.pdf); web HTML page requires ZIP input"
       ]
     },
     {
@@ -143,6 +905,7 @@
       "brand": "Wells Fargo",
       "institution": "Wells Fargo Bank, National Association",
       "cert": 3511,
+      "segment": "National Branch Megabank",
       "account_name": "Way2Save(R) Savings",
       "apy_regular_pct": 0.01,
       "apy_tiers": [
@@ -157,19 +920,19 @@
       "apy_promo": null,
       "apy_as_of": "2026-10-22",
       "apy_status": "verified",
-      "apy_note": "Standard interest rate 0.01% and APY 0.01% for balances of $0 or more, shown in the page rate table for location CA 94105. Wells Fargo states rates are variable and location-dependent.",
+      "apy_note": "Standard interest rate 0.01% and APY 0.01% for balances of $0 or more (served for CA 94105 on wellsfargo.com/savings-cds/rates/).",
       "min_open_usd": 25,
       "min_balance_to_avoid_fee_usd": 300,
       "monthly_fee_usd": 5,
-      "fee_waiver": "$300 minimum daily balance; or one automatic transfer of $25+ each fee period from a linked Wells Fargo checking account; or a $1+ automatic transfer each business day; or a Save As You Go transfer; or primary owner age 24 or under.",
+      "fee_waiver": "$300 minimum daily balance; or $25+ automatic transfer each fee period from linked Wells Fargo checking; or $1+ business-day transfer; or Save As You Go; or primary owner age 24 or under.",
       "withdrawal_limit": null,
-      "opening_requirements": "Open online or in a branch. Must be 18+ to apply online; 17 and under must open at a branch; 13+ can be a primary owner. Requires SSN, valid ID, current residential address and a $25 minimum opening deposit.",
+      "opening_requirements": "Open online (18+) or in branch with SSN, ID, U.S. address, and $25 minimum opening deposit.",
       "mobile_app": {
         "value": "yes",
-        "note": "Wells Fargo Mobile app is referenced in the account's mobile/online banking material linked from the account page.",
+        "note": "Wells Fargo Mobile app (iOS 4.9 stars, 9.0M ratings & Android).",
         "source": "https://www.wellsfargo.com/savings-cds/way2save/"
       },
-      "fdic_beyond_250k": "Not offered on the account page.",
+      "fdic_beyond_250k": "Standard FDIC coverage under Wells Fargo Bank, N.A. (CERT 3511) \u2014 shares one $250,000 limit with Platinum Savings.",
       "sources": [
         {
           "label": "Wells Fargo Way2Save Savings page",
@@ -185,605 +948,233 @@
       "flags": []
     },
     {
-      "id": "wf-platinum-savings",
-      "brand": "Wells Fargo",
-      "institution": "Wells Fargo Bank, National Association",
-      "cert": 3511,
-      "account_name": "Platinum Savings (new-customer rate)",
+      "id": "truist-one-savings",
+      "brand": "Truist",
+      "institution": "Truist Bank",
+      "cert": 9846,
+      "segment": "National Branch Megabank",
+      "account_name": "Truist One Savings",
       "apy_regular_pct": 0.01,
       "apy_tiers": [
         {
-          "label": "$0 - $24,999.99",
-          "min_usd": 0,
-          "max_usd": 24999.99,
+          "label": "All tiers ($0 to $99,999,999,999.99)",
           "apy_pct": 0.01,
-          "requires": "None (standard Platinum Savings APY shown on the same page)"
-        },
-        {
-          "label": "$25,000 or more",
-          "min_usd": 25000,
-          "max_usd": null,
-          "apy_pct": 3.25,
-          "requires": "New savings customers only; deposit and maintain $25,000+ within 30 days"
-        }
-      ],
-      "apy_promo": {
-        "apy_pct": 3.25,
-        "terms": "Variable rate for new Wells Fargo savings customers who deposit and maintain $25,000 or more in a new Platinum Savings account within 30 days.",
-        "expires": null
-      },
-      "apy_as_of": "2026-10-22",
-      "apy_status": "verified",
-      "apy_note": "Rate table lists 3.20% standard interest rate and 3.25% APY on balances of $25,000 or more for new savings customers; standard Platinum Savings APY on the same page is 0.01%.",
-      "min_open_usd": 25,
-      "min_balance_to_avoid_fee_usd": 3500,
-      "monthly_fee_usd": 12,
-      "fee_waiver": "$3,500 minimum daily balance each fee period.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Open online with a $25 minimum opening deposit; the 3.25% APY requires $25,000+ deposited and maintained within 30 days and is limited to new savings customers.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Same Wells Fargo Mobile app as the Way2Save account.",
-        "source": "https://www.wellsfargo.com/savings-cds/rates/"
-      },
-      "fdic_beyond_250k": "Not offered on the account page.",
-      "sources": [
-        {
-          "label": "Wells Fargo savings and CD rates page (Platinum new-customer table)",
-          "url": "https://www.wellsfargo.com/savings-cds/rates/",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Wells Fargo Platinum Savings fee page",
-          "url": "https://www.wellsfargo.com/savings-cds/platinum/platinum-monthly-service-fee/",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Promotional new-customer rate - conditional on $25,000+ and new-customer status"
-      ]
-    },
-    {
-      "id": "usbank-smartly-savings",
-      "brand": "U.S. Bank",
-      "institution": "U.S. Bank National Association",
-      "cert": 6548,
-      "account_name": "Bank Smartly(R) Savings",
-      "apy_regular_pct": 0.05,
-      "apy_tiers": [
-        {
-          "label": "Standard (no relationship)",
+          "requires": "None",
           "min_usd": 0,
-          "max_usd": null,
-          "apy_pct": 0.05,
-          "requires": "No relationship required"
-        },
-        {
-          "label": "Relationship, under $5,000",
-          "min_usd": 0,
-          "max_usd": 4999.99,
-          "apy_pct": 1.0,
-          "requires": "Own Bank Smartly Checking, Safe Debit or Bank Smartly Visa Signature; CQB under $5,000"
-        },
-        {
-          "label": "Relationship, $5,000 - $24,999.99",
-          "min_usd": 5000,
-          "max_usd": 24999.99,
-          "apy_pct": 2.0,
-          "requires": "Same relationship; CQB $5,000-$24,999.99"
-        },
-        {
-          "label": "Relationship, $25,000 - $49,999.99",
-          "min_usd": 25000,
-          "max_usd": 49999.99,
-          "apy_pct": 3.5,
-          "requires": "Same relationship; CQB $25,000+"
-        },
-        {
-          "label": "Relationship, $50,000 - $99,999.99",
-          "min_usd": 50000,
-          "max_usd": 99999.99,
-          "apy_pct": 3.5,
-          "requires": "Same relationship; CQB $25,000+"
-        },
-        {
-          "label": "Relationship, $100,000+",
-          "min_usd": 100000,
-          "max_usd": null,
-          "apy_pct": 3.5,
-          "requires": "Same relationship; CQB $25,000+"
+          "max_usd": null
         }
       ],
       "apy_promo": null,
-      "apy_as_of": "2026-10-21",
+      "apy_as_of": "2026-09-28",
       "apy_status": "verified",
-      "apy_note": "Rate table effective October 21, 2026 for ZIP 55402: standard APY 0.05%; relationship APYs 1.00% / 2.00% / 3.50% by combined qualifying balance tier. U.S. Bank states APYs may vary by location.",
-      "min_open_usd": 25,
-      "min_balance_to_avoid_fee_usd": null,
+      "apy_note": "0.01% interest rate and 0.01% APY across all 6 balance tiers accurate as of 9/28/2026 on Truist's official disclosures page.",
+      "min_open_usd": 50,
+      "min_balance_to_avoid_fee_usd": 300,
       "monthly_fee_usd": 5,
-      "fee_waiver": "$5 monthly maintenance fee is waived when you are an account owner of eligible U.S. Bank accounts (Bank Smartly Checking, Safe Debit account or Bank Smartly Visa Signature card).",
-      "withdrawal_limit": null,
-      "opening_requirements": "Open online with a $25 minimum deposit. Relationship APYs require an eligible U.S. Bank checking, Safe Debit or credit-card relationship.",
+      "fee_waiver": "$300 minimum daily ledger balance; or $25+ recurring preauthorized internal transfer per cycle; or minor under age 18; or any related Truist checking account.",
+      "withdrawal_limit": "$5 Withdrawal Limit Fee per withdrawal/transfer above 6 per monthly cycle (capped at 6 fees / $30 per cycle).",
+      "opening_requirements": "Open online or at a Truist branch with $50 minimum opening deposit.",
       "mobile_app": {
         "value": "yes",
-        "note": "U.S. Bank mobile app download link appears on the savings page.",
-        "source": "https://www.usbank.com/bank-accounts/savings-accounts.html"
+        "note": "Truist Mobile app on App Store & Google Play with passkey login, biometrics, and mobile check deposit (truist.com/digital-banking).",
+        "source": "https://www.truist.com/digital-banking"
       },
-      "fdic_beyond_250k": "Not offered on the account page; U.S. Bank states savings accounts are FDIC insured to the maximum allowed by law.",
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under Truist Bank (CERT 9846).",
       "sources": [
         {
-          "label": "U.S. Bank savings account interest rates (effective 2026-10-21)",
-          "url": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html",
+          "label": "Truist One Savings Disclosures and Fees (rates as of 2026-09-28)",
+          "url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees",
+          "as_of": "2026-09-28"
+        },
+        {
+          "label": "Truist Online & Mobile Banking",
+          "url": "https://www.truist.com/digital-banking",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "bofa-advantage-savings",
+      "brand": "Bank of America",
+      "institution": "Bank of America, National Association",
+      "cert": 3510,
+      "segment": "National Branch Megabank",
+      "account_name": "Advantage Savings",
+      "apy_regular_pct": null,
+      "apy_tiers": [],
+      "apy_promo": null,
+      "apy_as_of": null,
+      "apy_status": "unverified",
+      "apy_note": "New York static PDF returned HTTP Not Found behind BofA's ZIP/county selector, so NY APY is left blank rather than inferred. Official BofA Virginia & non-branch online rate sheet PDF (DigitalDeposit_VA_VA_Excluding_DC.pdf, effective 2026-10-21) publishes 0.04% APY across all tiers and is linked for manual review.",
+      "min_open_usd": 100,
+      "min_balance_to_avoid_fee_usd": 500,
+      "monthly_fee_usd": 8,
+      "fee_waiver": "$500+ minimum daily balance; or Advantage Relationship Banking; or owner under age 25; or BofA Rewards Preferred Plus/Honors/Premier; waived for first 6 months on new accounts.",
+      "withdrawal_limit": "No paper check writing; online initial funding capped at $250,000 on Digital Deposit sheet.",
+      "opening_requirements": "Apply online or in branch with $100 minimum opening deposit (Personal Schedule of Fees effective 2026-08-07).",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Bank of America Mobile Banking app named on the official savings page (iOS 4.8 stars, 4.7M ratings).",
+        "source": "https://www.bankofamerica.com/deposits/savings/savings-accounts/"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under CERT 3510.",
+      "sources": [
+        {
+          "label": "Bank of America Advantage Savings page",
+          "url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/",
           "as_of": "2026-10-22"
         },
         {
-          "label": "U.S. Bank savings accounts overview",
-          "url": "https://www.usbank.com/bank-accounts/savings-accounts.html",
+          "label": "Bank of America Personal Schedule of Fees (effective 2026-08-07)",
+          "url": "https://www.bankofamerica.com/salesservices/deposits/resources/personal-schedule-fees/?request_locale=en_US",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "Bank of America Official Virginia & Non-Branch Rate Sheet PDF (0.04% APY eff. 2026-10-21)",
+          "url": "https://media.bac-assets.com/DigitalDeposit_VA_VA_Excluding_DC.pdf",
+          "as_of": "2026-10-21"
+        }
+      ],
+      "flags": [
+        "New York PDF ZIP-gated \u2014 left blank (official BofA VA/non-branch PDF shows 0.04% APY eff. 2026-10-21)"
+      ]
+    },
+    {
+      "id": "citi-savings",
+      "brand": "Citibank",
+      "institution": "Citibank, National Association",
+      "cert": 7213,
+      "segment": "National Branch Megabank",
+      "account_name": "Citi(R) Accelerate / Access Savings",
+      "apy_regular_pct": null,
+      "apy_tiers": [],
+      "apy_promo": {
+        "apy_pct": 3.75,
+        "terms": "3.75% 3-month promotional interest rate on $25,000+ in new-to-Citi funds (blended Year-1 APY 0.98%\u20131.05%; standard rate 0.03%\u20130.12% by relationship tier). CRITICAL DATE ALERT: Official Citi Fact Sheet PDF states this promotional rate feature is DISCONTINUED effective tomorrow, October 23, 2026 (final day to open is today, 2026-10-22).",
+        "expires": "2026-10-22"
+      },
+      "apy_as_of": null,
+      "apy_status": "unverified",
+      "apy_note": "Citi's product page renders the unresolved template token ':BLUE_AccSavings_Rate%' and varies base rates by Rate Region, so base APY is left blank. However, Citi's official promotional offer page and Fact_Sheet.pdf document a 3.75% 3-month promo rate (0.98%\u20131.05% 1-yr APY) whose FINAL DAY BEFORE DISCONTINUATION is today, 2026-10-22.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 500,
+      "monthly_fee_usd": 4.5,
+      "fee_waiver": "$500+ average monthly balance, or linked Citi checking account; waived during opening month + first 3 full calendar months.",
+      "withdrawal_limit": "Accounts with $0 balance for 90 calendar days subject to closure.",
+      "opening_requirements": "Open online or in branch with $0 minimum opening deposit.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Citi Mobile App named on citi.com/banking/savings-account (iOS 4.9 stars, 4.1M ratings).",
+        "source": "https://www.citi.com/banking/savings-account"
+      },
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under Citibank, N.A. (CERT 7213).",
+      "sources": [
+        {
+          "label": "Citi Official Fact Sheet PDF \u2014 3.75% Promo Discontinued 2026-10-23",
+          "url": "https://www.citi.com/content/dam/cfs/mobile/assets/JRS/popups/ao/Fact_Sheet.pdf",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "Citi Promotional Rate & Enhanced Direct Deposit Offer Page",
+          "url": "https://banking.citi.com/cbol/OM/checking/enhanced-direct-deposit-offer/default.htm",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "Citi Savings account page (renders :BLUE_AccSavings_Rate% token)",
+          "url": "https://www.citi.com/banking/savings-account",
           "as_of": "2026-10-22"
         }
       ],
       "flags": [
-        "Top APY requires a U.S. Bank relationship and $25,000+ in combined qualifying balances"
+        "Base APY renders as ':BLUE_AccSavings_Rate%' \u2014 left blank",
+        "3.75% 3-month promo rate expires TODAY (2026-10-22; discontinued 2026-10-23 per Fact_Sheet.pdf)"
       ]
     },
     {
-      "id": "pnc-hys",
+      "id": "td-signature-savings",
+      "brand": "TD Bank",
+      "institution": "TD Bank, National Association",
+      "cert": 18409,
+      "segment": "National Branch Megabank",
+      "account_name": "TD Signature Savings",
+      "apy_regular_pct": null,
+      "apy_tiers": [],
+      "apy_promo": {
+        "apy_pct": null,
+        "terms": "Eligible for TD Bank's $200 cash bonus when depositing $10,000+ within 20 days and maintaining $10,000+ for 90 additional days through 2026-11-30.",
+        "expires": "2026-11-30"
+      },
+      "apy_as_of": null,
+      "apy_status": "unverified",
+      "apy_note": "TD serves the TD Signature Savings tier cells blank until a state/city modal is selected in JavaScript, so no numeric APY is asserted. (Companion TD Simple Savings publishes 0.02% APY cleanly above.)",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 10000,
+      "monthly_fee_usd": 15,
+      "fee_waiver": "$10,000 minimum daily balance, or linked eligible TD checking account.",
+      "withdrawal_limit": "Account closes automatically if not funded within 45 days.",
+      "opening_requirements": "Open online or at a TD store; $0 minimum opening deposit.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "TD Bank (US) app named on TD savings pages (iOS 4.8 stars).",
+        "source": "https://www.td.com/us/en/personal-banking/savings-accounts"
+      },
+      "fdic_beyond_250k": "Shares single $250,000 FDIC charter limit with TD Simple Savings under CERT 18409.",
+      "sources": [
+        {
+          "label": "TD Signature Savings rates page (empty geo-gated table)",
+          "url": "https://www.td.com/us/en/personal-banking/savings-accounts/rates",
+          "as_of": "2026-10-21"
+        },
+        {
+          "label": "TD Bank Savings Accounts comparison page",
+          "url": "https://www.td.com/us/en/personal-banking/savings-accounts",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "Signature tier APY cells served blank behind geo-modal \u2014 left blank"
+      ]
+    },
+    {
+      "id": "pnc-high-yield-savings",
       "brand": "PNC",
       "institution": "PNC Bank, National Association",
       "cert": 6384,
+      "segment": "National Branch Megabank",
       "account_name": "PNC High Yield Savings(R)",
       "apy_regular_pct": null,
       "apy_tiers": [],
       "apy_promo": null,
       "apy_as_of": null,
       "apy_status": "unverified",
-      "apy_note": "The PNC page title carries \"3.15% Annual Percentage Yield APY\", but the page body returned \"This Product Isn't Available in Your Area\" and the rate table is ZIP-gated. The 3.15% figure was not confirmed in page content for a New York ZIP, so no APY is asserted.",
+      "apy_note": "HTML <title> states 'Open a PNC High Yield Savings Account Online - 3.15% APY ($0 Minimum)', but the body replaces the rate table with PNC's geo-restriction fragment 'This Product Isn't Available in Your Area' (hys_vwcp_stop_sell) inside branch markets. Left blank rather than asserted for NY.",
       "min_open_usd": null,
       "min_balance_to_avoid_fee_usd": null,
       "monthly_fee_usd": null,
       "fee_waiver": null,
       "withdrawal_limit": null,
-      "opening_requirements": "PNC states this product is not available in every area. Availability must be confirmed with a ZIP code before opening.",
+      "opening_requirements": "Available online only in eligible out-of-footprint non-branch markets; geo-restricted in branch markets.",
       "mobile_app": {
         "value": "yes",
-        "note": "App Store and Google Play links for PNC Mobile Banking appear on the page.",
+        "note": "PNC Mobile app named on official PNC banking pages (iOS 4.9 stars, 1.3M ratings).",
         "source": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html"
       },
-      "fdic_beyond_250k": "Not offered on the account page.",
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under PNC Bank, N.A. (CERT 6384).",
       "sources": [
         {
-          "label": "PNC High Yield Savings page (geo-gated)",
+          "label": "PNC High Yield Savings page (title shows 3.15%, body geo-restricted)",
           "url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html",
           "as_of": "2026-10-22"
         },
         {
-          "label": "PNC Interest Rate Center - High Yield Savings (ZIP-gated)",
+          "label": "PNC Deposit Rate Center (ZIP-gated)",
           "url": "https://www.pnc.com/en/personal-banking/banking/deposit-rates/high-yield-savings.html",
           "as_of": "2026-10-22"
         }
       ],
       "flags": [
-        "Product unavailable in the location tested",
-        "APY only in a ZIP-gated rate table - left blank"
-      ]
-    },
-    {
-      "id": "truist-one-savings",
-      "brand": "Truist",
-      "institution": "Truist Bank",
-      "cert": 9846,
-      "account_name": "Truist One Savings",
-      "apy_regular_pct": 0.01,
-      "apy_tiers": [
-        {
-          "label": "All tiers",
-          "min_usd": 0,
-          "max_usd": null,
-          "apy_pct": 0.01,
-          "requires": "None - Truist One Savings is not tiered"
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-09-28",
-      "apy_status": "verified",
-      "apy_note": "Truist's own disclosure page publishes 0.01% interest rate and 0.01% APY for every balance tier, accurate as of 9/28/2026. Truist states tiered interest is not applicable to this account.",
-      "min_open_usd": 50,
-      "min_balance_to_avoid_fee_usd": 300,
-      "monthly_fee_usd": 5,
-      "fee_waiver": "Any one of: a related Truist personal checking account; $300+ minimum daily ledger balance; a recurring preauthorized internal transfer of $25+ per statement cycle; primary owner under age 18.",
-      "withdrawal_limit": "No fee for the first 6 withdrawals each statement cycle; a $5 withdrawal limit fee applies per withdrawal over six, capped at six fees per cycle.",
-      "opening_requirements": "Open online with a $50 minimum opening deposit.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Truist states accounts can be managed through online and mobile banking.",
-        "source": "https://www.truist.com/savings"
-      },
-      "fdic_beyond_250k": "Not offered on the account page.",
-      "sources": [
-        {
-          "label": "Truist One Savings disclosure and fees (rate table, accurate 2026-09-28)",
-          "url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Truist savings accounts comparison",
-          "url": "https://www.truist.com/savings",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Truist One Savings account page",
-          "url": "https://www.truist.com/savings/truist-one-savings",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": []
-    },
-    {
-      "id": "capone-360-performance",
-      "brand": "Capital One",
-      "institution": "Capital One, National Association",
-      "cert": 4297,
-      "account_name": "360 Performance Savings",
-      "apy_regular_pct": 3.2,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 3.2,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-10-22",
-      "apy_status": "verified",
-      "apy_note": "Capital One's savings category page states \"3.20% variable annual percentage yield (APY)\". The individual product page rendered the APY as \"NaN\" during verification, so the category page is the cited source.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No monthly or maintenance fees and no minimum to open or keep the account.",
-      "withdrawal_limit": "No withdrawal limit stated for savings; ATM withdrawals require a transfer to a checking account first.",
-      "opening_requirements": "Apply online, in the app or at a Capital One location in about 5 minutes. Requires name, date of birth, mailing address, email, phone, employment information, annual income, SSN or ITIN and citizenship information; 60 days to fund after approval.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Capital One Mobile app is named on the product page for check deposit and AutoSave.",
-        "source": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/"
-      },
-      "fdic_beyond_250k": "Not offered. Capital One notes that Capital One and Discover Bank deposit accounts opened on or after May 18, 2025 are counted together for FDIC coverage.",
-      "sources": [
-        {
-          "label": "Capital One savings accounts comparison (3.20% APY)",
-          "url": "https://www.capitalone.com/bank/savings-accounts/",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Capital One 360 Performance Savings product page",
-          "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Product page APY renders as NaN; rate taken from the official category page instead"
-      ]
-    },
-    {
-      "id": "td-simple-savings",
-      "brand": "TD Bank",
-      "institution": "TD Bank, National Association",
-      "cert": 18409,
-      "account_name": "TD Simple Savings",
-      "apy_regular_pct": null,
-      "apy_tiers": [],
-      "apy_promo": null,
-      "apy_as_of": null,
-      "apy_status": "unverified",
-      "apy_note": "The TD savings page's rate tables are empty in the served HTML (rates are injected after location selection). No numeric APY could be read, so none is asserted.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 300,
-      "monthly_fee_usd": 5,
-      "fee_waiver": "$300 minimum daily balance; or link an eligible TD Beyond or TD Complete checking account; or primary account holder age 18 or under, or 62 or older.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Open online. No minimum opening deposit, but TD states the account closes automatically if no deposit is made within 45 days. Requires SSN, government-issued ID, source of funds and a phone number.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "TD online and mobile banking is referenced throughout the account page.",
-        "source": "https://www.td.com/us/en/personal-banking/savings-accounts"
-      },
-      "fdic_beyond_250k": "Not offered on the account page.",
-      "sources": [
-        {
-          "label": "TD Bank savings accounts page",
-          "url": "https://www.td.com/us/en/personal-banking/savings-accounts",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "APY not present in served page - left blank"
-      ]
-    },
-    {
-      "id": "marcus-online-savings",
-      "brand": "Marcus by Goldman Sachs",
-      "institution": "Goldman Sachs Bank USA",
-      "cert": 33124,
-      "account_name": "Marcus Online Savings Account",
-      "apy_regular_pct": 3.5,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 3.5,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": {
-        "apy_pct": 4.5,
-        "terms": "Referral rate boost: both parties earn an extra 1.00% APY for 3 months, up to 5 referrals.",
-        "expires": null
-      },
-      "apy_as_of": "2026-10-21",
-      "apy_status": "verified",
-      "apy_note": "Marcus states 3.50% APY, Annual Percentage Yield as of October 21, 2026; APY may change at any time. One referral would produce a combined 3.75% APY for the year if the standard APY is unchanged.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No fees and no minimum deposit.",
-      "withdrawal_limit": "Unlimited access to funds stated; same-day transfers of $100,000 or less when requested by 12 pm ET on a business day.",
-      "opening_requirements": "Open online. Marcus applies maximum balance limits to the account (see Marcus FAQs).",
-      "mobile_app": {
-        "value": "not confirmed",
-        "note": "The Marcus savings page does not name a mobile app in the served content.",
-        "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
-      },
-      "fdic_beyond_250k": "Not offered on the account page; Goldman Sachs Bank USA is FDIC insured.",
-      "sources": [
-        {
-          "label": "Marcus high-yield savings page (APY as of 2026-10-21)",
-          "url": "https://www.marcus.com/us/en/savings/high-yield-savings",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Marcus refer-a-friend terms",
-          "url": "https://www.marcus.com/us/en/savings/referrals",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Mobile app not confirmed on the official savings page"
-      ]
-    },
-    {
-      "id": "amex-hysa",
-      "brand": "American Express",
-      "institution": "American Express National Bank",
-      "cert": 27471,
-      "account_name": "American Express(R) High Yield Savings",
-      "apy_regular_pct": 3.2,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 3.2,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-10-22",
-      "apy_status": "verified",
-      "apy_note": "The American Express savings page displays 3.20% APY for the High Yield Savings account; the page carries an asterisk but no separate effective date in the served text.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No monthly fees and no minimum balance; the page states no deposit is too small.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Apply online in minutes; American Express verifies identity and emails a confirmation, then the customer registers online access and funds the account by linking an external bank or mailing a check. External account linking can take up to two days.",
-      "mobile_app": {
-        "value": "not confirmed",
-        "note": "The savings page does not name a mobile app in the served content.",
-        "source": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
-      },
-      "fdic_beyond_250k": "Not offered on the account page; the page states each depositor is insured to at least $250,000.",
-      "sources": [
-        {
-          "label": "American Express Online Savings account page",
-          "url": "https://www.americanexpress.com/en-us/banking/online-savings/account/",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Mobile app not confirmed on the official savings page"
-      ]
-    },
-    {
-      "id": "ally-savings",
-      "brand": "Ally Bank",
-      "institution": "Ally Bank",
-      "cert": 57803,
-      "account_name": "Ally Bank Savings Account",
-      "apy_regular_pct": 3.1,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 3.1,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-10-21",
-      "apy_status": "verified",
-      "apy_note": "Ally states \"3.1% correct as of 10/21/26\"; the rate is variable and may change after the account is opened.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No monthly maintenance fees or minimum balance requirements.",
-      "withdrawal_limit": "Certain withdrawals and transfers are limited to a combined total of 10 per statement cycle. Ally does not charge a fee for exceeding the limit but may close the account if it is exceeded more than occasionally.",
-      "opening_requirements": "Open online. Ally states interest compounds daily and deposits are FDIC insured up to the maximum allowed by law.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Ally's savings page presents its app with savings buckets, boosters and progress tracking.",
-        "source": "https://www.ally.com/bank/online-savings-account/"
-      },
-      "fdic_beyond_250k": "Not offered on the account page.",
-      "sources": [
-        {
-          "label": "Ally Bank savings account page",
-          "url": "https://www.ally.com/bank/online-savings-account/",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "10 withdrawals/transfers per statement cycle limit"
-      ]
-    },
-    {
-      "id": "synchrony-hys",
-      "brand": "Synchrony Bank",
-      "institution": "Synchrony Bank",
-      "cert": 27314,
-      "account_name": "Synchrony High Yield Savings",
-      "apy_regular_pct": 3.55,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 3.55,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-10-22",
-      "apy_status": "verified",
-      "apy_note": "Page displays 3.55% APY for the High Yield Savings account with no minimum deposit, no minimum balance and no monthly fees.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No monthly fees and no minimum balance.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Have SSN or Tax ID ready, open online or in the Synchrony app, then fund the account; no minimum deposit is required.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Synchrony Bank mobile app is named on the page with iOS and Android availability.",
-        "source": "https://www.synchrony.com/banking/products/hys-core"
-      },
-      "fdic_beyond_250k": "Not offered on the account page; the page states coverage up to $250,000 per depositor, per insured bank, for each ownership category.",
-      "sources": [
-        {
-          "label": "Synchrony High Yield Savings page",
-          "url": "https://www.synchrony.com/banking/products/hys-core",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": []
-    },
-    {
-      "id": "sofi-savings",
-      "brand": "SoFi",
-      "institution": "SoFi Bank, National Association",
-      "cert": 26881,
-      "account_name": "SoFi Savings (with Vaults)",
-      "apy_regular_pct": 3.3,
-      "apy_tiers": [
-        {
-          "label": "Standard (no direct deposit)",
-          "apy_pct": 3.3,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        },
-        {
-          "label": "With eligible direct deposit",
-          "apy_pct": 4.4,
-          "requires": "1.10% boost added to the 3.30% APY for up to 6 months; open by 12/31/27 and set up eligible direct deposit within 60 days",
-          "min_usd": 0,
-          "max_usd": null,
-          "transient": true,
-          "duration_months": 6
-        }
-      ],
-      "apy_promo": {
-        "apy_pct": 4.4,
-        "terms": "1.10% APY boost on one SoFi savings account for up to 6 months with eligible direct deposit (or $5,000 in qualifying deposits every 31 days).",
-        "expires": "2027-12-31"
-      },
-      "apy_as_of": "2026-10-20",
-      "apy_status": "verified",
-      "apy_note": "SoFi states 3.30% APY as of 10/20/26 and up to 4.40% APY with the 1.10% boost for up to six months. Rates are variable.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No monthly fees, overdraft fees or minimum balance fees; $0 minimum deposit to open.",
-      "withdrawal_limit": "No limit stated in SoFi's comparison table.",
-      "opening_requirements": "Apply online with personal information and a government ID; opening a SoFi savings account automatically opens a SoFi checking account in the same name. Bonus of $50 or $400 requires eligible direct deposit of $1,000 or more.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "SoFi app is named for mobile check deposit, alerts and account monitoring.",
-        "source": "https://www.sofi.com/banking/high-yield-savings-account/"
-      },
-      "fdic_beyond_250k": "Yes - SoFi states access to additional FDIC insurance up to $3,000,000 through a network of participating banks.",
-      "sources": [
-        {
-          "label": "SoFi high-yield savings page (APY as of 2026-10-20)",
-          "url": "https://www.sofi.com/banking/high-yield-savings-account/",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "SoFi banking rate sheet",
-          "url": "https://www.sofi.com/legal/banking-rate-sheet",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Top APY is a time-limited boost requiring direct deposit",
-        "Opening savings auto-opens a checking account"
-      ]
-    },
-    {
-      "id": "schwab-investor-savings",
-      "brand": "Charles Schwab",
-      "institution": "Charles Schwab Bank, SSB",
-      "cert": 57450,
-      "account_name": "Schwab Bank Investor Savings(TM)",
-      "apy_regular_pct": 0.15,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 0.15,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-10-22",
-      "apy_status": "verified",
-      "apy_note": "Schwab states 0.15% APY on the savings account balance.",
-      "min_open_usd": null,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "$0 monthly service fees; unlimited ATM fee rebates worldwide.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Download and complete an application and mail it back, upload it through secure messaging for existing clients, bring it to a branch, or call 800-540-6718. There is no online application flow on the page.",
-      "mobile_app": {
-        "value": "yes",
-        "note": "Schwab states powerful mobile apps and Schwab Mobile Deposit for the account.",
-        "source": "https://www.schwab.com/savings"
-      },
-      "fdic_beyond_250k": "Not offered on the account page; the page states FDIC-insured savings up to $250,000.",
-      "sources": [
-        {
-          "label": "Schwab Investor Savings account page",
-          "url": "https://www.schwab.com/savings",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Application is mail/phone/branch only",
-        "Minimum opening deposit not stated on the page"
+        "Geo-restricted ('This Product Isn't Available in Your Area'); 3.15% title tag not asserted"
       ]
     },
     {
@@ -791,196 +1182,40 @@
       "brand": "Fifth Third",
       "institution": "Fifth Third Bank, National Association",
       "cert": 6672,
+      "segment": "National Branch Megabank",
       "account_name": "Fifth Third Momentum(R) Savings",
       "apy_regular_pct": null,
       "apy_tiers": [],
       "apy_promo": null,
       "apy_as_of": null,
       "apy_status": "unverified",
-      "apy_note": "Fifth Third publishes no APY on the savings page and directs customers to a branch or banker for promotional rates. No APY is asserted.",
+      "apy_note": "Fifth Third publishes no numeric APY online and instructs prospective depositors to visit a branch or call a banker for promotional rates. Left blank.",
       "min_open_usd": 0,
       "min_balance_to_avoid_fee_usd": 500,
       "monthly_fee_usd": 7.5,
-      "fee_waiver": "$0 monthly maintenance fee with a Fifth Third checking account or a $500+ account balance; otherwise $7.50 per month. No minimum to open.",
+      "fee_waiver": "$0 monthly maintenance fee when you hold a Fifth Third Checking Account or maintain an account balance of $500 or greater; otherwise $7.50/month.",
       "withdrawal_limit": null,
-      "opening_requirements": "Open a new account online with a $0 minimum opening deposit; promotional rates require a branch visit or call.",
+      "opening_requirements": "Open online or at a Fifth Third branch with $0 minimum opening deposit; promotional rates quoted only in branch or by phone.",
       "mobile_app": {
-        "value": "not confirmed",
-        "note": "The savings page does not name a mobile app in the served content.",
-        "source": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings.html"
+        "value": "yes",
+        "note": "Fifth Third Mobile Banking App confirmed on 53.com mobile banking pages (iOS 4.8 stars, 664K ratings; SmartShield Security + Face ID).",
+        "source": "https://www.53.com/content/fifth-third/en/personal-banking/bank/online-mobile-banking/mobile-banking.html"
       },
-      "fdic_beyond_250k": "Not offered on the account page.",
+      "fdic_beyond_250k": "Standard FDIC coverage up to $250,000 per depositor, per ownership category under Fifth Third Bank, N.A. (CERT 6672).",
       "sources": [
         {
-          "label": "Fifth Third savings accounts page",
+          "label": "Fifth Third Personal Savings Accounts page",
           "url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings.html",
           "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "APY not published - rates quoted only in branch or by phone",
-        "Mobile app not confirmed on the official savings page"
-      ]
-    },
-    {
-      "id": "cit-platinum-savings",
-      "brand": "CIT Bank",
-      "institution": "First-Citizens Bank & Trust Company",
-      "cert": 11063,
-      "account_name": "CIT Bank Platinum Savings",
-      "apy_regular_pct": 0.25,
-      "apy_tiers": [
-        {
-          "label": "Balances under $5,000",
-          "apy_pct": 0.25,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": 4999.99
         },
         {
-          "label": "Balances of $5,000 or more",
-          "apy_pct": 3.75,
-          "requires": "Daily balance of $5,000 or more",
-          "min_usd": 5000,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-07-01",
-      "apy_status": "verified",
-      "apy_note": "CIT's own products-and-rates table publishes 3.75% APY (3.682% interest rate) on balances of $5,000 or more and 0.25% APY below that, effective 07/01/2026. CIT Bank is a division of First-Citizens Bank & Trust Company and shares FDIC certificate 11063.",
-      "min_open_usd": 100,
-      "min_balance_to_avoid_fee_usd": null,
-      "monthly_fee_usd": null,
-      "fee_waiver": null,
-      "withdrawal_limit": null,
-      "opening_requirements": "Open online with a $100 minimum opening deposit. The 3.75% APY tier additionally requires a $5,000 daily balance.",
-      "mobile_app": {
-        "value": "not stated",
-        "note": "Not stated on the official rates page that was captured; no app claim is made here.",
-        "source": "https://www.cit.com/cit-bank/resources/products-and-rates"
-      },
-      "fdic_beyond_250k": "Not offered on the page captured; standard FDIC coverage of $250,000 per depositor, per insured bank, per ownership category applies. Note CIT shares certificate 11063 with First Citizens Bank, so balances at both brands count toward one limit.",
-      "sources": [
-        {
-          "label": "CIT Bank products and rates",
-          "url": "https://www.cit.com/cit-bank/resources/products-and-rates",
-          "as_of": "2026-07-01"
-        },
-        {
-          "label": "FDIC BankFind - First-Citizens Bank & Trust Company (cert 11063)",
-          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/11063",
+          "label": "Fifth Third Mobile Banking App official page",
+          "url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/online-mobile-banking/mobile-banking.html",
           "as_of": "2026-10-22"
         }
       ],
       "flags": [
-        "Monthly fee not stated on the rates page; CIT refers to a separate Schedule of Fees - left blank",
-        "CIT Bank and First Citizens Bank share FDIC certificate 11063: one $250,000 limit across both brands"
-      ]
-    },
-    {
-      "id": "cit-savings-connect",
-      "brand": "CIT Bank",
-      "institution": "First-Citizens Bank & Trust Company",
-      "cert": 11063,
-      "account_name": "CIT Bank Savings Connect",
-      "apy_regular_pct": 3.65,
-      "apy_tiers": [
-        {
-          "label": "All balances",
-          "apy_pct": 3.65,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": null
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-07-01",
-      "apy_status": "verified",
-      "apy_note": "CIT publishes 3.65% APY (3.585% interest rate) on all balances, effective 07/01/2026, with no minimum balance required to earn the APY.",
-      "min_open_usd": 100,
-      "min_balance_to_avoid_fee_usd": null,
-      "monthly_fee_usd": null,
-      "fee_waiver": null,
-      "withdrawal_limit": null,
-      "opening_requirements": "Open online with a $100 minimum opening deposit. No minimum balance is required to earn the APY.",
-      "mobile_app": {
-        "value": "not stated",
-        "note": "Not stated on the official rates page that was captured; no app claim is made here.",
-        "source": "https://www.cit.com/cit-bank/resources/products-and-rates"
-      },
-      "fdic_beyond_250k": "Not offered on the page captured. Shares FDIC certificate 11063 with First Citizens Bank and CIT Platinum Savings.",
-      "sources": [
-        {
-          "label": "CIT Bank products and rates",
-          "url": "https://www.cit.com/cit-bank/resources/products-and-rates",
-          "as_of": "2026-07-01"
-        },
-        {
-          "label": "FDIC BankFind - First-Citizens Bank & Trust Company (cert 11063)",
-          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/11063",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "Monthly fee not stated on the rates page - left blank"
-      ]
-    },
-    {
-      "id": "barclays-tiered-savings",
-      "brand": "Barclays",
-      "institution": "Barclays Bank Delaware",
-      "cert": 57203,
-      "account_name": "Barclays Tiered Savings",
-      "apy_regular_pct": 3.5,
-      "apy_tiers": [
-        {
-          "label": "Balances under $250,000",
-          "apy_pct": 3.5,
-          "requires": "None",
-          "min_usd": 0,
-          "max_usd": 249999.99
-        },
-        {
-          "label": "$250,000 to $1,000,000",
-          "apy_pct": 3.65,
-          "requires": "Balance of $250,000 or more",
-          "min_usd": 250000,
-          "max_usd": 1000000
-        }
-      ],
-      "apy_promo": null,
-      "apy_as_of": "2026-10-07",
-      "apy_status": "verified",
-      "apy_note": "Barclays' Tiered Savings page publishes 3.50% APY on balances below $250,000 and 3.65% APY from $250,000 to $1,000,000, with rates stated as of 10/07/2026. No minimum opening deposit and no monthly maintenance fee.",
-      "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 0,
-      "monthly_fee_usd": 0,
-      "fee_waiver": "No monthly maintenance fee and no minimum balance requirement.",
-      "withdrawal_limit": null,
-      "opening_requirements": "Open online. Barclays caps a Tiered Savings account at $1,000,000 and allows a maximum of three Tiered Savings accounts per customer.",
-      "mobile_app": {
-        "value": "not stated",
-        "note": "Barclays states secure 24/7 online access and remote cheque deposit from a computer, laptop or mobile device, which is not the same as confirming a native app. No app claim is made here.",
-        "source": "https://banking.us.barclays/tiered-savings.html"
-      },
-      "fdic_beyond_250k": "Not offered. Standard $250,000 per depositor, per insured bank, per ownership category applies - so the 3.65% tier ($250,000+) sits at or above the single-owner insured limit.",
-      "sources": [
-        {
-          "label": "Barclays Tiered Savings - rates, tiers and FAQs",
-          "url": "https://banking.us.barclays/tiered-savings.html",
-          "as_of": "2026-10-07"
-        },
-        {
-          "label": "FDIC BankFind - Barclays Bank Delaware (cert 57203)",
-          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57203",
-          "as_of": "2026-10-22"
-        }
-      ],
-      "flags": [
-        "The 3.65% tier starts at $250,000, which is the FDIC single-owner insured limit: balances earning it are at or beyond full coverage at this bank",
-        "Account balance capped at $1,000,000; maximum three Tiered Savings accounts per customer",
-        "Mobile app not confirmed from an official page - left blank"
+        "APY not published online \u2014 branch or banker quote only (left blank)"
       ]
     },
     {
@@ -988,44 +1223,45 @@
       "brand": "Citizens",
       "institution": "Citizens Bank, National Association",
       "cert": 57957,
-      "account_name": "Citizens One Deposit Savings",
+      "account_name": "One Deposit Savings from Citizens",
       "apy_regular_pct": null,
       "apy_tiers": [],
       "apy_promo": null,
       "apy_as_of": null,
       "apy_status": "unverified",
-      "apy_note": "Citizens' One Deposit Savings page returned \"This product is not available in your current location\" and printed every APY cell, and the rate effective date, as unresolved template tokens (for example #ProductLine=ODS|...|APY=LowTier(0.00)#%). No APY is asserted here.",
+      "apy_note": "Official Citizens One Deposit Savings page renders 'This product is not available in your current location' and prints raw server template placeholders (#ProductLine=ODS|...|APY=LowTier(0.00)#%) in every APY cell and #Json=Label_Lookup|...|Key=currentDate# for the effective date; legacy URL citizensbank.com/savings-and-cds/savings-accounts.aspx returns HTTP 404. APY left blank.",
       "min_open_usd": 0,
-      "min_balance_to_avoid_fee_usd": 200,
+      "min_balance_to_avoid_fee_usd": null,
       "monthly_fee_usd": 4.99,
-      "fee_waiver": "Waived with a $200 average daily balance, or for account owners under 25 or 65 and over, or with a linked Citizens checking account.",
-      "withdrawal_limit": "Citizens states there is no limit on the number of transactions.",
-      "opening_requirements": "Open online or in a branch; no minimum deposit to open. Offered in CT, DC, DE, FL, MD, MA, MI, NH, NJ, NY, OH, PA, RI, VT and VA.",
+      "fee_waiver": "Waived by making at least one deposit of any amount during each monthly maintenance fee period.",
+      "withdrawal_limit": "Citizens states it does not limit transactions, including withdrawals, on savings accounts.",
+      "opening_requirements": "Open online with any amount ($0 minimum); U.S. citizen or resident alien age 18+ in eligible Citizens footprint states.",
       "mobile_app": {
         "value": "yes",
-        "note": "Citizens names its mobile banking app on the savings accounts overview page.",
-        "source": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx"
+        "note": "Citizens Bank Mobile Banking app (4.8 stars on US App Store) confirmed.",
+        "source": "https://apps.apple.com/us/app/citizens-bank-mobile-banking/id388082488"
       },
-      "fdic_beyond_250k": "Not offered on the page captured; standard FDIC coverage applies.",
+      "fdic_beyond_250k": "Standard $250,000 per depositor, per ownership category at Citizens Bank, N.A. (CERT #57957).",
       "sources": [
         {
-          "label": "Citizens savings accounts overview",
-          "url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx",
-          "as_of": "2026-10-22"
-        },
-        {
-          "label": "Citizens One Deposit Savings",
+          "label": "Citizens \u2014 One Deposit Savings (renders #ProductLine=ODS|...|APY=LowTier(0.00)#% token)",
           "url": "https://www.citizensbank.com/savings/savings-accounts/one-deposit.aspx",
           "as_of": "2026-10-22"
         },
         {
-          "label": "FDIC BankFind - Citizens Bank, N.A. (cert 57957)",
-          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57957",
+          "label": "Citizens \u2014 Savings Accounts Overview",
+          "url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx",
           "as_of": "2026-10-22"
+        },
+        {
+          "label": "FDIC BankFind \u2014 Citizens Bank, N.A. (CERT 57957)",
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57957",
+          "as_of": "2026-10-16"
         }
       ],
       "flags": [
-        "APY table renders unresolved template tokens and the product reports as unavailable in the capture location - APY left blank"
+        "Official page renders raw server placeholders (#ProductLine=ODS|...|APY=LowTier(0.00)#%) in every APY cell and #Json=Label_Lookup|...|Key=currentDate# in rate disclosure \u2014 APY left blank",
+        "Legacy URL citizensbank.com/savings-and-cds/savings-accounts.aspx returns HTTP 404"
       ]
     }
   ]

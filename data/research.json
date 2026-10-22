@@ -649,7 +649,7 @@
       "id": "citi_security",
       "organization": "Citibank, N.A.",
       "title": "How Citi Protects Your Online Security",
-      "url": "https://sit58.online.citi.com/US/JRS/pands/detail.do?ID=CitiProtectsYou",
+      "url": "https://online.citi.com/US/JRS/pands/detail.do?ID=CitiProtectsYou",
       "checkedOn": "2026-10-22",
       "sourceDate": "Current official security page",
       "supports": [
@@ -736,7 +736,7 @@
       "id": "citi_mobile",
       "organization": "Citibank, N.A.",
       "title": "Citi Mobile App",
-      "url": "https://sit58.online.citi.com/US/JRS/pands/detail.do?ID=CitiMobileApp",
+      "url": "https://online.citi.com/US/JRS/pands/detail.do?ID=CitiMobileApp",
       "checkedOn": "2026-10-22",
       "sourceDate": "Current official mobile-app page",
       "supports": [
