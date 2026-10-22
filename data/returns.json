@@ -3732,11 +3732,12 @@
       "banks_needed": 1,
       "distinct_banks_used": 1,
       "pool_size": 8,
+      "placed_usd": 250000.0,
+      "uninsured_usd": 0.0,
       "allocation_each_usd": 250000.0,
       "blended_apy_pct": 3.55,
       "year1_interest_usd": 8875.0,
-      "insured_usd": 250000,
-      "uninsured_usd": 0,
+      "insured_usd": 250000.0,
       "status": "fully covered",
       "allocations": [
         {
@@ -3753,12 +3754,13 @@
       "kind": "max-rate",
       "banks_needed": 1,
       "distinct_banks_used": 1,
-      "pool_size": 10,
+      "pool_size": 9,
+      "placed_usd": 250000.0,
+      "uninsured_usd": 0.0,
       "allocation_each_usd": 250000.0,
       "blended_apy_pct": 3.55,
       "year1_interest_usd": 8875.0,
-      "insured_usd": 250000,
-      "uninsured_usd": 0,
+      "insured_usd": 250000.0,
       "status": "fully covered",
       "allocations": [
         {
@@ -3776,11 +3778,12 @@
       "banks_needed": 2,
       "distinct_banks_used": 2,
       "pool_size": 8,
+      "placed_usd": 500000.0,
+      "uninsured_usd": 0.0,
       "allocation_each_usd": 250000.0,
       "blended_apy_pct": 3.525,
       "year1_interest_usd": 17625.0,
-      "insured_usd": 500000,
-      "uninsured_usd": 0,
+      "insured_usd": 500000.0,
       "status": "fully covered",
       "allocations": [
         {
@@ -3804,12 +3807,13 @@
       "kind": "max-rate",
       "banks_needed": 2,
       "distinct_banks_used": 2,
-      "pool_size": 10,
+      "pool_size": 9,
+      "placed_usd": 500000.0,
+      "uninsured_usd": 0.0,
       "allocation_each_usd": 250000.0,
       "blended_apy_pct": 3.525,
       "year1_interest_usd": 17625.0,
-      "insured_usd": 500000,
-      "uninsured_usd": 0,
+      "insured_usd": 500000.0,
       "status": "fully covered",
       "allocations": [
         {
@@ -3834,11 +3838,12 @@
       "banks_needed": 4,
       "distinct_banks_used": 4,
       "pool_size": 8,
+      "placed_usd": 1000000.0,
+      "uninsured_usd": 0.0,
       "allocation_each_usd": 250000.0,
       "blended_apy_pct": 3.3875,
       "year1_interest_usd": 33875.0,
-      "insured_usd": 1000000,
-      "uninsured_usd": 0,
+      "insured_usd": 1000000.0,
       "status": "fully covered",
       "allocations": [
         {
@@ -3876,12 +3881,13 @@
       "kind": "max-rate",
       "banks_needed": 4,
       "distinct_banks_used": 4,
-      "pool_size": 10,
+      "pool_size": 9,
+      "placed_usd": 1000000.0,
+      "uninsured_usd": 0.0,
       "allocation_each_usd": 250000.0,
       "blended_apy_pct": 3.4625,
       "year1_interest_usd": 34625.0,
-      "insured_usd": 1000000,
-      "uninsured_usd": 0,
+      "insured_usd": 1000000.0,
       "status": "fully covered",
       "allocations": [
         {
@@ -3920,11 +3926,12 @@
       "banks_needed": 10,
       "distinct_banks_used": 8,
       "pool_size": 8,
+      "placed_usd": 2000000.0,
+      "uninsured_usd": 500000.0,
       "allocation_each_usd": 250000.0,
-      "blended_apy_pct": 2.706,
-      "year1_interest_usd": 67650.0,
-      "insured_usd": 2000000,
-      "uninsured_usd": 500000,
+      "blended_apy_pct": 2.5013,
+      "year1_interest_usd": 50025.0,
+      "insured_usd": 2000000.0,
       "status": "not fully covered by this pool",
       "allocations": [
         {
@@ -3982,20 +3989,6 @@
           "apy_pct": 0.01,
           "amount_usd": 250000.0,
           "source": "https://www.wellsfargo.com/savings-cds/way2save/"
-        },
-        {
-          "brand": "Synchrony Bank",
-          "account_name": "Synchrony High Yield Savings",
-          "apy_pct": 3.55,
-          "amount_usd": 250000.0,
-          "source": "https://www.synchrony.com/banking/products/hys-core"
-        },
-        {
-          "brand": "Marcus by Goldman Sachs",
-          "account_name": "Marcus Online Savings Account",
-          "apy_pct": 3.5,
-          "amount_usd": 250000.0,
-          "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
         }
       ]
     },
@@ -4003,14 +3996,15 @@
       "total_usd": 2500000,
       "kind": "max-rate",
       "banks_needed": 10,
-      "distinct_banks_used": 10,
-      "pool_size": 10,
+      "distinct_banks_used": 9,
+      "pool_size": 9,
+      "placed_usd": 2250000.0,
+      "uninsured_usd": 250000.0,
       "allocation_each_usd": 250000.0,
-      "blended_apy_pct": 2.676,
-      "year1_interest_usd": 66900.0,
-      "insured_usd": 2500000,
-      "uninsured_usd": 0,
-      "status": "fully covered",
+      "blended_apy_pct": 2.9722,
+      "year1_interest_usd": 66875.0,
+      "insured_usd": 2250000.0,
+      "status": "not fully covered by this pool",
       "allocations": [
         {
           "brand": "Synchrony Bank",
@@ -4046,6 +4040,71 @@
           "apy_pct": 3.25,
           "amount_usd": 250000.0,
           "source": "https://www.wellsfargo.com/savings-cds/rates/"
+        },
+        {
+          "brand": "Capital One",
+          "account_name": "360 Performance Savings",
+          "apy_pct": 3.2,
+          "amount_usd": 250000.0,
+          "source": "https://www.capitalone.com/bank/savings-accounts/"
+        },
+        {
+          "brand": "American Express",
+          "account_name": "American Express(R) High Yield Savings",
+          "apy_pct": 3.2,
+          "amount_usd": 250000.0,
+          "source": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
+        },
+        {
+          "brand": "Ally Bank",
+          "account_name": "Ally Bank Savings Account",
+          "apy_pct": 3.1,
+          "amount_usd": 250000.0,
+          "source": "https://www.ally.com/bank/online-savings-account/"
+        },
+        {
+          "brand": "Charles Schwab",
+          "account_name": "Schwab Bank Investor Savings(TM)",
+          "apy_pct": 0.15,
+          "amount_usd": 250000.0,
+          "source": "https://www.schwab.com/savings"
+        }
+      ]
+    },
+    {
+      "total_usd": 5000000,
+      "kind": "no-conditions",
+      "banks_needed": 20,
+      "distinct_banks_used": 8,
+      "pool_size": 8,
+      "placed_usd": 2000000.0,
+      "uninsured_usd": 3000000.0,
+      "allocation_each_usd": 250000.0,
+      "blended_apy_pct": 2.5013,
+      "year1_interest_usd": 50025.0,
+      "insured_usd": 2000000.0,
+      "status": "not fully covered by this pool",
+      "allocations": [
+        {
+          "brand": "Synchrony Bank",
+          "account_name": "Synchrony High Yield Savings",
+          "apy_pct": 3.55,
+          "amount_usd": 250000.0,
+          "source": "https://www.synchrony.com/banking/products/hys-core"
+        },
+        {
+          "brand": "Marcus by Goldman Sachs",
+          "account_name": "Marcus Online Savings Account",
+          "apy_pct": 3.5,
+          "amount_usd": 250000.0,
+          "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
+        },
+        {
+          "brand": "SoFi",
+          "account_name": "SoFi Savings (with Vaults)",
+          "apy_pct": 3.3,
+          "amount_usd": 250000.0,
+          "source": "https://www.sofi.com/banking/high-yield-savings-account/"
         },
         {
           "brand": "Capital One",
@@ -4086,170 +4145,16 @@
     },
     {
       "total_usd": 5000000,
-      "kind": "no-conditions",
-      "banks_needed": 20,
-      "distinct_banks_used": 8,
-      "pool_size": 8,
-      "allocation_each_usd": 250000.0,
-      "blended_apy_pct": 2.6785,
-      "year1_interest_usd": 133925.0,
-      "insured_usd": 2000000,
-      "uninsured_usd": 3000000,
-      "status": "not fully covered by this pool",
-      "allocations": [
-        {
-          "brand": "Synchrony Bank",
-          "account_name": "Synchrony High Yield Savings",
-          "apy_pct": 3.55,
-          "amount_usd": 250000.0,
-          "source": "https://www.synchrony.com/banking/products/hys-core"
-        },
-        {
-          "brand": "Marcus by Goldman Sachs",
-          "account_name": "Marcus Online Savings Account",
-          "apy_pct": 3.5,
-          "amount_usd": 250000.0,
-          "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
-        },
-        {
-          "brand": "SoFi",
-          "account_name": "SoFi Savings (with Vaults)",
-          "apy_pct": 3.3,
-          "amount_usd": 250000.0,
-          "source": "https://www.sofi.com/banking/high-yield-savings-account/"
-        },
-        {
-          "brand": "Capital One",
-          "account_name": "360 Performance Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.capitalone.com/bank/savings-accounts/"
-        },
-        {
-          "brand": "American Express",
-          "account_name": "American Express(R) High Yield Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
-        },
-        {
-          "brand": "Ally Bank",
-          "account_name": "Ally Bank Savings Account",
-          "apy_pct": 3.1,
-          "amount_usd": 250000.0,
-          "source": "https://www.ally.com/bank/online-savings-account/"
-        },
-        {
-          "brand": "Charles Schwab",
-          "account_name": "Schwab Bank Investor Savings(TM)",
-          "apy_pct": 0.15,
-          "amount_usd": 250000.0,
-          "source": "https://www.schwab.com/savings"
-        },
-        {
-          "brand": "Wells Fargo",
-          "account_name": "Way2Save(R) Savings",
-          "apy_pct": 0.01,
-          "amount_usd": 250000.0,
-          "source": "https://www.wellsfargo.com/savings-cds/way2save/"
-        },
-        {
-          "brand": "Synchrony Bank",
-          "account_name": "Synchrony High Yield Savings",
-          "apy_pct": 3.55,
-          "amount_usd": 250000.0,
-          "source": "https://www.synchrony.com/banking/products/hys-core"
-        },
-        {
-          "brand": "Marcus by Goldman Sachs",
-          "account_name": "Marcus Online Savings Account",
-          "apy_pct": 3.5,
-          "amount_usd": 250000.0,
-          "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
-        },
-        {
-          "brand": "SoFi",
-          "account_name": "SoFi Savings (with Vaults)",
-          "apy_pct": 3.3,
-          "amount_usd": 250000.0,
-          "source": "https://www.sofi.com/banking/high-yield-savings-account/"
-        },
-        {
-          "brand": "Capital One",
-          "account_name": "360 Performance Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.capitalone.com/bank/savings-accounts/"
-        },
-        {
-          "brand": "American Express",
-          "account_name": "American Express(R) High Yield Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
-        },
-        {
-          "brand": "Ally Bank",
-          "account_name": "Ally Bank Savings Account",
-          "apy_pct": 3.1,
-          "amount_usd": 250000.0,
-          "source": "https://www.ally.com/bank/online-savings-account/"
-        },
-        {
-          "brand": "Charles Schwab",
-          "account_name": "Schwab Bank Investor Savings(TM)",
-          "apy_pct": 0.15,
-          "amount_usd": 250000.0,
-          "source": "https://www.schwab.com/savings"
-        },
-        {
-          "brand": "Wells Fargo",
-          "account_name": "Way2Save(R) Savings",
-          "apy_pct": 0.01,
-          "amount_usd": 250000.0,
-          "source": "https://www.wellsfargo.com/savings-cds/way2save/"
-        },
-        {
-          "brand": "Synchrony Bank",
-          "account_name": "Synchrony High Yield Savings",
-          "apy_pct": 3.55,
-          "amount_usd": 250000.0,
-          "source": "https://www.synchrony.com/banking/products/hys-core"
-        },
-        {
-          "brand": "Marcus by Goldman Sachs",
-          "account_name": "Marcus Online Savings Account",
-          "apy_pct": 3.5,
-          "amount_usd": 250000.0,
-          "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
-        },
-        {
-          "brand": "SoFi",
-          "account_name": "SoFi Savings (with Vaults)",
-          "apy_pct": 3.3,
-          "amount_usd": 250000.0,
-          "source": "https://www.sofi.com/banking/high-yield-savings-account/"
-        },
-        {
-          "brand": "Capital One",
-          "account_name": "360 Performance Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.capitalone.com/bank/savings-accounts/"
-        }
-      ]
-    },
-    {
-      "total_usd": 5000000,
       "kind": "max-rate",
       "banks_needed": 20,
-      "distinct_banks_used": 10,
-      "pool_size": 10,
+      "distinct_banks_used": 9,
+      "pool_size": 9,
+      "placed_usd": 2250000.0,
+      "uninsured_usd": 2750000.0,
       "allocation_each_usd": 250000.0,
-      "blended_apy_pct": 2.676,
-      "year1_interest_usd": 133800.0,
-      "insured_usd": 2500000,
-      "uninsured_usd": 2500000,
+      "blended_apy_pct": 2.9722,
+      "year1_interest_usd": 66875.0,
+      "insured_usd": 2250000.0,
       "status": "not fully covered by this pool",
       "allocations": [
         {
@@ -4314,83 +4219,6 @@
           "apy_pct": 0.15,
           "amount_usd": 250000.0,
           "source": "https://www.schwab.com/savings"
-        },
-        {
-          "brand": "Wells Fargo",
-          "account_name": "Way2Save(R) Savings",
-          "apy_pct": 0.01,
-          "amount_usd": 250000.0,
-          "source": "https://www.wellsfargo.com/savings-cds/way2save/"
-        },
-        {
-          "brand": "Synchrony Bank",
-          "account_name": "Synchrony High Yield Savings",
-          "apy_pct": 3.55,
-          "amount_usd": 250000.0,
-          "source": "https://www.synchrony.com/banking/products/hys-core"
-        },
-        {
-          "brand": "U.S. Bank",
-          "account_name": "Bank Smartly(R) Savings",
-          "apy_pct": 3.5,
-          "amount_usd": 250000.0,
-          "source": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html"
-        },
-        {
-          "brand": "Marcus by Goldman Sachs",
-          "account_name": "Marcus Online Savings Account",
-          "apy_pct": 3.5,
-          "amount_usd": 250000.0,
-          "source": "https://www.marcus.com/us/en/savings/high-yield-savings"
-        },
-        {
-          "brand": "SoFi",
-          "account_name": "SoFi Savings (with Vaults)",
-          "apy_pct": 3.3,
-          "amount_usd": 250000.0,
-          "source": "https://www.sofi.com/banking/high-yield-savings-account/"
-        },
-        {
-          "brand": "Wells Fargo",
-          "account_name": "Platinum Savings (new-customer rate)",
-          "apy_pct": 3.25,
-          "amount_usd": 250000.0,
-          "source": "https://www.wellsfargo.com/savings-cds/rates/"
-        },
-        {
-          "brand": "Capital One",
-          "account_name": "360 Performance Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.capitalone.com/bank/savings-accounts/"
-        },
-        {
-          "brand": "American Express",
-          "account_name": "American Express(R) High Yield Savings",
-          "apy_pct": 3.2,
-          "amount_usd": 250000.0,
-          "source": "https://www.americanexpress.com/en-us/banking/online-savings/account/"
-        },
-        {
-          "brand": "Ally Bank",
-          "account_name": "Ally Bank Savings Account",
-          "apy_pct": 3.1,
-          "amount_usd": 250000.0,
-          "source": "https://www.ally.com/bank/online-savings-account/"
-        },
-        {
-          "brand": "Charles Schwab",
-          "account_name": "Schwab Bank Investor Savings(TM)",
-          "apy_pct": 0.15,
-          "amount_usd": 250000.0,
-          "source": "https://www.schwab.com/savings"
-        },
-        {
-          "brand": "Wells Fargo",
-          "account_name": "Way2Save(R) Savings",
-          "apy_pct": 0.01,
-          "amount_usd": 250000.0,
-          "source": "https://www.wellsfargo.com/savings-cds/way2save/"
         }
       ]
     }

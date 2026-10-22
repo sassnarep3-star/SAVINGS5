@@ -100,18 +100,29 @@ dates is on the site's Sources page and in `research/verification-log.md`.
 | Pages status | `built`, source `main` / root, HTTPS enforced |
 | Live URL | https://sassnarep3-star.github.io/SAVINGS5/ |
 
-Two defects were found in the deployed output and corrected in a follow-up commit: (a) the flagged page listed Charles Schwab
-as having an unconfirmed app because the substring "app" matched the flag "Application is mail/phone/branch only"; (b) the
-fallback return scenario could show a *higher* five-year balance than the constant-rate case for accounts paying below the
-FDIC national average. Both are fixed and re-verified by the build gate.
+Three defects were found after the first deploy and corrected in follow-up commits. This is why the site was re-checked
+against the rendered page rather than only against its source data.
+
+1. The flagged page listed Charles Schwab as having an unconfirmed app because the check matched the substring "app" inside
+   the flag "Application is mail/phone/branch only". The check now reads the structured app verdict.
+2. The stress-case return column could show a *higher* five-year balance than the constant-rate case for accounts paying below
+   the FDIC national average (Truist and Way2Save showed $253,847 against $250,125). The stress case now uses the lower of the
+   account's own APY and the national average, so it can only reduce a balance.
+3. The FDIC ladder builder cycled through its pool to reach the number of banks required, so at $2.5M and $5M it placed a
+   second $250,000 with institutions already used. That overstates insured coverage and contradicts the "at most $250,000 per
+   bank" claim printed under the table. It also counted Wells Fargo Way2Save and Platinum as two banks and two slots when they
+   share FDIC certificate 3511. The builder now takes one account per certificate, allocates at most $250,000 per institution,
+   and reports the uninsured remainder explicitly. Corrected results: $2.5M is **not** fully coverable with this dataset — the
+   no-conditions pool covers $2,000,000 (8 banks, $500,000 uninsured) and the max-rate pool covers $2,250,000 (9 banks,
+   $250,000 uninsured); at $5M the shortfalls are $3,000,000 and $2,750,000.
 
 **Follow-up PR.** This record is published to `main` through a second PR (see the table below), because `COORDINATION.md` can
 only be updated after the merge result is known.
 
 | Item | Value |
 |---|---|
-| Follow-up PR | see PR #2 on the repository (coordination record) |
-| Follow-up merge | recorded in the PR itself |
+| Follow-up PR | https://github.com/sassnarep3-star/SAVINGS5/pull/2 (deploy fixes), merged |
+| QA PR | https://github.com/sassnarep3-star/SAVINGS5/pull/3 (ladder coverage fix + this record), merged |
 
 ### Open requests to other sessions
 

@@ -17,8 +17,8 @@ Model rules (also documented on the site's Methodology page):
     waiver is not met. Net figures subtract that fee.
   * Two scenarios per projection:
       constant - today's APY held for the whole term (mechanical, not a forecast)
-      fallback - year 1 at today's APY, remaining years at the FDIC national
-                 savings rate (0.38%, FDIC, as of 2026-10-19)
+      fallback - year 1 at today's APY, remaining years at the lower of today's
+                 APY and the FDIC national savings rate (0.38%, 2026-10-19)
 """
 
 import json
@@ -240,40 +240,50 @@ def build():
     ladders = []
     for total in [250_000, 500_000, 1_000_000, 2_500_000, 5_000_000]:
         banks_needed = math.ceil(total / 250000)
-        allocation_each = total / banks_needed
         for kind, ids in (("no-conditions", no_condition_ids), ("max-rate", no_condition_ids | conditional_ids)):
-            pool = [a for a in eligible if a["id"] in ids]
-            pool.sort(key=lambda a: rate_for_ladder(a, allocation_each), reverse=True)
-            chosen, i = [], 0
-            while len(chosen) < banks_needed:
-                chosen.append(pool[i % len(pool)])
-                i += 1
-            distinct = len({c["id"] for c in chosen})
-            interest = sum(allocation_each * rate_for_ladder(c, allocation_each) / 100.0 for c in chosen)
-            blended = sum(rate_for_ladder(c, allocation_each) for c in chosen) / len(chosen)
+            # one account per institution: two products at the same FDIC certificate
+            # share a single $250,000 limit, so they cannot both be used as a slot
+            pool, seen_certs = [], set()
+            for a in sorted([a for a in eligible if a["id"] in ids],
+                            key=lambda a: rate_for_ladder(a, 250000), reverse=True):
+                if a["cert"] in seen_certs:
+                    continue
+                seen_certs.add(a["cert"])
+                pool.append(a)
+            chosen = pool[:banks_needed]
+            remaining = total
+            allocations = []
+            for c in chosen:
+                amount = min(250000, remaining)
+                if amount <= 0:
+                    break
+                allocations.append({
+                    "brand": c["brand"],
+                    "account_name": c["account_name"],
+                    "apy_pct": rate_for_ladder(c, amount),
+                    "amount_usd": round2(amount),
+                    "source": c["sources"][0]["url"],
+                })
+                remaining -= amount
+            placed = total - max(0, remaining)
+            interest = sum(x["amount_usd"] * x["apy_pct"] / 100.0 for x in allocations)
+            blended = (sum(x["amount_usd"] * x["apy_pct"] for x in allocations) / placed) if placed else 0.0
+            uninsured = max(0, remaining)
             ladders.append(
                 {
                     "total_usd": total,
                     "kind": kind,
                     "banks_needed": banks_needed,
-                    "distinct_banks_used": distinct,
+                    "distinct_banks_used": len({x["brand"] for x in allocations}),
                     "pool_size": len(pool),
-                    "allocation_each_usd": round2(allocation_each),
+                    "placed_usd": round2(placed),
+                    "uninsured_usd": round2(uninsured),
+                    "allocation_each_usd": round2(250000 if len(allocations) > 1 else placed),
                     "blended_apy_pct": round(blended, 4),
                     "year1_interest_usd": round2(interest),
-                    "insured_usd": min(total, distinct * 250000),
-                    "uninsured_usd": max(0, total - distinct * 250000),
-                    "status": "fully covered" if distinct >= banks_needed else "not fully covered by this pool",
-                    "allocations": [
-                        {
-                            "brand": c["brand"],
-                            "account_name": c["account_name"],
-                            "apy_pct": rate_for_ladder(c, allocation_each),
-                            "amount_usd": round2(allocation_each),
-                            "source": c["sources"][0]["url"],
-                        }
-                        for c in chosen
-                    ],
+                    "insured_usd": round2(placed),
+                    "status": "fully covered" if uninsured == 0 else "not fully covered by this pool",
+                    "allocations": allocations,
                 }
             )
 
