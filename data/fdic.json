@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "retrieved_utc": "2026-10-22T00:00:00Z",
+    "primary_sources": [
+      "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+      "https://www.fdic.gov/resources/deposit-insurance/faq",
+      "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance",
+      "https://edie.fdic.gov/glossary_calculator.html"
+    ]
+  },
+  "smdia": {
+    "value": 250000,
+    "label": "Standard Maximum Deposit Insurance Amount (SMDIA)",
+    "statement": "$250,000 per depositor, per FDIC-insured bank, for each account ownership category.",
+    "status": "verified",
+    "source_url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance",
+    "source_type": "official",
+    "source_org": "Federal Deposit Insurance Corporation",
+    "retrieved_utc": "2026-10-22T00:00:00Z"
+  },
+  "key_facts": [
+    {
+      "fact": "Deposit insurance is automatic for any deposit account opened at an FDIC-insured bank; customers do not buy it.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+    },
+    {
+      "fact": "Coverage protects the balance of each depositor's account dollar-for-dollar up to the limit, including principal and accrued interest through the date the insured bank closes.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "fact": "Deposits held in different ownership categories at the same bank are separately insured, so one depositor can hold well over $250,000 fully insured at a single bank.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/faq"
+    },
+    {
+      "fact": "All deposits an accountholder has in the same ownership category at the same bank are added together and insured up to the standard insurance amount.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "fact": "If you have accounts at different FDIC-insured banks, the limit applies separately at each bank.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "fact": "Deposit insurance covers checking, savings, money market deposit accounts and CDs. It does not cover stocks, bonds, mutual funds, annuities, life insurance or other non-deposit products, and it does not cover losses from theft or fraud.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "fact": "Since the FDIC was established in 1933, no depositor has lost one penny of FDIC-insured funds.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources"
+    }
+  ],
+  "ownership_categories": [
+    {
+      "category": "Single accounts (one owner, no beneficiaries)",
+      "limit_text": "$250,000 per owner",
+      "max_per_bank": 250000,
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "category": "Joint accounts (two or more owners, no beneficiaries)",
+      "limit_text": "$250,000 per co-owner",
+      "max_per_bank": 500000,
+      "max_note": "$500,000 for a two-owner joint account; each additional qualifying co-owner adds $250,000.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "category": "Certain retirement accounts (including IRAs)",
+      "limit_text": "$250,000 per owner regardless of the number of beneficiaries",
+      "max_per_bank": 250000,
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "category": "Trust accounts (informal POD/ITF, formal revocable, irrevocable)",
+      "limit_text": "$250,000 per beneficiary: (# of owners) \u00d7 (# of distinct beneficiaries) \u00d7 $250,000, not to exceed $1,250,000 per owner for all trust deposits at one bank",
+      "max_per_bank": 1250000,
+      "max_note": "Per owner, across all trust deposits at that bank.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "category": "Corporation, partnership and unincorporated association accounts",
+      "limit_text": "$250,000 per corporation, partnership or unincorporated association",
+      "max_per_bank": 250000,
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "category": "Employee benefit plan accounts",
+      "limit_text": "$250,000 for the non-contingent interest of each plan participant",
+      "max_per_bank": null,
+      "max_note": "Depends on the number of plan participants; no single figure applies.",
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    },
+    {
+      "category": "Government accounts",
+      "limit_text": "$250,000 per official custodian (more coverage available subject to specific conditions)",
+      "max_per_bank": 250000,
+      "status": "verified",
+      "source_url": "https://www.fdic.gov/resources/deposit-insurance/brochures/deposits-at-a-glance"
+    }
+  ],
+  "tools": [
+    {
+      "name": "FDIC BankFind Suite",
+      "purpose": "Confirm an institution is FDIC-insured and look up its FDIC certificate number and active/inactive status.",
+      "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind"
+    },
+    {
+      "name": "FDIC Electronic Deposit Insurance Estimator (EDIE)",
+      "purpose": "Calculate your own coverage across ownership categories at one bank.",
+      "url": "https://edie.fdic.gov/"
+    }
+  ]
+}
