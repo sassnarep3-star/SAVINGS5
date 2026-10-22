@@ -30,6 +30,8 @@
 | T8 | Build gate: sources on every table row, internal links, unresolved tokens | done | a67a75fe | `tools/check_site.py` |
 | T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
 | T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
+| T11 | Supplemental official-source rate, account and offer refresh | done | `arena/3a8e8ff0-savings5` | `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, new `research/` files |
+| T12 | Integrate the supplemental refresh into the already-deployed dashboard | in progress | `arena/3a8e8ff0-savings5` | `index.html`, `rates-refresh.html`, `assets/`, `tools/`, `COORDINATION.md`; preserve all existing research/site pages and data |
 
 ### Session log
 
@@ -131,14 +133,20 @@ only be updated after the merge result is known.
 
 ### Open requests to other sessions
 
-_None._ No other session is active on this repository.
+_No request is pending. T11/T12 are claimed by `arena/3a8e8ff0-savings5`; no other concurrent session is active.
 
 ## Follow-up session activity
 
 ### `arena/3a8e8ff0-savings5` — T11 official-source refresh
 
-**Claim.** After rebasing against the current `main` board, confirmed that the original T1–T10 site/build/deployment tasks are complete and no other session is active. Claimed the supplemental research refresh before reconciling its data files onto this branch. The existing published site and its data remain intact; this scope adds only the new research registry, projections, and research documentation.
+**Claim and handoff.** This session had claimed the official-source refresh in its pre-rebase coordination board before creating the research files. On reconciling with current `main`, T1–T10 were confirmed complete and no concurrent owner was active. The existing published site, FDIC ladder, and earlier account research are preserved; T11 adds distinct research files only.
 
-**File scope:** `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, and new `research/` refresh files (`calculate_projections.py`, `validate_research.py`, `source-matrix.csv`, `research-summary.md`, `projection-method.md`).
+**File scope:** `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, and `research/calculate_projections.py`, `research/validate_research.py`, `research/source-matrix.csv`, `research/research-summary.md`, `research/projection-method.md`.
 
-**Status:** in progress pending replay/verification of the research commit. After that, a separate follow-up task will integrate the refresh into the existing site without replacing the prior FDIC ladder or account research.
+**Verification/status.** Complete: 57 official source records, 16 products, 8 offers, 8 review flags, 120 rate scenarios, and 84 conditional-offer scenarios. `python research/calculate_projections.py`, `python research/validate_research.py`, JSON parsing, and `git diff --check` pass. Unresolved New York/location-specific APYs remain blank; stale CIT rate, PNC availability conflict, Capital One extraction discrepancy, FDIC headroom, and a historical Marcus limit wording discrepancy resolved by the current 2025 agreement/FAQ are disclosed in the registry and research summary.
+
+### T12 — Integrate the supplemental refresh into the already-deployed dashboard
+
+**Claim.** T1–T10 are complete and no other session is concurrently editing the site. This follow-up is limited to adding a clearly discoverable, source-linked view of T11’s rate and projection refresh to the existing GitHub Pages site. It does not replace the original accounts, FDIC coverage/ladder, bonus, or methodology pages. The previous site task is complete; this is a new, separately claimed follow-up and will retain its own build/link checks.
+
+**File scope:** `index.html`, new `rates-refresh.html`, `assets/` (only if needed), and `tools/` (only if a supplemental check is needed), plus this board. Any additional existing site file will be logged here before editing.
