@@ -2,7 +2,7 @@
 
 **Repo:** `sassnarep3-star/SAVINGS5`
 **Last updated:** 2026-10-22 (UTC)
-**Coordinating session:** `a67a75fe`
+**Coordinating session:** `a67a75fe` (T1–T10) · `291c7881` (T11–T13, integration)
 **Session branch:** `arena/a67a75fe-savings5` (assigned by the Arena harness; this session may only commit/push to this branch)
 **Live site:** https://sassnarep3-star.github.io/SAVINGS5/
 
@@ -30,6 +30,9 @@
 | T8 | Build gate: sources on every table row, internal links, unresolved tokens | done | a67a75fe | `tools/check_site.py` |
 | T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
 | T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
+| T11 | Independent second verification of every published rate | done | 291c7881 | `data/session-291c7881/**` |
+| T12 | Integrate the institutions missing from the study (CIT, Barclays, Citizens) | done | 291c7881 | `data/institutions.json`, `data/accounts.json`, `data/bonuses.json` |
+| T13 | Re-run return model, ladder pools and site copy against the enlarged dataset | done | 291c7881 | `tools/build_returns.py`, `tools/build_site.py` |
 
 ### Session log
 
@@ -129,6 +132,71 @@ only be updated after the merge result is known.
 | KPI fix | https://github.com/sassnarep3-star/SAVINGS5/pull/7 (institution count on Methodology) — merged |
 | Final copy fixes | PR #8 (stale Truist sentence on Sources), PR #9 (blank-cell count on the landing page) — merged; their own merge commits are not separately tracked |
 
+#### 291c7881 — 2026-10-22 (integration)
+
+**Collision, and how it was resolved.** Sessions `a67a75fe` and `291c7881` both started from commit `8f2dc3a`, when the repo
+held only `README.md` and no coordination board, so each created a board and claimed the whole task list. Neither could see
+the other's claim. `a67a75fe` reached `main` first and published the live site; `291c7881` had independently researched and
+built a parallel dataset and site on `arena/291c7881-savings5`.
+
+**Nothing of `a67a75fe`'s work was discarded.** `main` was merged into `arena/291c7881-savings5`, the published site, its
+`tools/`, its `research/` log and all four of its `data/*.json` files were kept as the authoritative versions, and the
+duplicate site built by `291c7881` was withdrawn rather than published alongside. The independent capture is retained in
+`data/session-291c7881/` purely as evidence for the cross-check below. The two conflicting files (`README.md`,
+`COORDINATION.md`) were resolved in favour of `a67a75fe`'s versions, with this section appended.
+
+**Independent cross-check.** Every rate the two sessions verified separately, from separate retrievals of the same official
+pages, agreed exactly:
+
+| Account | `a67a75fe` | `291c7881` | Result |
+|---|---|---|---|
+| Wells Fargo Way2Save | 0.01% | 0.01% | agree |
+| Truist One Savings | 0.01% | 0.01% | agree |
+| Capital One 360 Performance Savings | 3.20% | 3.20% | agree |
+| Marcus Online Savings | 3.50% | 3.50% | agree |
+| American Express HYSA | 3.20% | 3.20% | agree |
+| Ally Savings | 3.10% | 3.10% | agree |
+| Synchrony High Yield Savings | 3.55% | 3.55% | agree |
+| SoFi Savings | 3.30% | 3.30% | agree |
+| Citi, TD | blank | blank | agree — both sessions failed to render an official APY |
+
+**What the integration added.** Three FDIC-insured institutions that the study had missed, all re-pulled from the same
+BankFind index (`institutions_20261016090006`) the original rows came from:
+
+| Added | Cert | Why it mattered |
+|---|---|---|
+| CIT Bank (First-Citizens Bank & Trust) | 11063 | Platinum Savings pays **3.75%** at $5,000+ — the highest ongoing rate in the study. Savings Connect pays 3.65% with no balance condition. |
+| Barclays Bank Delaware | 57203 | Tiered Savings pays 3.50%, rising to **3.65%** from $250,000, and carries the only pure **$200 cash bonus on a savings account** found on an official page. |
+| Citizens Bank, N.A. | 57957 | 19th-largest US bank. APY left **blank** — its page prints unresolved template tokens and reports the product unavailable in the capture location. |
+
+Before this merge the site's best published rate was Synchrony at 3.55%; the two best savings accounts in the market were
+absent. Knock-on corrections, all re-derived rather than hand-edited:
+
+1. **FDIC ladder.** `tools/build_returns.py` selected ladder banks from a hardcoded allowlist of account IDs, so the new
+   institutions could never be chosen. CIT Savings Connect and Barclays were added to the no-conditions pool and CIT Platinum
+   to the max-rate pool. A `balance_tier_ids` set was introduced: where an account's only published condition is a balance
+   threshold, a $250,000 FDIC slot satisfies it by construction, unlike a relationship or direct-deposit condition. **$2,500,000
+   is now fully coverable** (10 banks, blended 3.40% max-rate / 2.73% no-conditions); the previous record that it was not is
+   superseded. Blended rates improved at every rung: $250k 3.55%→3.75%, $1M 3.4625%→3.6125%.
+2. **Landing-page copy.** The best/worst spread finding was hardcoded to "Synchrony pays 3.55%" and is now derived from the
+   data (CIT 3.75% vs Wells Fargo 0.01%, a 374bp gap). The institution count in the lede was hardcoded to "sixteen" and is now
+   computed. Citizens was added to the list of banks that publish no readable APY.
+3. **Pre-existing defect fixed.** On `competitiveness.html` the sentence "the gap between the best and worst *savings* account
+   is about N basis points" was printing `best − national average` (337bp), not best − worst (374bp). The words and the
+   arithmetic disagreed. Both figures are now computed and both are stated.
+
+**Verification standard held.** No value was carried across from `291c7881`'s dataset without its own official source link, and
+no blank was filled in. Citizens' APY stays blank. The three mobile-app claims that could not be confirmed on an official page
+(CIT, Barclays) are recorded as "not stated" and appear on the Flagged for Review page.
+
+**Gate.** `tools/check_site.py` passes: 10 pages, 21 tables, **296 table rows** (was 252), 5 data files, every table row has a
+source link, every internal link resolves, no unresolved tokens.
+
+| Item | Value |
+|---|---|
+| Integration PR | https://github.com/sassnarep3-star/SAVINGS5/pull/10 |
+
 ### Open requests to other sessions
 
-_None._ No other session is active on this repository.
+_None._ Session `291c7881` has completed its integration pass and holds no open claims. The live site and all
+`data/*.json` remain integration-session-only per rule 7.

@@ -11,8 +11,16 @@
       "headline": "$100 or $200 cash bonus for a new Chase Savings account",
       "value_usd": 200,
       "tiers": [
-        {"deposit_usd": 5000, "deposit_max_usd": 9999.99, "bonus_usd": 100},
-        {"deposit_usd": 10000, "deposit_max_usd": null, "bonus_usd": 200}
+        {
+          "deposit_usd": 5000,
+          "deposit_max_usd": 9999.99,
+          "bonus_usd": 100
+        },
+        {
+          "deposit_usd": 10000,
+          "deposit_max_usd": null,
+          "bonus_usd": 200
+        }
       ],
       "requirements": "Open a new Chase Savings account with the offer code; deposit qualifying new money within 30 days of offer enrollment (bonus determined on day 30); maintain the new money for 90 days from offer enrollment. Bonus paid within 15 days after that.",
       "eligibility": "New Chase savings customers only. Not available to existing Chase savings customers, or to accounts closed within 90 days or closed with a negative balance in the last 3 years. One new savings-account bonus every two years; one bonus per account.",
@@ -29,8 +37,14 @@
       "headline": "$50 or $400 cash bonus plus a 1.10% APY boost for up to 6 months",
       "value_usd": 400,
       "tiers": [
-        {"bonus_usd": 50, "requirement": "Eligible direct deposit (lower tier)"},
-        {"bonus_usd": 400, "requirement": "Eligible direct deposit of $1,000 or more"}
+        {
+          "bonus_usd": 50,
+          "requirement": "Eligible direct deposit (lower tier)"
+        },
+        {
+          "bonus_usd": 400,
+          "requirement": "Eligible direct deposit of $1,000 or more"
+        }
       ],
       "requirements": "Open a new SoFi savings account and set up an eligible direct deposit of $1,000 or more. The 1.10% APY boost applies to one savings account for up to 6 months when eligible direct deposit is set up within 60 days, and the account is opened by 12/31/27. Alternatively, $5,000 in qualifying deposits every 31 days maintains the boosted rate.",
       "eligibility": "New SoFi checking and savings customers. Opening savings automatically opens a SoFi checking account.",
@@ -82,21 +96,94 @@
       "expires": null,
       "source": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html",
       "status": "verified"
+    },
+    {
+      "id": "barclays-tiered-savings-bonus",
+      "brand": "Barclays",
+      "institution": "Barclays Bank Delaware",
+      "cert": 57203,
+      "type": "cash bonus",
+      "headline": "$200 cash bonus for a new Barclays Tiered Savings account",
+      "value_usd": 200,
+      "tiers": [
+        {
+          "deposit_usd": 25000,
+          "deposit_max_usd": null,
+          "bonus_usd": 200
+        }
+      ],
+      "requirements": "Open a Barclays Tiered Savings account through 10/31/2026 and fund it with at least $25,000 within the first 30 days of opening. Maintain a balance of at least $25,000 for 120 consecutive days. The $200 is added to the account approximately 60 days after that and is treated as interest for tax purposes (Form 1099-INT). Multiple deposits from other institutions may be combined provided all occur within 30 days of opening.",
+      "eligibility": "New Barclays Tiered Savings customers only. Current and previous Barclays customers with a Savings or CD account are not eligible.",
+      "expires": "2026-10-31",
+      "source": "https://banking.us.barclays/tiered-savings.html",
+      "status": "verified"
     }
   ],
   "no_savings_bonus_found": [
-    {"brand": "Bank of America", "checked_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/", "note": "The Advantage Savings page carries no opening bonus. Bank of America's advertised bonuses on the pages reviewed are for checking accounts."},
-    {"brand": "Citibank", "checked_url": "https://www.citi.com/banking/savings-account", "note": "No savings-account opening bonus is published on the Citi savings page reviewed."},
-    {"brand": "Wells Fargo", "checked_url": "https://www.wellsfargo.com/savings-cds/way2save/", "note": "No cash bonus on the Way2Save or Platinum pages; the Wells Fargo promotion is a new-customer rate, listed above."},
-    {"brand": "U.S. Bank", "checked_url": "https://www.usbank.com/bank-accounts/savings-accounts.html", "note": "No cash bonus on the savings page; the promotion is a relationship rate, listed above."},
-    {"brand": "PNC", "checked_url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html", "note": "No savings-account bonus published; the page returned 'This Product Isn't Available in Your Area'."},
-    {"brand": "Truist", "checked_url": "https://www.truist.com/savings", "note": "No savings-account opening bonus published on the savings comparison page."},
-    {"brand": "Capital One", "checked_url": "https://www.capitalone.com/bank/savings-accounts/", "note": "No cash bonus on the savings page; the advertised promotion is a fixed 4.40% APY 11-month CD."},
-    {"brand": "TD Bank", "checked_url": "https://www.td.com/us/en/personal-banking/savings-accounts", "note": "No savings-account opening bonus published on the savings page."},
-    {"brand": "Ally Bank", "checked_url": "https://www.ally.com/bank/online-savings-account/", "note": "No opening bonus published on the savings page."},
-    {"brand": "Synchrony Bank", "checked_url": "https://www.synchrony.com/banking/products/hys-core", "note": "No opening bonus published on the savings page."},
-    {"brand": "American Express", "checked_url": "https://www.americanexpress.com/en-us/banking/online-savings/account/", "note": "No opening bonus published on the savings page."},
-    {"brand": "Charles Schwab", "checked_url": "https://www.schwab.com/savings", "note": "No opening bonus published on the savings page."},
-    {"brand": "Fifth Third", "checked_url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings.html", "note": "No opening bonus published on the savings page; promotional rates are quoted in branch."}
+    {
+      "brand": "Bank of America",
+      "checked_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/",
+      "note": "The Advantage Savings page carries no opening bonus. Bank of America's advertised bonuses on the pages reviewed are for checking accounts."
+    },
+    {
+      "brand": "Citibank",
+      "checked_url": "https://www.citi.com/banking/savings-account",
+      "note": "No savings-account opening bonus is published on the Citi savings page reviewed."
+    },
+    {
+      "brand": "Wells Fargo",
+      "checked_url": "https://www.wellsfargo.com/savings-cds/way2save/",
+      "note": "No cash bonus on the Way2Save or Platinum pages; the Wells Fargo promotion is a new-customer rate, listed above."
+    },
+    {
+      "brand": "U.S. Bank",
+      "checked_url": "https://www.usbank.com/bank-accounts/savings-accounts.html",
+      "note": "No cash bonus on the savings page; the promotion is a relationship rate, listed above."
+    },
+    {
+      "brand": "PNC",
+      "checked_url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html",
+      "note": "No savings-account bonus published; the page returned 'This Product Isn't Available in Your Area'."
+    },
+    {
+      "brand": "Truist",
+      "checked_url": "https://www.truist.com/savings",
+      "note": "No savings-account opening bonus published on the savings comparison page."
+    },
+    {
+      "brand": "Capital One",
+      "checked_url": "https://www.capitalone.com/bank/savings-accounts/",
+      "note": "No cash bonus on the savings page; the advertised promotion is a fixed 4.40% APY 11-month CD."
+    },
+    {
+      "brand": "TD Bank",
+      "checked_url": "https://www.td.com/us/en/personal-banking/savings-accounts",
+      "note": "No savings-account opening bonus published on the savings page."
+    },
+    {
+      "brand": "Ally Bank",
+      "checked_url": "https://www.ally.com/bank/online-savings-account/",
+      "note": "No opening bonus published on the savings page."
+    },
+    {
+      "brand": "Synchrony Bank",
+      "checked_url": "https://www.synchrony.com/banking/products/hys-core",
+      "note": "No opening bonus published on the savings page."
+    },
+    {
+      "brand": "American Express",
+      "checked_url": "https://www.americanexpress.com/en-us/banking/online-savings/account/",
+      "note": "No opening bonus published on the savings page."
+    },
+    {
+      "brand": "Charles Schwab",
+      "checked_url": "https://www.schwab.com/savings",
+      "note": "No opening bonus published on the savings page."
+    },
+    {
+      "brand": "Fifth Third",
+      "checked_url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings.html",
+      "note": "No opening bonus published on the savings page; promotional rates are quoted in branch."
+    }
   ]
 }

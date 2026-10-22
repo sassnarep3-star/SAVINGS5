@@ -229,10 +229,19 @@ def build():
         "ally-savings",
         "wf-way2save",
         "schwab-investor-savings",
+        "cit-savings-connect",
+        "barclays-tiered-savings",
     }
-    conditional_ids = {"usbank-smartly-savings", "wf-platinum-savings"}
+    conditional_ids = {"usbank-smartly-savings", "wf-platinum-savings", "cit-platinum-savings"}
+    # Accounts whose only published condition is a balance threshold. A $250,000
+    # FDIC slot satisfies those thresholds by construction, so the tier rate is the
+    # rate actually earned - unlike a relationship, direct-deposit or new-customer
+    # condition, which the depositor still has to go and meet.
+    balance_tier_ids = {"barclays-tiered-savings", "cit-platinum-savings"}
 
     def rate_for_ladder(a, amount):
+        if a["id"] in balance_tier_ids:
+            return best_rate(a, amount)[0]
         if a["id"] in no_condition_ids:
             return float(a["apy_regular_pct"])
         return best_rate(a, amount)[0]
