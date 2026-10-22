@@ -1,0 +1,1055 @@
+{
+  "meta": {
+    "retrieved_utc": "2026-10-22T00:00:00Z",
+    "capture_session": "291c7881",
+    "scope": "Large national U.S. banks with nationwide consumer savings products and a consumer mobile app. Small/local/community banks and credit unions are out of scope by request.",
+    "fdic_institution_source": "https://api.fdic.gov/banks/institutions (FDIC BankFind Suite API, index institutions_20261016090006, created 2026-10-16T11:58:03Z)",
+    "asset_units": "USD thousands, as reported by FDIC BankFind",
+    "rate_location_note": "Several branch banks publish rates that vary by state/ZIP. The location each captured figure applies to is recorded in `rate_location` and shown on the site."
+  },
+  "institutions": [
+    {
+      "id": "cit",
+      "brand": "CIT Bank",
+      "legal_name": "First-Citizens Bank & Trust Company",
+      "brand_note": "CIT Bank is a division of First-Citizens Bank & Trust Company.",
+      "type": "digital",
+      "fdic_cert": 11063,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&fields=NAME,CERT,CITY,STALP,ASSET,DEP,OFFICES,WEBADDR,ESTYMD&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/11063",
+      "hq_city": "Raleigh",
+      "hq_state": "NC",
+      "established": "1898-01-01",
+      "total_assets_k": 236317000,
+      "total_deposits_k": 173952000,
+      "offices": 517,
+      "us_asset_rank": 19,
+      "app": {
+        "value": null,
+        "status": "unverified",
+        "note": "Not confirmed from an official source during this capture.",
+        "source_url": "https://www.cit.com/cit-bank/resources/products-and-rates"
+      },
+      "security": [],
+      "products": [
+        {
+          "id": "cit-platinum-savings",
+          "name": "Platinum Savings",
+          "kind": "Savings",
+          "source_url": "https://www.cit.com/cit-bank/resources/products-and-rates",
+          "as_of_stated": "2026-07-01",
+          "as_of_text": "Interest rates and APYs shown are accurate as of July 1, 2026",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.75, "status": "verified", "note": "Balances of $5,000.00 or more" },
+          "interest_rate": { "value": 3.682, "status": "verified" },
+          "apy_tiers": [
+            { "balance": "$0.01 \u2013 $4,999.99", "apy": 0.25, "rate": 0.250 },
+            { "balance": "$5,000.00 or more", "apy": 3.75, "rate": 3.682 }
+          ],
+          "min_open": { "value": 100, "status": "verified" },
+          "min_balance_for_apy": { "value": 5000, "status": "verified", "note": "Headline APY requires an end-of-day balance of $5,000+; below that the tier pays 0.25% APY." },
+          "monthly_fee": { "value": null, "status": "unverified", "note": "Not stated on the rates page; CIT publishes a separate Schedule of Fees.", "source_url": "https://www.cit.com/cit-bank/resources/schedule-of-fees" },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [
+            "Tiered interest account: interest is paid on the entire balance at the rate for the tier matching the end-of-day balance.",
+            "Interest rates and APYs are variable and subject to change without notice."
+          ]
+        },
+        {
+          "id": "cit-savings-connect",
+          "name": "Savings Connect",
+          "kind": "Savings",
+          "source_url": "https://www.cit.com/cit-bank/resources/products-and-rates",
+          "as_of_stated": "2026-07-01",
+          "as_of_text": "Interest rates and APYs shown are accurate as of July 1, 2026",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.65, "status": "verified", "note": "Variable-rate account, single rate for all balances" },
+          "interest_rate": { "value": 3.585, "status": "verified" },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.65, "rate": 3.585 } ],
+          "min_open": { "value": 100, "status": "verified" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": null, "status": "unverified", "source_url": "https://www.cit.com/cit-bank/resources/schedule-of-fees" },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [ "Variable-rate account; rate and APY subject to change without notice." ]
+        }
+      ]
+    },
+
+    {
+      "id": "barclays",
+      "brand": "Barclays (US Consumer Bank)",
+      "legal_name": "Barclays Bank Delaware",
+      "type": "digital",
+      "fdic_cert": 57203,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=NAME:%22Barclays%20Bank%20Delaware%22&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57203",
+      "hq_city": "Wilmington",
+      "hq_state": "DE",
+      "established": "2001-05-23",
+      "total_assets_k": 43454000,
+      "total_deposits_k": null,
+      "offices": null,
+      "us_asset_rank": null,
+      "app": {
+        "value": null,
+        "status": "unverified",
+        "note": "Barclays states check deposit works from 'computer, laptop or mobile device' and advertises secure 24/7 online access, but a dedicated mobile app was not confirmed on the official pages captured.",
+        "source_url": "https://banking.us.barclays/tiered-savings.html"
+      },
+      "security": [
+        { "item": "Secure, 24/7 online access", "source_url": "https://banking.us.barclays/tiered-savings.html" },
+        { "item": "Member FDIC \u2014 Barclays links directly to its FDIC BankFind record (cert 57203)", "source_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57203" }
+      ],
+      "products": [
+        {
+          "id": "barclays-tiered-savings",
+          "name": "Tiered Savings",
+          "kind": "Savings",
+          "source_url": "https://banking.us.barclays/tiered-savings.html",
+          "as_of_stated": "2026-10-07",
+          "as_of_text": "This information is accurate as of 10/07/2026",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.65, "status": "verified", "note": "Top tier: $250,000 to $1,000,000" },
+          "interest_rate": { "value": null, "status": "unverified", "note": "Barclays publishes APY only for this product." },
+          "apy_tiers": [
+            { "balance": "Less than $10,000", "apy": 3.50, "rate": null },
+            { "balance": "$10,000 to < $25,000", "apy": 3.50, "rate": null },
+            { "balance": "$25,000 to < $50,000", "apy": 3.50, "rate": null },
+            { "balance": "$50,000 to < $100,000", "apy": 3.50, "rate": null },
+            { "balance": "$100,000 to < $250,000", "apy": 3.50, "rate": null },
+            { "balance": "$250,000 to $1,000,000", "apy": 3.65, "rate": null }
+          ],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum balance to open" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No monthly maintenance fees" },
+          "max_balance": { "value": 1000000, "status": "verified", "note": "Maximum $1,000,000 per Tiered Savings account; account keeps earning interest at the cap but accepts no further deposits. Maximum 3 open Tiered Savings accounts per customer." },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [
+            "Interest is compounded daily and credited monthly.",
+            "No minimum balance, but an account at zero balance for 6 months is closed automatically.",
+            "The same APY currently applies to every tier below $250,000."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "synchrony",
+      "brand": "Synchrony Bank",
+      "legal_name": "Synchrony Bank",
+      "type": "digital",
+      "fdic_cert": 27314,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/27314",
+      "hq_city": "Draper",
+      "hq_state": "UT",
+      "established": "1988-08-01",
+      "total_assets_k": 115217000,
+      "total_deposits_k": 85967000,
+      "offices": 2,
+      "us_asset_rank": 30,
+      "app": {
+        "value": "iOS and Android",
+        "status": "verified",
+        "note": "Synchrony Bank mobile app; app ratings stated as 4.8 (Apple App Store) and 4.6 (Google Play), as of 09/01/2026.",
+        "source_url": "https://www.synchrony.com/banking/mobile-app"
+      },
+      "security": [
+        { "item": "FDIC insurance \u2014 up to $250,000 per depositor, per insured bank, for each ownership category", "source_url": "https://www.synchrony.com/banking/products/hys-core" },
+        { "item": "24/7 transaction monitoring", "source_url": "https://www.synchrony.com/banking/products/hys-core" },
+        { "item": "Customisable account alerts", "source_url": "https://www.synchrony.com/banking/products/hys-core" }
+      ],
+      "products": [
+        {
+          "id": "synchrony-hys",
+          "name": "High Yield Savings",
+          "kind": "Savings",
+          "source_url": "https://www.synchrony.com/banking/products/hys-core",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "All APYs are accurate as of 10/21/2026",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.55, "status": "verified" },
+          "interest_rate": { "value": null, "status": "unverified", "note": "Synchrony publishes APY only on this page." },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.55, "rate": null } ],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum deposit" },
+          "min_balance_for_apy": { "value": 0, "status": "verified", "note": "No minimum balance" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No monthly fees" },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "Optional ATM card available; Synchrony refunds domestic ATM fees charged by other institutions up to $5.00 per statement cycle.",
+            "Outgoing wire transfer fee is $25.00. Mobile check deposit limit $2,000.00 per account per day.",
+            "Checks are not available with High Yield Savings (they are available with the Money Market account)."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "marcus",
+      "brand": "Marcus by Goldman Sachs",
+      "legal_name": "Goldman Sachs Bank USA",
+      "type": "digital",
+      "fdic_cert": 33124,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/33124",
+      "hq_city": "New York",
+      "hq_state": "NY",
+      "established": "1990-08-30",
+      "total_assets_k": 758788000,
+      "total_deposits_k": 498804000,
+      "offices": 5,
+      "us_asset_rank": 5,
+      "app": {
+        "value": null,
+        "status": "unverified",
+        "note": "Not confirmed on the official product page captured. Marcus states a 24/7 contact centre and online account servicing.",
+        "source_url": "https://www.marcus.com/us/en/savings/high-yield-savings"
+      },
+      "security": [
+        { "item": "24/7 contact centre", "source_url": "https://www.marcus.com/us/en/savings/high-yield-savings" }
+      ],
+      "products": [
+        {
+          "id": "marcus-online-savings",
+          "name": "Online Savings Account",
+          "kind": "Savings",
+          "source_url": "https://www.marcus.com/us/en/savings/high-yield-savings",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "Annual percentage yield as of October 21, 2026",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.50, "status": "verified" },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.50, "rate": null } ],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum deposit" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No fees" },
+          "max_balance": { "value": null, "status": "unverified", "note": "Marcus states 'maximum balance limits apply' and links to its FAQ; the numeric cap was not retrievable from the page captured.", "source_url": "https://www.marcus.com/us/en/faqs#maxlimits" },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "Same-day transfers of $100,000 or less to/from other banks when requested by 12 pm ET on a business day.",
+            "Interest starts accruing on an incoming transfer the day the request is received."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "usbank",
+      "brand": "U.S. Bank",
+      "legal_name": "U.S. Bank National Association",
+      "type": "branch",
+      "fdic_cert": 6548,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/6548",
+      "hq_city": "Cincinnati",
+      "hq_state": "OH",
+      "established": "1863-07-13",
+      "total_assets_k": 705554946,
+      "total_deposits_k": 541886374,
+      "offices": 2096,
+      "us_asset_rank": 6,
+      "app": {
+        "value": "iOS and Android",
+        "status": "verified",
+        "note": "U.S. Bank Mobile App \u2014 official mobile banking page.",
+        "source_url": "https://www.usbank.com/online-mobile-banking/mobile-banking.html"
+      },
+      "security": [
+        { "item": "FDIC insured to the maximum allowed by law", "source_url": "https://www.usbank.com/bank-accounts/fdic-deposit-insurance-coverage.html" },
+        { "item": "Secure digital banking; account alerts by email or text", "source_url": "https://www.usbank.com/bank-accounts/savings-accounts.html" }
+      ],
+      "products": [
+        {
+          "id": "usbank-smartly-savings",
+          "name": "U.S. Bank Smartly Savings",
+          "kind": "Savings",
+          "source_url": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "Annual Percentage Yield (APY) and interest rates are effective as of October 21, 2026",
+          "rate_location": "ZIP 55402 (Minneapolis, MN) \u2014 the location u sbank.com defaulted to; U.S. Bank states APYs may vary by location",
+          "apy_headline": { "value": 3.50, "status": "verified", "note": "Relationship rate; requires an eligible U.S. Bank checking/Safe Debit/Smartly Visa Signature card AND combined qualifying balances of $25,000+" },
+          "interest_rate": { "value": 3.44, "status": "verified", "note": "Total interest rate at the $25,000+ relationship tier" },
+          "apy_tiers": [
+            { "balance": "Standard rate (no qualifying relationship)", "apy": 0.05, "rate": 0.05 },
+            { "balance": "Relationship \u2014 CQB under $5,000", "apy": 1.00, "rate": 1.00 },
+            { "balance": "Relationship \u2014 CQB $5,000 to $24,999.99", "apy": 2.00, "rate": 1.98 },
+            { "balance": "Relationship \u2014 CQB $25,000 to $49,999.99", "apy": 3.50, "rate": 3.44 },
+            { "balance": "Relationship \u2014 CQB $50,000 to $99,999.99", "apy": 3.50, "rate": 3.44 },
+            { "balance": "Relationship \u2014 CQB $100,000+", "apy": 3.50, "rate": 3.44 }
+          ],
+          "min_open": { "value": 25, "status": "verified" },
+          "min_balance_for_apy": { "value": 25000, "status": "verified", "note": "Combined Qualifying Balance across eligible U.S. Bank accounts, not savings balance alone." },
+          "monthly_fee": { "value": 5, "status": "verified", "note": "$5 monthly maintenance fee; waived when you are an account owner of eligible accounts." },
+          "tiered": true,
+          "relationship_required": true,
+          "notes": [
+            "The standard (no-relationship) APY is 0.05%. The headline 3.50% requires both a qualifying U.S. Bank product and $25,000 in combined qualifying balances.",
+            "U.S. Bank states these advertised rates may not apply to existing U.S. Bank savings/money-market clients, or to anyone who closed such an account in the past 90 days.",
+            "$0 ATM transaction and surcharge fees at U.S. Bank ATMs."
+          ]
+        },
+        {
+          "id": "usbank-elite-mm",
+          "name": "Elite Money Market",
+          "kind": "Money market",
+          "source_url": "https://www.usbank.com/bank-accounts/savings-accounts.html",
+          "as_of_stated": null,
+          "as_of_text": "No effective date printed on the comparison page",
+          "rate_location": "ZIP 55402 (Minneapolis, MN) default; U.S. Bank states APYs may vary by location",
+          "apy_headline": { "value": 3.40, "status": "verified", "note": "'Earn up to 3.40% APY' when you deposit at least $25,000 into a new Elite Money Market account (or an existing account opened within the last 30 days)" },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [ { "balance": "$25,000+ new deposit", "apy": 3.40, "rate": null } ],
+          "min_open": { "value": 100, "status": "verified" },
+          "min_balance_for_apy": { "value": 25000, "status": "verified" },
+          "monthly_fee": { "value": 10, "status": "verified", "note": "$10 monthly maintenance fee, waivable" },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [ "Money market deposit account \u2014 FDIC-insured like a savings account. Allows check writing." ]
+        }
+      ]
+    },
+
+    {
+      "id": "sofi",
+      "brand": "SoFi",
+      "legal_name": "SoFi Bank, National Association",
+      "type": "digital",
+      "fdic_cert": 26881,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=NAME:%22SoFi%20Bank,%20National%20Association%22&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/26881",
+      "hq_city": "Cottonwood Heights",
+      "hq_state": "UT",
+      "established": "1986-12-29",
+      "total_assets_k": 56821411,
+      "total_deposits_k": null,
+      "offices": null,
+      "us_asset_rank": null,
+      "app": {
+        "value": "Yes \u2014 SoFi app",
+        "status": "verified",
+        "note": "SoFi states mobile check deposit 'right from the SoFi app' and 24/7 account access on any device.",
+        "source_url": "https://www.sofi.com/banking/high-yield-savings-account/"
+      },
+      "security": [
+        { "item": "Continuous account monitoring for suspicious activity", "source_url": "https://www.sofi.com/banking/high-yield-savings-account/" },
+        { "item": "Member FDIC; additional FDIC insurance up to $3M through a network of participating banks", "source_url": "https://www.sofi.com/banking/high-yield-savings-account/" }
+      ],
+      "products": [
+        {
+          "id": "sofi-savings",
+          "name": "SoFi Savings (High Yield Savings)",
+          "kind": "Savings",
+          "source_url": "https://www.sofi.com/banking/high-yield-savings-account/",
+          "as_of_stated": "2026-10-20",
+          "as_of_text": "1.10% APY Boost added to the 3.30% as of 10/20/26",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.30, "status": "verified", "note": "Standard savings APY. A 1.10% boost (to 4.40% APY) applies for up to 6 months with eligible direct deposit \u2014 see Bonuses & Promotions." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.30, "rate": null } ],
+          "min_open": { "value": 0, "status": "verified" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No monthly fees, overdraft fees or minimum balance fees" },
+          "withdrawal_limit": { "value": "No limit", "status": "verified" },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "Opening a SoFi Savings account automatically opens a SoFi Checking account in your name.",
+            "Expanded FDIC coverage up to $3M is delivered through a network of participating banks, not by a single $3M limit at SoFi Bank, N.A."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "amex",
+      "brand": "American Express",
+      "legal_name": "American Express National Bank",
+      "type": "digital",
+      "fdic_cert": 27471,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/27471",
+      "hq_city": "Sandy",
+      "hq_state": "UT",
+      "established": "1989-03-20",
+      "total_assets_k": 213946192,
+      "total_deposits_k": 171554868,
+      "offices": 1,
+      "us_asset_rank": 22,
+      "app": {
+        "value": "Yes \u2014 American Express App",
+        "status": "verified",
+        "note": "Amex states the American Express App and its features are available for eligible accounts in the United States.",
+        "source_url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/"
+      },
+      "security": [
+        { "item": "Member FDIC \u2014 each depositor insured to at least $250,000", "source_url": "https://www.americanexpress.com/en-us/banking/online-savings/account/" },
+        { "item": "24/7 customer service by phone", "source_url": "https://www.americanexpress.com/en-us/banking/online-savings/account/" }
+      ],
+      "products": [
+        {
+          "id": "amex-hysa",
+          "name": "High Yield Savings Account (HYSA)",
+          "kind": "Savings",
+          "source_url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "The Annual Percentage Yield (APY) as advertised is accurate as of 10/21/2026",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.20, "status": "verified" },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.20, "rate": null } ],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum balance required to open the account" },
+          "min_balance_for_apy": { "value": 0, "status": "verified", "note": "No minimum balance required to obtain the disclosed APY" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No monthly fees" },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "No ATM card, debit card or cheques are issued with the savings account.",
+            "Mobile check deposit available, subject to deposit limits."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "capitalone",
+      "brand": "Capital One",
+      "legal_name": "Capital One, National Association",
+      "type": "branch",
+      "fdic_cert": 4297,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/4297",
+      "hq_city": "McLean",
+      "hq_state": "VA",
+      "established": "1933-05-22",
+      "total_assets_k": 662157000,
+      "total_deposits_k": 512600000,
+      "offices": 251,
+      "us_asset_rank": 7,
+      "app": {
+        "value": "Yes \u2014 Capital One Mobile app",
+        "status": "verified",
+        "note": "Official Capital One mobile banking page; mobile check deposit supported.",
+        "source_url": "https://www.capitalone.com/digital/tools/mobile/"
+      },
+      "security": [
+        { "item": "Online banking security features", "source_url": "https://www.capitalone.com/bank/security-fraud-protection/" },
+        { "item": "FDIC-insured up to allowable limits", "source_url": "https://www.capitalone.com/bank/fdic/" }
+      ],
+      "products": [
+        {
+          "id": "c1-360-performance-savings",
+          "name": "360 Performance Savings",
+          "kind": "Savings",
+          "source_url": "https://www.capitalone.com/bank/disclosures/savings-accounts/online-performance-savings-account/",
+          "secondary_source_url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "Product page: 'APY is variable and effective 10/21/2026'. Rate figures taken from Capital One's official account-disclosure page (document dated 7/15/2026) because the product page renders its APY via JavaScript.",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.20, "status": "verified" },
+          "interest_rate": { "value": 3.1540, "status": "verified" },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.20, "rate": 3.1540 } ],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum deposit required; the account is not 'opened' until funded with at least $0.01." },
+          "min_balance_for_apy": { "value": 0, "status": "verified", "note": "No minimum balance required to obtain the disclosed APY" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No fees to open or keep the account" },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "Interest compounded and credited monthly; daily balance method.",
+            "Outgoing domestic wire $30.00; cashier's cheque at a Capital One location $10.00.",
+            "Cannot withdraw at an ATM directly \u2014 transfer to a checking account first.",
+            "Capital One or Discover Bank deposit accounts opened on or after May 18, 2025 are counted together with your other Capital One deposits for FDIC coverage.",
+            "You have 60 days after approval to fund the account.",
+            "Up to 10 Payable-on-Death beneficiaries can be assigned."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "ally",
+      "brand": "Ally Bank",
+      "legal_name": "Ally Bank",
+      "type": "digital",
+      "fdic_cert": 57803,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57803",
+      "hq_city": "Sandy",
+      "hq_state": "UT",
+      "established": "2004-08-02",
+      "total_assets_k": 188184000,
+      "total_deposits_k": 156614000,
+      "offices": 1,
+      "us_asset_rank": 24,
+      "app": {
+        "value": "Yes \u2014 Ally mobile banking",
+        "status": "verified",
+        "note": "Ally's savings page shows in-app savings buckets/boosters and mobile account management.",
+        "source_url": "https://www.ally.com/bank/online-savings-account/"
+      },
+      "security": [
+        { "item": "Deposits insured by the FDIC up to the maximum allowed by law", "source_url": "https://www.ally.com/bank/fdic" }
+      ],
+      "products": [
+        {
+          "id": "ally-savings",
+          "name": "Ally Bank Savings Account",
+          "kind": "Savings",
+          "source_url": "https://www.ally.com/bank/online-savings-account/",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "3.1% correct as of 10/21/26",
+          "rate_location": "Nationwide",
+          "apy_headline": { "value": 3.10, "status": "verified", "note": "Ally publishes this figure as '3.1%' on the product page." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [ { "balance": "All balances", "apy": 3.10, "rate": null } ],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum balance requirements" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 0, "status": "verified", "note": "No monthly maintenance fees" },
+          "withdrawal_limit": { "value": "10 per statement cycle", "status": "verified", "note": "Ally limits certain withdrawals/transfers from Savings and Money Market accounts to a combined 10 per statement cycle. No fee for going over, but Ally will close an account that exceeds the limit more than occasionally." },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "Interest compounded daily.",
+            "Savings buckets, recurring transfers, round-ups and surprise savings tools included."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "pnc",
+      "brand": "PNC Bank",
+      "legal_name": "PNC Bank, National Association",
+      "type": "branch",
+      "fdic_cert": 6384,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/6384",
+      "hq_city": "Wilmington",
+      "hq_state": "DE",
+      "established": "1804-01-01",
+      "total_assets_k": 609771726,
+      "total_deposits_k": 457798362,
+      "offices": 2414,
+      "us_asset_rank": 8,
+      "app": {
+        "value": "iOS and Android",
+        "status": "verified",
+        "note": "PNC Mobile Banking \u2014 app-store links published by PNC on pnc.com.",
+        "source_url": "https://apps.apple.com/us/app/pnc-mobile-banking/id303113127",
+        "secondary_source_url": "https://play.google.com/store/apps/details?id=com.pnc.ecommerce.mobile"
+      },
+      "security": [
+        { "item": "PNC Security & Privacy Center \u2014 fraud and phishing reporting", "source_url": "https://www.pnc.com/en/security-privacy.html" }
+      ],
+      "products": [
+        {
+          "id": "pnc-high-yield-savings",
+          "name": "High Yield Savings",
+          "kind": "Savings",
+          "source_url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html",
+          "as_of_stated": null,
+          "as_of_text": "No effective date was displayed; PNC's page title reads 'High Yield Savings Account | 3.15% Annual Percentage Yield APY'",
+          "rate_location": "Not displayed \u2014 PNC returned 'This Product Isn't Available in Your Area' for the capture location",
+          "apy_headline": { "value": 3.15, "status": "verified", "note": "Taken from PNC's own page title. The on-page rate table did not render because PNC reports the product is not available in the capture location \u2014 see Flagged for Review." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [],
+          "min_open": { "value": null, "status": "unverified" },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": null, "status": "unverified" },
+          "availability": { "value": "Geographically restricted", "status": "verified", "note": "PNC displayed 'This Product Isn't Available in Your Area'." },
+          "tiered": null,
+          "relationship_required": false,
+          "notes": [ "Availability is market-restricted; confirm with PNC for your ZIP code before relying on this rate." ]
+        }
+      ]
+    },
+
+    {
+      "id": "wellsfargo",
+      "brand": "Wells Fargo",
+      "legal_name": "Wells Fargo Bank, National Association",
+      "type": "branch",
+      "fdic_cert": 3511,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/3511",
+      "hq_city": "Sioux Falls",
+      "hq_state": "SD",
+      "established": "1870-01-01",
+      "total_assets_k": 1907928000,
+      "total_deposits_k": 1563534000,
+      "offices": 4176,
+      "us_asset_rank": 4,
+      "app": {
+        "value": null,
+        "status": "unverified",
+        "note": "Wells Fargo operates a mobile app, but it was not confirmed from an official page during this capture.",
+        "source_url": "https://www.wellsfargo.com/savings-cds/rates/"
+      },
+      "security": [
+        { "item": "FDIC Standard Maximum Deposit Insurance Amount is $250,000 per depositor, per insured financial institution, per ownership category", "source_url": "https://www.wellsfargo.com/savings-cds/fdic/" }
+      ],
+      "products": [
+        {
+          "id": "wf-way2save",
+          "name": "Way2Save Savings",
+          "kind": "Savings",
+          "source_url": "https://www.wellsfargo.com/savings-cds/rates/",
+          "as_of_stated": null,
+          "as_of_text": "Published under 'Today's savings rates'; no separate effective date printed",
+          "rate_location": "CA 94105 (San Francisco) \u2014 the location wellsfargo.com defaulted to; rates vary by location",
+          "apy_headline": { "value": 0.01, "status": "verified" },
+          "interest_rate": { "value": 0.01, "status": "verified" },
+          "apy_tiers": [ { "balance": "$0 or more", "apy": 0.01, "rate": 0.01 } ],
+          "min_open": { "value": 25, "status": "verified" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 5, "status": "verified", "note": "$5 monthly service fee; Wells Fargo publishes separate waiver conditions." },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": []
+        },
+        {
+          "id": "wf-platinum-savings",
+          "name": "Platinum Savings",
+          "kind": "Savings",
+          "source_url": "https://www.wellsfargo.com/savings-cds/rates/",
+          "as_of_stated": null,
+          "as_of_text": "Published under 'Today's savings rates'; no separate effective date printed",
+          "rate_location": "CA 94105 (San Francisco) \u2014 the location wellsfargo.com defaulted to; rates vary by location",
+          "apy_headline": { "value": 0.01, "status": "verified", "note": "Standard rate. A 3.25% APY new-customer promotional rate is available \u2014 see Bonuses & Promotions." },
+          "interest_rate": { "value": 0.01, "status": "verified" },
+          "apy_tiers": [
+            { "balance": "Standard \u2014 $0 or more", "apy": 0.01, "rate": 0.01 },
+            { "balance": "Relationship \u2014 linked to Prime Checking, $0 or more", "apy": 0.02, "rate": 0.02 },
+            { "balance": "Relationship \u2014 linked to Premier Checking, $0 or more", "apy": 0.05, "rate": 0.05 },
+            { "balance": "New savings customers \u2014 $25,000 or more", "apy": 3.25, "rate": 3.20 }
+          ],
+          "min_open": { "value": 25, "status": "verified" },
+          "min_balance_for_apy": { "value": 0, "status": "verified", "note": "$25,000 is required for the new-customer promotional APY." },
+          "monthly_fee": { "value": 12, "status": "verified", "note": "$12 monthly service fee; avoided with a $3,500 minimum daily balance each fee period." },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [
+            "The 3.25% APY is for new Wells Fargo savings customers only and requires depositing and maintaining $25,000 or more in a new Platinum Savings account within 30 days.",
+            "Relationship APYs require a linked Wells Fargo checking account."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "chase",
+      "brand": "Chase",
+      "legal_name": "JPMorgan Chase Bank, National Association",
+      "type": "branch",
+      "fdic_cert": 628,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/628",
+      "hq_city": "Columbus",
+      "hq_state": "OH",
+      "established": "1824-01-01",
+      "total_assets_k": 4091315000,
+      "total_deposits_k": 2820284000,
+      "offices": 5404,
+      "us_asset_rank": 1,
+      "app": {
+        "value": "Yes \u2014 Chase Mobile app",
+        "status": "verified",
+        "note": "Chase states you can deposit cheques and transfer money to savings with the Chase Mobile app.",
+        "source_url": "https://www.chase.com/personal/savings/savings-account/interest-rates"
+      },
+      "security": [
+        { "item": "Chase savings accounts are FDIC insured up to the maximum amount allowed by law", "source_url": "https://www.chase.com/personal/savings/savings-account/interest-rates" }
+      ],
+      "products": [
+        {
+          "id": "chase-savings",
+          "name": "Chase Savings",
+          "kind": "Savings",
+          "source_url": "https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf",
+          "as_of_stated": "2026-10-16",
+          "as_of_text": "RATES IN EFFECT AS OF: Friday, October 16, 2026 (Chase Consumer Deposit Rates sheet, New York)",
+          "rate_location": "New York",
+          "apy_headline": { "value": 0.01, "status": "verified" },
+          "interest_rate": { "value": 0.01, "status": "verified" },
+          "apy_tiers": [
+            { "balance": "$0 \u2013 $9,999", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$10,000 \u2013 $24,999", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$25,000 \u2013 $49,999", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$50,000+", "apy": 0.01, "rate": 0.01 }
+          ],
+          "min_open": { "value": 0, "status": "verified", "note": "Chase does not state a minimum opening deposit for Chase Savings on the product page.", "source_url": "https://www.chase.com/personal/savings/savings-account/interest-rates" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 5, "status": "verified", "note": "$5, or $0 with a balance at the beginning of each day of $300 or more in the account each monthly statement period.", "source_url": "https://www.chase.com/personal/savings/savings-account/interest-rates" },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [ "Interest is compounded and credited monthly, based on the daily collected balance.", "Rates are determined daily at Chase's discretion and may vary by market." ]
+        },
+        {
+          "id": "chase-premier-savings",
+          "name": "Chase Premier Savings",
+          "kind": "Savings",
+          "source_url": "https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf",
+          "as_of_stated": "2026-10-16",
+          "as_of_text": "RATES IN EFFECT AS OF: Friday, October 16, 2026 (Chase Consumer Deposit Rates sheet, New York)",
+          "rate_location": "New York",
+          "apy_headline": { "value": 0.02, "status": "verified", "note": "Relationship APY. The standard APY is 0.01% at every tier." },
+          "interest_rate": { "value": 0.02, "status": "verified" },
+          "apy_tiers": [
+            { "balance": "$0 \u2013 $9,999 (relationship / standard)", "apy": 0.02, "rate": 0.02, "standard_apy": 0.01 },
+            { "balance": "$10,000 \u2013 $24,999 (relationship / standard)", "apy": 0.02, "rate": 0.02, "standard_apy": 0.01 },
+            { "balance": "$25,000 \u2013 $49,999 (relationship / standard)", "apy": 0.02, "rate": 0.02, "standard_apy": 0.01 },
+            { "balance": "$50,000 \u2013 $99,999 (relationship / standard)", "apy": 0.02, "rate": 0.02, "standard_apy": 0.01 },
+            { "balance": "$100,000 \u2013 $249,999 (relationship / standard)", "apy": 0.02, "rate": 0.02, "standard_apy": 0.01 },
+            { "balance": "$250,000+ (relationship / standard)", "apy": 0.02, "rate": 0.02, "standard_apy": 0.01 }
+          ],
+          "min_open": { "value": null, "status": "unverified" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": null, "status": "unverified" },
+          "tiered": true,
+          "relationship_required": true,
+          "notes": [ "Premier relationship rates require linking to an eligible Chase/J.P. Morgan checking account and at least five customer-initiated transactions in a monthly statement period using the linked checking account." ]
+        }
+      ]
+    },
+
+    {
+      "id": "bofa",
+      "brand": "Bank of America",
+      "legal_name": "Bank of America, National Association",
+      "type": "branch",
+      "fdic_cert": 3510,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/3510",
+      "hq_city": "Charlotte",
+      "hq_state": "NC",
+      "established": "1904-10-17",
+      "total_assets_k": 2654645000,
+      "total_deposits_k": 2121804000,
+      "offices": 3829,
+      "us_asset_rank": 2,
+      "app": {
+        "value": "iOS and Android",
+        "status": "verified",
+        "note": "Bank of America Mobile Banking \u2014 app-store links published by Bank of America on bankofamerica.com.",
+        "source_url": "https://apps.apple.com/us/app/bank-of-america-mobile-banking/id284847138",
+        "secondary_source_url": "https://play.google.com/store/apps/details?id=com.infonow.bofa"
+      },
+      "security": [
+        { "item": "Bank of America deposit products are FDIC-insured and backed by the full faith and credit of the U.S. Government", "source_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/" }
+      ],
+      "products": [
+        {
+          "id": "bofa-advantage-savings",
+          "name": "Bank of America Advantage Savings",
+          "kind": "Savings",
+          "source_url": "https://media.bac-assets.com/DigitalDeposit_VA_VA_Excluding_DC.pdf",
+          "secondary_source_url": "https://www.bankofamerica.com/deposits/bank-account-interest-rates/",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "Effective as of: October 21, 2026 (Bank of America Deposit Interest Rates & APYs rate sheet)",
+          "rate_location": "Virginia excluding the Greater Washington DC area, and states without Bank of America financial centers \u2014 the rate sheet bankofamerica.com served by default. Rates vary by location.",
+          "apy_headline": { "value": 0.04, "status": "verified" },
+          "interest_rate": { "value": 0.04, "status": "verified" },
+          "apy_tiers": [
+            { "balance": "Less than $5,000", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$5,000 \u2013 $9,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$10,000 \u2013 $24,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$25,000 \u2013 $49,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$50,000 \u2013 $99,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$100,000 \u2013 $499,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$500,000 \u2013 $2,499,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$2,500,000 \u2013 $9,999,999", "apy": 0.04, "rate": 0.04 },
+            { "balance": "$10,000,000 and over", "apy": 0.04, "rate": 0.04 }
+          ],
+          "min_open": { "value": null, "status": "unverified", "note": "bankofamerica.com rendered fee and minimum figures as placeholders ($XXXX) without a ZIP code." },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": null, "status": "unverified", "note": "Monthly maintenance fee displayed as '$XXXX or $0' pending a ZIP code. Bank of America does state the fee is waived for six months from account opening for new accounts, and $0 per statement cycle if you keep a stated minimum daily balance, hold an Advantage Relationship Banking account, qualify for certain BofA Rewards tiers, or an owner is under 25.", "source_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/" },
+          "max_balance": { "value": 250000, "status": "verified", "note": "New account opening limit is $250,000 in the online channel; larger accounts require contacting the bank." },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [ "Bank of America Advantage Relationship Banking pays 0.01%\u20130.02% APY on the same rate sheet \u2014 lower than Advantage Savings." ]
+        }
+      ]
+    },
+
+    {
+      "id": "truist",
+      "brand": "Truist",
+      "legal_name": "Truist Bank",
+      "type": "branch",
+      "fdic_cert": 9846,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/9846",
+      "hq_city": "Charlotte",
+      "hq_state": "NC",
+      "established": "1872-01-01",
+      "total_assets_k": 548346000,
+      "total_deposits_k": 419212000,
+      "offices": 1931,
+      "us_asset_rank": 9,
+      "app": {
+        "value": null,
+        "status": "unverified",
+        "note": "Not confirmed from an official page during this capture.",
+        "source_url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees"
+      },
+      "security": [],
+      "products": [
+        {
+          "id": "truist-one-savings",
+          "name": "Truist One Savings",
+          "kind": "Savings",
+          "source_url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees",
+          "as_of_stated": "2026-09-28",
+          "as_of_text": "Interest rates and annual percentage yields (APY) are accurate as of 9/28/2026",
+          "rate_location": "Nationwide (single published rate table)",
+          "apy_headline": { "value": 0.01, "status": "verified" },
+          "interest_rate": { "value": 0.01, "status": "verified" },
+          "apy_tiers": [
+            { "balance": "$0 \u2013 $4,999.99", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$5,000 \u2013 $99,999.99", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$100,000 \u2013 $499,999.99", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$500,000 \u2013 $999,999.99", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$1,000,000 \u2013 $4,999,999.99", "apy": 0.01, "rate": 0.01 },
+            { "balance": "$5,000,000 and over", "apy": 0.01, "rate": 0.01 }
+          ],
+          "min_open": { "value": 50, "status": "verified" },
+          "min_balance_for_apy": { "value": 0, "status": "verified" },
+          "monthly_fee": { "value": 5, "status": "verified", "note": "Waived with a $300 minimum daily ledger balance, OR a recurring preauthorized internal transfer of $25+ per statement cycle, OR any related Truist checking product, OR for a minor under 18." },
+          "withdrawal_limit": { "value": "6 per statement cycle before fees", "status": "verified", "note": "$5 Withdrawal Limit Fee per withdrawal over six, maximum six such fees per statement cycle." },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [
+            "Interest calculated and compounded daily on the collected balance, credited monthly.",
+            "Truist charges no overdraft-related fees on this product.",
+            "Non-Truist domestic ATM fee $3 per transaction, increasing to $3.50 effective 11/09/2026."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "td",
+      "brand": "TD Bank",
+      "legal_name": "TD Bank, National Association",
+      "type": "branch",
+      "fdic_cert": 18409,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/18409",
+      "hq_city": "Wilmington",
+      "hq_state": "DE",
+      "established": "1852-01-01",
+      "total_assets_k": 342803746,
+      "total_deposits_k": 277668163,
+      "offices": 1051,
+      "us_asset_rank": 13,
+      "app": {
+        "value": "iOS and Android",
+        "status": "verified",
+        "note": "TD states TD Bank Mobile Deposit requires a supported, internet-enabled iOS or Android device with a camera.",
+        "source_url": "https://www.td.com/us/en/personal-banking/savings-accounts/rates"
+      },
+      "security": [],
+      "products": [
+        {
+          "id": "td-simple-savings",
+          "name": "TD Simple Savings",
+          "kind": "Savings",
+          "source_url": "https://www.td.com/us/en/personal-banking/savings-accounts/rates",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "Annual Percentage Yield (APY) is accurate as of 10/21/2026",
+          "rate_location": "Not displayed \u2014 td.com did not resolve a location for the capture, so the rate cells were empty",
+          "apy_headline": { "value": null, "status": "unverified", "note": "TD's rate table rendered with empty cells because no location was resolved. See Flagged for Review." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [],
+          "min_open": { "value": 0, "status": "verified" },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": 5, "status": "verified", "note": "Waived with a $300 minimum daily balance, OR a monthly recurring transfer of $25+ from a linked TD checking account for the first year, OR if the primary holder is 18 or younger / 62 or older, OR if linked to TD Beyond Checking or TD Complete Checking." },
+          "tiered": false,
+          "relationship_required": false,
+          "notes": [ "Aggregate balances over $25 million are subject to negotiated interest rates." ]
+        },
+        {
+          "id": "td-signature-savings",
+          "name": "TD Signature Savings",
+          "kind": "Savings",
+          "source_url": "https://www.td.com/us/en/personal-banking/savings-accounts/rates",
+          "as_of_stated": "2026-10-21",
+          "as_of_text": "Annual Percentage Yield (APY) is accurate as of 10/21/2026",
+          "rate_location": "Not displayed \u2014 td.com did not resolve a location for the capture, so the rate cells were empty",
+          "apy_headline": { "value": null, "status": "unverified", "note": "Tiered rates plus a 'rate bump' are advertised but no numbers rendered. See Flagged for Review." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [],
+          "min_open": { "value": 0, "status": "verified" },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": 15, "status": "verified", "note": "Waived with a $10,000 minimum daily balance OR a linked eligible TD checking account." },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [
+            "Rate bump requires an eligible TD mortgage, home-equity or credit card, OR an active personal/small-business checking account with at least three customer-initiated transactions per calendar month, OR such an account with a monthly direct deposit.",
+            "TD never charges an ATM fee; other banks' ATM fees are reimbursed with a $2,500 minimum daily balance.",
+            "Free incoming wire transfers, money orders, stop payments and official cheques."
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "citizens",
+      "brand": "Citizens",
+      "legal_name": "Citizens Bank, National Association",
+      "type": "branch",
+      "fdic_cert": 57957,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57957",
+      "hq_city": "Providence",
+      "hq_state": "RI",
+      "established": "2005-05-13",
+      "total_assets_k": 232517438,
+      "total_deposits_k": 188731766,
+      "offices": 982,
+      "us_asset_rank": 20,
+      "app": {
+        "value": "Yes \u2014 Citizens Mobile Banking App",
+        "status": "verified",
+        "note": "Citizens instructs customers to download the Citizens Mobile Banking App to use Savings Tracker.",
+        "source_url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx"
+      },
+      "security": [
+        { "item": "24/7 fraud monitoring and FDIC insurance", "source_url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx" }
+      ],
+      "products": [
+        {
+          "id": "citizens-one-deposit-savings",
+          "name": "One Deposit Savings from Citizens",
+          "kind": "Savings",
+          "source_url": "https://www.citizensbank.com/savings/savings-accounts/one-deposit.aspx",
+          "secondary_source_url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx",
+          "as_of_stated": null,
+          "as_of_text": "Citizens' rate disclosure prints its effective date through a template token that did not resolve during capture",
+          "rate_location": "Not resolved \u2014 Citizens reported 'This product is not available in your current location' and offered Rhode Island rates as a fallback",
+          "apy_headline": { "value": null, "status": "unverified", "note": "Every APY cell in Citizens' nine-tier rate table rendered as an unresolved template token. See Flagged for Review." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [],
+          "min_open": { "value": 0, "status": "verified", "note": "No minimum deposit to open \u2014 'open your account with any amount'." },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": 4.99, "status": "verified", "note": "Waived by making one deposit of any amount per statement period, OR keeping a $200 minimum daily balance, OR being under 25 or 65+; new accounts also get the first 4 monthly fees waived." },
+          "withdrawal_limit": { "value": "None", "status": "verified", "note": "Citizens does not limit transactions, including withdrawals, on savings accounts." },
+          "availability": { "value": "CT, DC, DE, FL, MD, MA, MI, NH, NJ, NY, OH, PA, RI, VT, VA", "status": "verified" },
+          "tiered": true,
+          "relationship_required": false,
+          "notes": [ "Must be a U.S. citizen or resident alien aged 18 or older to open online." ]
+        }
+      ]
+    },
+
+    {
+      "id": "citi",
+      "brand": "Citi",
+      "legal_name": "Citibank, National Association",
+      "type": "branch",
+      "fdic_cert": 7213,
+      "fdic_active": true,
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=ACTIVE:1&sort_by=ASSET&sort_order=DESC&limit=40&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/7213",
+      "hq_city": "Sioux Falls",
+      "hq_state": "SD",
+      "established": "1812-06-16",
+      "total_assets_k": 1976180000,
+      "total_deposits_k": 1547586000,
+      "offices": 955,
+      "us_asset_rank": 3,
+      "app": {
+        "value": null,
+        "status": "unverified",
+        "note": "Not confirmed from an official page during this capture.",
+        "source_url": "https://www.citi.com/banking/current-interest-rates"
+      },
+      "security": [],
+      "products": [
+        {
+          "id": "citi-savings",
+          "name": "Citi Savings",
+          "kind": "Savings",
+          "source_url": "https://www.citi.com/banking/current-interest-rates",
+          "as_of_stated": null,
+          "as_of_text": null,
+          "rate_location": "State-selection required; not resolved during capture",
+          "apy_headline": { "value": null, "status": "unverified", "note": "Citi's rates pages returned an empty JavaScript shell or a 'page not found' redirect for every official URL tried. No Citi figure is published here. See Flagged for Review." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [],
+          "min_open": { "value": null, "status": "unverified" },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": null, "status": "unverified" },
+          "tiered": null,
+          "relationship_required": null,
+          "notes": [ "Citi requires selecting a state before it will display rates; the official rates page could not be rendered during capture." ]
+        }
+      ]
+    },
+
+    {
+      "id": "discover",
+      "brand": "Discover Bank",
+      "legal_name": "Discover Bank",
+      "type": "inactive",
+      "fdic_cert": 5649,
+      "fdic_active": false,
+      "fdic_inactive_date": "2025-05-18",
+      "fdic_source": "https://api.fdic.gov/banks/institutions?filters=NAME:%22Discover%20Bank%22&format=json",
+      "fdic_bankfind_url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/5649",
+      "hq_city": "Greenwood",
+      "hq_state": "DE",
+      "established": "1911-08-30",
+      "total_assets_k": 145412640,
+      "total_deposits_k": null,
+      "offices": null,
+      "us_asset_rank": null,
+      "app": { "value": null, "status": "unverified" },
+      "security": [],
+      "products": [
+        {
+          "id": "discover-online-savings",
+          "name": "Discover Online Savings (no longer offered as a separate charter)",
+          "kind": "Savings",
+          "source_url": "https://api.fdic.gov/banks/institutions?filters=NAME:%22Discover%20Bank%22&format=json",
+          "secondary_source_url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/",
+          "as_of_stated": "2025-05-18",
+          "as_of_text": "FDIC BankFind records Discover Bank (cert 5649) as inactive with an end-effective date of 05/18/2025",
+          "rate_location": "n/a",
+          "apy_headline": { "value": null, "status": "unverified", "note": "Discover Bank is no longer an active FDIC-insured institution. discover.com/online-banking/savings-account/ now redirects to Capital One's 360 Performance Savings page." },
+          "interest_rate": { "value": null, "status": "unverified" },
+          "apy_tiers": [],
+          "min_open": { "value": null, "status": "unverified" },
+          "min_balance_for_apy": { "value": null, "status": "unverified" },
+          "monthly_fee": { "value": null, "status": "unverified" },
+          "tiered": null,
+          "relationship_required": null,
+          "notes": [
+            "Listed here only so the record is explicit: do not open a 'Discover savings account' as a separate institution.",
+            "Capital One states that Capital One or Discover Bank deposit accounts opened on or after May 18, 2025 are counted together with your other Capital One deposits for FDIC coverage \u2014 relevant if you are spreading money across banks to stay under $250,000."
+          ]
+        }
+      ]
+    }
+  ]
+}

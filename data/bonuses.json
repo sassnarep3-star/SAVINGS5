@@ -11,12 +11,37 @@
       "headline": "$400 cash bonus + 4.25% ongoing APY on Select Savings from Barclays",
       "value_usd": 400,
       "tiers": [
-        {"deposit_usd": 40000, "deposit_max_usd": null, "bonus_usd": 400}
+        {
+          "deposit_usd": 40000,
+          "deposit_max_usd": null,
+          "bonus_usd": 400
+        }
       ],
       "requirements": "Open a new Select Savings account online between October 1, 2026 and October 31, 2026 (active AARP membership required), deposit $40,000 or more within 30 calendar days, and maintain at least $40,000 for 120 consecutive calendar days. Bonus credited within ~60 days after hold completion.",
       "eligibility": "First-time Barclays Select Savings customers with an active AARP membership.",
       "expires": "2026-10-31",
       "source": "https://banking.us.barclays/select-home/",
+      "status": "verified"
+    },
+    {
+      "id": "cit-boost50",
+      "brand": "CIT Bank (First Citizens)",
+      "institution": "First-Citizens Bank & Trust Company",
+      "cert": 11063,
+      "type": "6-month APY boost",
+      "headline": "+0.50% APY boost for 6 months (4.25% APY on $5,000+; 4.00% Year-1 blended APY) with code BOOST50",
+      "value_usd": null,
+      "tiers": [
+        {
+          "deposit_usd": 5000,
+          "deposit_max_usd": 9999999,
+          "bonus_usd": 0
+        }
+      ],
+      "requirements": "Open a new CIT Bank Platinum Savings account ($100 minimum opening deposit) or enroll an eligible existing account with promo code BOOST50 between September 29, 2026 and December 15, 2026. Maintains +0.50% above standard tier APY for 6 months on balances up to $9,999,999 (4.25% APY on $5,000+).",
+      "eligibility": "New and qualifying existing CIT Bank Platinum Savings customers.",
+      "expires": "2026-12-15",
+      "source": "https://www.cit.com/cit-bank/platinum-savings/boost",
       "status": "verified"
     },
     {
@@ -28,7 +53,11 @@
       "headline": "$200 cash bonus on Barclays Tiered Savings (3.50% / 3.65% APY)",
       "value_usd": 200,
       "tiers": [
-        {"deposit_usd": 25000, "deposit_max_usd": null, "bonus_usd": 200}
+        {
+          "deposit_usd": 25000,
+          "deposit_max_usd": null,
+          "bonus_usd": 200
+        }
       ],
       "requirements": "Open a new Barclays Tiered Savings account online by October 31, 2026, deposit $25,000 or more within 30 calendar days, and maintain at least $25,000 for 120 consecutive calendar days.",
       "eligibility": "New Barclays Tiered Savings customers (no AARP membership needed).",
@@ -45,8 +74,14 @@
       "headline": "$50 or $400 direct-deposit cash bonus + 1.10% APY boost for up to 6 months (4.40% APY; 4.70% w/ Plus)",
       "value_usd": 400,
       "tiers": [
-        {"bonus_usd": 50, "requirement": "$1,000.00 - $4,999.99 in qualifying direct deposits within 25 calendar days"},
-        {"bonus_usd": 400, "requirement": "$5,000.00 or more in qualifying direct deposits within 25 calendar days"}
+        {
+          "bonus_usd": 50,
+          "requirement": "$1,000.00 - $4,999.99 in qualifying direct deposits within 25 calendar days"
+        },
+        {
+          "bonus_usd": 400,
+          "requirement": "$5,000.00 or more in qualifying direct deposits within 25 calendar days"
+        }
       ],
       "requirements": "Cash bonus: receive qualifying payroll/benefit direct deposits within a 25-day evaluation period ($1,000-$4,999.99 earns $50; $5,000+ earns $400). Rate boost: set up eligible direct deposit within 60 days of opening by 12/31/2027 to earn +1.10% boost (4.40% APY) for up to 6 months (4.70% APY on <=$20,000 individual / <=$40,000 joint with $10/mo SoFi Plus).",
       "eligibility": "New SoFi Checking & Savings direct-deposit customers; opening savings automatically opens checking.",
@@ -63,9 +98,13 @@
       "headline": "3.75% 3-month promotional interest rate on $25,000+ new funds (discontinued tomorrow, 2026-10-23)",
       "value_usd": null,
       "tiers": [
-        {"deposit_usd": 25000, "deposit_max_usd": null, "bonus_usd": 0}
+        {
+          "deposit_usd": 25000,
+          "deposit_max_usd": null,
+          "bonus_usd": 0
+        }
       ],
-      "requirements": "Deposit $25,000+ in New-to-Citi funds into a new Citi Savings account opened on or before October 22, 2026 to earn a 3.75% promotional interest rate for 3 months (0.98%–1.05% blended Year-1 APY depending on relationship tier; reverts to 0.03%–0.12% standard rate thereafter). Official Citi Fact_Sheet.pdf states this promo is discontinued effective October 23, 2026.",
+      "requirements": "Deposit $25,000+ in New-to-Citi funds into a new Citi Savings account opened on or before October 22, 2026 to earn a 3.75% promotional interest rate for 3 months (0.98%\u20131.05% blended Year-1 APY depending on relationship tier; reverts to 0.03%\u20130.12% standard rate thereafter). Official Citi Fact_Sheet.pdf states this promo is discontinued effective October 23, 2026.",
       "eligibility": "New Citi Savings accounts funded with $25,000+ in new-to-Citi money on or before 2026-10-22.",
       "expires": "2026-10-22",
       "source": "https://www.citi.com/content/dam/cfs/mobile/assets/JRS/popups/ao/Fact_Sheet.pdf",
@@ -80,7 +119,11 @@
       "headline": "$200 cash bonus for a new TD Simple or TD Signature Savings account",
       "value_usd": 200,
       "tiers": [
-        {"deposit_usd": 10000, "deposit_max_usd": null, "bonus_usd": 200}
+        {
+          "deposit_usd": 10000,
+          "deposit_max_usd": null,
+          "bonus_usd": 200
+        }
       ],
       "requirements": "Open a new TD Simple Savings or TD Signature Savings account online by November 30, 2026, deposit at least $10,000 in external new money within 20 calendar days, and maintain a balance of at least $10,000 for 90 additional days.",
       "eligibility": "New personal TD savings customers residing in eligible TD footprint states who have not held a TD savings account or received a TD savings bonus in the prior 12 months.",
@@ -97,8 +140,16 @@
       "headline": "$100 or $200 cash bonus for a new Chase Savings(SM) account",
       "value_usd": 200,
       "tiers": [
-        {"deposit_usd": 5000, "deposit_max_usd": 9999.99, "bonus_usd": 100},
-        {"deposit_usd": 10000, "deposit_max_usd": null, "bonus_usd": 200}
+        {
+          "deposit_usd": 5000,
+          "deposit_max_usd": 9999.99,
+          "bonus_usd": 100
+        },
+        {
+          "deposit_usd": 10000,
+          "deposit_max_usd": null,
+          "bonus_usd": 200
+        }
       ],
       "requirements": "Open a new Chase Savings account with the offer code, deposit qualifying new money within 30 business days of enrollment ($5,000+ for $100; $10,000+ for $200), and maintain the balance for 90 days from enrollment. Paid within 15 days after completion.",
       "eligibility": "New Chase savings customers only; one savings bonus every two years.",
@@ -153,15 +204,55 @@
     }
   ],
   "no_savings_bonus_found": [
-    {"brand": "Synchrony Bank", "checked_url": "https://www.synchrony.com/banking/products/hys-core", "note": "No opening cash bonus published on the Synchrony High Yield Savings page (competes on unconditional 3.55% ongoing APY)."},
-    {"brand": "Capital One", "checked_url": "https://www.capitalone.com/bank/savings-accounts/", "note": "No savings cash bonus published on Capital One's savings comparison page on 2026-10-22."},
-    {"brand": "American Express", "checked_url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/", "note": "No public savings opening bonus published on the Amex HYSA page on 2026-10-22."},
-    {"brand": "Ally Bank", "checked_url": "https://www.ally.com/bank/online-savings-account/", "note": "No opening bonus published on Ally Bank's Online Savings page on 2026-10-22."},
-    {"brand": "Alto by BMO", "checked_url": "https://www.alto.bmo.com/en-us/", "note": "No opening bonus published on the BMO Alto Online Savings page on 2026-10-22."},
-    {"brand": "Bank of America", "checked_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/", "note": "No standalone cash bonus published on Advantage Savings (public cash bonuses target Advantage Checking)."},
-    {"brand": "PNC", "checked_url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html", "note": "No savings bonus published (checking Virtual Wallet offers exist separately)."},
-    {"brand": "Truist", "checked_url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees", "note": "No savings opening bonus published on Truist One Savings disclosures."},
-    {"brand": "Charles Schwab", "checked_url": "https://www.schwab.com/savings", "note": "No standalone Investor Savings bonus published on schwab.com/savings."},
-    {"brand": "Fifth Third", "checked_url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings.html", "note": "No online savings bonus published; promotional rates require visiting a branch or calling a banker."}
+    {
+      "brand": "Synchrony Bank",
+      "checked_url": "https://www.synchrony.com/banking/products/hys-core",
+      "note": "No opening cash bonus published on the Synchrony High Yield Savings page (competes on unconditional 3.55% ongoing APY)."
+    },
+    {
+      "brand": "Capital One",
+      "checked_url": "https://www.capitalone.com/bank/savings-accounts/",
+      "note": "No savings cash bonus published on Capital One's savings comparison page on 2026-10-22."
+    },
+    {
+      "brand": "American Express",
+      "checked_url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/",
+      "note": "No public savings opening bonus published on the Amex HYSA page on 2026-10-22."
+    },
+    {
+      "brand": "Ally Bank",
+      "checked_url": "https://www.ally.com/bank/online-savings-account/",
+      "note": "No opening bonus published on Ally Bank's Online Savings page on 2026-10-22."
+    },
+    {
+      "brand": "Alto by BMO",
+      "checked_url": "https://www.alto.bmo.com/en-us/",
+      "note": "No opening bonus published on the BMO Alto Online Savings page on 2026-10-22."
+    },
+    {
+      "brand": "Bank of America",
+      "checked_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/",
+      "note": "No standalone cash bonus published on Advantage Savings (public cash bonuses target Advantage Checking)."
+    },
+    {
+      "brand": "PNC",
+      "checked_url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html",
+      "note": "No savings bonus published (checking Virtual Wallet offers exist separately)."
+    },
+    {
+      "brand": "Truist",
+      "checked_url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees",
+      "note": "No savings opening bonus published on Truist One Savings disclosures."
+    },
+    {
+      "brand": "Charles Schwab",
+      "checked_url": "https://www.schwab.com/savings",
+      "note": "No standalone Investor Savings bonus published on schwab.com/savings."
+    },
+    {
+      "brand": "Fifth Third",
+      "checked_url": "https://www.53.com/content/fifth-third/en/personal-banking/bank/savings.html",
+      "note": "No online savings bonus published; promotional rates require visiting a branch or calling a banker."
+    }
   ]
 }

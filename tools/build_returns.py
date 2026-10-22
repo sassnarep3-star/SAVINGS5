@@ -28,6 +28,12 @@ DEPOSITS = [10_000, 25_000, 50_000, 100_000, 250_000, 500_000, 1_000_000, 1_250_
 YEARS = [1, 2, 3, 5, 10]
 
 PROMO_YEAR1 = {
+    "cit-platinum-savings": {
+        "label": "4.25% for months 1-6 (promo code BOOST50), then 3.75% standard tier on $5,000+",
+        "apy_pct": round(((1.0425 ** 0.5) * (1.0375 ** 0.5) - 1) * 100, 4),
+        "source": "https://www.cit.com/cit-bank/platinum-savings/boost",
+        "derivation": "(1.0425^0.5 * 1.0375^0.5 - 1) = 3.9997% (~4.00%) Year-1 blended APY on >= $5,000",
+    },
     "sofi-savings": {
         "label": "4.40% for months 1-6 (+1.10% DD boost), then 3.30% ongoing DD rate",
         "apy_pct": round(((1.044 ** 0.5) * (1.033 ** 0.5) - 1) * 100, 4),
@@ -152,9 +158,12 @@ def build():
             promo_rate, promo_label = promo_year1_rate(a, p)
             year1_rate = promo_rate if promo_rate is not None else best
             bonus_usd, bonus_label = cash_bonus_for(a["id"], p)
-            short_rate = 4.40 if a["id"] == "sofi-savings" else (4.50 if a["id"] == "marcus-online-savings" and p <= 1_000_000 else best)
+            short_rate = (
+                4.25 if (a["id"] == "cit-platinum-savings" and p >= 5_000)
+                else (4.40 if a["id"] == "sofi-savings" else (4.50 if a["id"] == "marcus-online-savings" and p <= 1_000_000 else best))
+            )
             bal_3m = fv(p, short_rate, 0.25)
-            bal_6m = fv(p, 4.40 if a["id"] == "sofi-savings" else best, 0.50)
+            bal_6m = fv(p, 4.25 if (a["id"] == "cit-platinum-savings" and p >= 5_000) else (4.40 if a["id"] == "sofi-savings" else best), 0.50)
             if a["id"] == "marcus-online-savings" and p <= 1_000_000:
                 bal_6m = fv(p, 4.50, 0.25) * ((1 + 0.035) ** 0.25)
 
@@ -263,6 +272,7 @@ def build():
     mobile_eligible = [a for a in eligible if a["mobile_app"]["value"] == "yes"]
 
     no_condition_ids = {
+        "cit-platinum-savings",
         "synchrony-hys",
         "marcus-online-savings",
         "barclays-tiered-savings",
@@ -279,6 +289,8 @@ def build():
     }
 
     def rate_no_cond(a):
+        if a["id"] == "cit-platinum-savings":
+            return 3.75
         return float(a["apy_regular_pct"])
 
     def rate_max_cond(a, slot_cap):

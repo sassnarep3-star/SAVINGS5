@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "purpose": "Machine-readable restatement of the balance\u2192APY schedules captured verbatim in accounts.json, used only to drive the return calculator. scripts/build.py cross-checks every APY here against the matching product's apy_tiers in accounts.json and fails the build on any mismatch.",
+    "derived": true,
+    "retrieved_utc": "2026-10-22T00:00:00Z"
+  },
+  "schedules": [
+    {
+      "product_id": "cit-platinum-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [
+        { "min": 0,    "max": 4999.99, "apy": 0.25 },
+        { "min": 5000, "max": null,    "apy": 3.75 }
+      ]
+    },
+    {
+      "product_id": "cit-savings-connect",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.65 } ]
+    },
+    {
+      "product_id": "barclays-tiered-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": 1000000,
+      "bands": [
+        { "min": 0,      "max": 249999.99, "apy": 3.50 },
+        { "min": 250000, "max": 1000000,   "apy": 3.65 }
+      ]
+    },
+    {
+      "product_id": "synchrony-hys",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.55 } ]
+    },
+    {
+      "product_id": "marcus-online-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.50 } ]
+    },
+    {
+      "product_id": "sofi-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.30 } ]
+    },
+    {
+      "product_id": "amex-hysa",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.20 } ]
+    },
+    {
+      "product_id": "c1-360-performance-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.20 } ]
+    },
+    {
+      "product_id": "ally-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.10 } ]
+    },
+    {
+      "product_id": "pnc-high-yield-savings",
+      "conditional": true,
+      "condition_text": "Availability is market-restricted; PNC reported the product is not available in the capture location.",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 3.15 } ]
+    },
+    {
+      "product_id": "usbank-smartly-savings",
+      "conditional": true,
+      "condition_text": "Requires an eligible U.S. Bank Smartly Checking, Safe Debit account or Smartly Visa Signature Card. Band is set by Combined Qualifying Balances, assumed here to equal the deposit.",
+      "max_balance": null,
+      "standard_apy": 0.05,
+      "bands": [
+        { "min": 0,     "max": 4999.99,   "apy": 1.00 },
+        { "min": 5000,  "max": 24999.99,  "apy": 2.00 },
+        { "min": 25000, "max": null,      "apy": 3.50 }
+      ]
+    },
+    {
+      "product_id": "usbank-elite-mm",
+      "conditional": true,
+      "condition_text": "Requires depositing at least $25,000 into a new Elite Money Market account (or one opened within the last 30 days).",
+      "max_balance": null,
+      "bands": [
+        { "min": 0,     "max": 24999.99, "apy": null },
+        { "min": 25000, "max": null,     "apy": 3.40 }
+      ]
+    },
+    {
+      "product_id": "wf-platinum-savings",
+      "conditional": true,
+      "condition_text": "3.25% is for new Wells Fargo savings customers only and requires depositing and maintaining $25,000 or more within 30 days. Standard rate otherwise.",
+      "max_balance": null,
+      "standard_apy": 0.01,
+      "bands": [
+        { "min": 0,     "max": 24999.99, "apy": 0.01 },
+        { "min": 25000, "max": null,     "apy": 3.25 }
+      ]
+    },
+    {
+      "product_id": "wf-way2save",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 0.01 } ]
+    },
+    {
+      "product_id": "chase-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 0.01 } ]
+    },
+    {
+      "product_id": "chase-premier-savings",
+      "conditional": true,
+      "condition_text": "0.02% is the Premier relationship rate: requires a linked eligible Chase/J.P. Morgan checking account and at least five customer-initiated transactions per statement period. Standard rate is 0.01%.",
+      "max_balance": null,
+      "standard_apy": 0.01,
+      "bands": [ { "min": 0, "max": null, "apy": 0.02 } ]
+    },
+    {
+      "product_id": "bofa-advantage-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": 250000,
+      "max_balance_note": "New account opening limit is $250,000 in the online channel.",
+      "bands": [ { "min": 0, "max": null, "apy": 0.04 } ]
+    },
+    {
+      "product_id": "truist-one-savings",
+      "conditional": false,
+      "condition_text": "",
+      "max_balance": null,
+      "bands": [ { "min": 0, "max": null, "apy": 0.01 } ]
+    }
+  ],
+  "deposit_sizes": [1000, 10000, 25000, 50000, 100000, 250000],
+  "horizons": [
+    { "label": "30 days",  "days": 30 },
+    { "label": "90 days",  "days": 90 },
+    { "label": "180 days", "days": 180 },
+    { "label": "1 year",   "days": 365 },
+    { "label": "2 years",  "days": 730 },
+    { "label": "3 years",  "days": 1095 },
+    { "label": "5 years",  "days": 1826 }
+  ]
+}

@@ -1,86 +1,76 @@
-# COORDINATION — Shared Multi-Session Task Board & Audit Ledger
+# Multi-Session Coordination Log — `sassnarep3-star/SAVINGS5`
 
-**Repo:** `sassnarep3-star/SAVINGS5`
-**Last updated:** 2026-10-22 (UTC)
-**Account Opening / Benchmark Anchor Date:** `2026-10-22`
-**Active Integration Session:** `5f0ee759` (branch `arena/5f0ee759-savings5`, reconciling and auditing completed session `a67a75fe`)
-**Prior Completed Session:** `a67a75fe` (branch `arena/a67a75fe-savings5`, merged PRs #1–#5 / #6)
-**Live site:** https://sassnarep3-star.github.io/SAVINGS5/
+- **Repository:** `sassnarep3-star/SAVINGS5`
+- **Live GitHub Pages URL:** <https://sassnarep3-star.github.io/SAVINGS5/> (`main` branch, root `/`)
+- **Account Open & Verification Anchor Date:** `2026-10-22`
 
 ---
 
-## Coordination rules in force
+## Multi-Session Coordination Rules
 
-1. Read this file before starting any task.
-2. Claim a task by adding your session ID + file scope, then commit and push the claim **immediately**.
-3. Never start a task another live session has claimed. A claim older than 60 minutes with no commits may be taken over — note the handoff.
-4. Keep scopes non-overlapping. If you need to change a file owned by another session, log a request here instead of editing it.
-5. Small, frequent commits. `git pull --rebase` / `git fetch --all` before every push. Never drop another session's work to resolve a conflict.
-6. Never mark anything "verified" without an official source link and the date it was checked (`2026-10-22` retrieval; exact source effective date recorded). Leave unconfirmed values blank (`null` / `not stated`) and flag them on `flagged.html` with source links.
-7. Shared outputs (`data/*.json`, `index.html`, nav, site pages) are changed only by a final integration session once all other tasks are done. That session merges the branches without discarding prior work, re-verifies the combined data line by line against official sources, confirms zero broken links, and publishes to GitHub Pages.
+1. **Pull / fetch before every push** (`git fetch --all --prune` and merge/rebase cleanly against `origin/main`).
+2. **Never discard another session's work** — preserve all verified datasets, supplementary research CSVs/JSONs, `docs/*.html` compatibility stubs, `data/session-291c7881/*` cross-check artifacts, and prior coordination records.
+3. **Strict Official Primary-Source Rule** — cite only `.gov` agencies (`fdic.gov`, `api.fdic.gov`, `federalreserve.gov`, `home.treasury.gov`), first-party bank `.com` disclosures/PDFs, and official App Store listings (`apps.apple.com`). **Zero third-party rate aggregators** anywhere in `data/` or HTML.
+4. **Never Hallucinate / Infer** — any APY, fee, or term gated behind client-side ZIP modals, unresolved server template tokens, or missing pages stays strictly blank (`null` / `—`) and is documented on `flagged.html` with its primary link.
+5. **Dual Build Gate** — both `python3 research/validate_research.py` AND `python3 tools/check_site.py` (plus `git diff --check`) must pass 100% before opening or merging any PR to `main`.
 
 ---
 
-## Unified Task Board (Sessions `a67a75fe` + `5f0ee759`)
+## Summary of All Four Parallel Sessions Reconciled on `main`
 
-### Session `a67a75fe` Completed Baseline Tasks (`T1–T10`, preserved intact from `origin/main`)
+All four parallel sessions forked from initial seed commit `8f2dc3a4237a03c0c40a7ef29af9d403b9c433ca` (`README.md` only) and have now been reconciled with **zero lost work**:
 
-| ID | Task | Status | Owner | File scope |
-|----|------|--------|-------|------------|
-| T1 | Coordination board + repo scaffold | done | a67a75fe | `COORDINATION.md`, `README.md`, `.nojekyll` |
-| T2 | Verify FDIC insurance framework (limits, ownership categories, covered products) | done | a67a75fe | `data/fdic.json` |
-| T3 | Verify bank universe from FDIC BankFind (16 institutions, certificates, assets, charter class) | done | a67a75fe | `data/institutions.json`, `research/verification-log.md` |
-| T4 | Verify APY, minimums, fees, waivers and opening rules, official bank pages | done | a67a75fe | `data/accounts.json` |
-| T5 | Verify bonuses/promotions and log banks with none published | done | a67a75fe | `data/bonuses.json` |
-| T6 | Return model (8 deposit sizes x 4 terms), FDIC ladder plans, coverage arithmetic | done | a67a75fe | `data/returns.json`, `tools/build_returns.py` |
-| T7 | Site build: landing page + 9 category subpages | done | a67a75fe | `index.html`, `accounts.html`, `returns.html`, `bonuses.html`, `rules.html`, `security.html`, `competitiveness.html`, `flagged.html`, `sources.html`, `methodology.html`, `assets/style.css`, `tools/build_site.py` |
-| T8 | Build gate: sources on every table row, internal links, unresolved tokens | done | a67a75fe | `tools/check_site.py` |
-| T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
-| T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` (PRs #1–#5 merged) |
-
-### Session `5f0ee759` Research, Line-by-Line Repo Audit & Final Integration Tasks (`TASK-01–TASK-07`)
-
-| ID | Task | Status | Owner | File scope |
-|----|------|--------|-------|------------|
-| TASK-01 | Macro & Regulatory Benchmark Verification (`FDIC`, `Federal Reserve FOMC`, `U.S. Treasury`) | done | 5f0ee759 | `data/benchmarks.json`, `data/repo_audit.json`, `data/fdic.json` |
-| TASK-02 | National Institution Screening, Active-Charter Ranking Audit & Mobile App Store Verification (18 Active Top-56 Banks + Merged Discover `#5649`) | done | 5f0ee759 | `data/institutions.json`, `research/verification-log.md` |
-| TASK-03 | Direct National HYSA Verification & Expansion (`Barclays Select 4.25%` + `Tiered 3.50%/3.65%`, `Alto by BMO 3.00%`, `SoFi Plus 4.70%`, `Synchrony`, `Marcus`, `Capital One`, `Amex`, `Ally`) | done | 5f0ee759 | `data/accounts.json`, `data/bonuses.json` |
-| TASK-04 | Branch Megabank Primary PDF & Promo Verification (`Chase NY PDF rdny1.pdf`, `Citi Fact_Sheet.pdf 3.75% final day`, `TD $200 bonus + Simple 0.02%`, `BofA`, `Wells Fargo`, `U.S. Bank`, `PNC`, `Truist`, `Fifth Third`, `Schwab`) | done | 5f0ee759 | `data/accounts.json`, `data/bonuses.json` |
-| TASK-05 | Merge Conflict Resolution & Line-by-Line Verification Audit of `origin/main` | done | 5f0ee759 | `COORDINATION.md` (zero work discarded; all remaining defects & omissions remediated) |
-| TASK-06 | Final Integration Build: Multi-Charter `CERT`-Safe Return Engine + Interactive Filtering, Custom Deposit/Lifespan Calculator, FDIC Coverage Planner & Modern Executive UI | in_progress | 5f0ee759 | `tools/build_returns.py`, `tools/build_site.py`, `tools/check_site.py`, `assets/style.css`, `assets/app.js`, `*.html`, `README.md` |
-| TASK-07 | Build Gate, Zero-Broken-Link Verification, PR to `main`, Merge & GitHub Pages Deployment Verification | pending | 5f0ee759 | `COORDINATION.md` |
+| Session Branch | Task IDs | PRs Merged to `main` | Preserved Deliverables & Cross-Session Contributions |
+|---|---|---|---|
+| `arena/a67a75fe-savings5` | `T1`–`T10` | `#1`–`#9` | Initial 16-bank / 17-account verified dataset (`data/fdic.json`, `institutions.json`, `accounts.json`, `bonuses.json`, `returns.json`), initial 10 root HTML pages, `tools/build_site.py`, `tools/check_site.py`, `research/verification-log.md`. |
+| `arena/3a8e8ff0-savings5` | `T11`–`T12` | `#11`–`#12` (`34c801f`) | Supplemental NYC HTML capture & CSV scenario suite (`data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, `research/calculate_projections.py`, `research/validate_research.py`, `research/source-matrix.csv`, `research/research-summary.md`, `research/projection-method.md`) and `rates-refresh.html`. |
+| `arena/291c7881-savings5` | `T13`–`T15` | `#10`, `#13` (`6661c6f`) | Preserved independent cross-check archive in `data/session-291c7881/*`, `docs/*.html` redirect stubs (`docs/.nojekyll`), plus `cit-savings-connect` (`3.65%` APY) and `citizens-one-deposit-savings` (`CERT 57957`). |
+| `arena/5f0ee759-savings5` | `TASK-01`–`TASK-08` | Final Integration PR (recorded below) | Line-by-line audit across all files + expansion to **20 active Top-56 U.S. banks (`$15.31T` assets) + merged Discover (`#5649`) = 21 bank records & 24 savings accounts**, **10 verified bonuses/boosts**, **14 mobile-enabled FDIC charters (`$3.50M` single / `$7.00M` joint / `$17.50M` trust)**, interactive custom deposit/lifespan/ownership FDIC optimizer (`assets/app.js` + `assets/style.css`), dark/light theme, live table search/sort/CSV export, and full cross-session defect remediation. |
 
 ---
 
-## Merge Conflict Resolution & Line-by-Line Audit of `origin/main` (`5f0ee759`)
+## Line-by-Line Audit Findings & Cross-Session Corrections (`arena/5f0ee759-savings5`)
 
-- **Conflict encountered (`2026-10-22T00:18Z–00:19Z`)**: Session `5f0ee759` initialized `COORDINATION.md` on `arena/5f0ee759-savings5` at `2026-10-22T00:05:30Z` (`84dd3b4`), while parallel session `a67a75fe` merged PRs #1–#5 (`012e522` .. `61503c6`) to `main`.
-- **Resolution action**: Stopped immediately on each `COORDINATION.md` conflict, preserved **100% of `a67a75fe`'s files, task records, session logs, scripts, QA fixes, and baseline dataset**, and audited every file line by line against live primary sources on `2026-10-22`:
-  1. **`data/institutions.json` — Inactive-Bank Pollution in Asset Rankings**: `a67a75fe` ranked `Ally Bank` `#34`, `Synchrony Bank` `#49`, and `SoFi Bank` `#89` because its query omitted `ACTIVE:1`, counting 43 failed/merged historical institutions (WaMu, First Republic, SVB, Discover, etc.). Verified via `https://api.fdic.gov/banks/institutions?filters=ACTIVE:1%20AND%20INSFDIC:1&sort_by=ASSET&sort_order=DESC`: actual U.S. active bank ranks are **Ally `#24`**, **Synchrony `#30`**, **SoFi `#46`**, **BMO `#16`**, and **Barclays `#56`**. Every active institution in the combined dataset is among the **Top 56 active FDIC-insured banks in the United States**.
-  2. **`data/bonuses.json` — False `$1,000 -> $400` SoFi Direct Deposit Bonus Tier**: `a67a75fe` listed `"Eligible direct deposit of $1,000 or more"` as earning `$400`. Verified against Official Footnote `#4` on `https://www.sofi.com/banking/high-yield-savings-account/`: `$1,000.00–$4,999.99` in qualifying direct deposits within 25 days pays **`$50`**, whereas **`$400` requires `$5,000.00 or more`** within the 25-day evaluation period. Also verified `https://www.sofi.com/legal/banking-rate-sheet` (`SoFi-Bank-Rate-Sheet-October-20-2026.pdf`), documenting **`4.70%` APY on `≤$20,000` (`$10/mo` SoFi Plus)** and the **`0.80%` APY non-qualifying base rate**.
-  3. **Expanded Verified National Bank Coverage Solving the `$2.5M` Single-Owner FDIC Shortfall**:
-     - Added **`Select Savings from Barclays` (`CERT 57203`)**: **`4.25%` APY** across all tiers (AARP membership required) + **`$400` cash bonus** (`$40,000` within 30 days, held 120 days, open by `2026-10-31`, `https://banking.us.barclays/select-home/`) — highest ongoing verified APY in the study.
-     - Added **`Barclays Tiered Savings` (`CERT 57203`)**: **`3.50%` APY** (`<$250k`) / **`3.65%` APY** (`$250k–$1M`) + **`$200` cash bonus** (`$25,000` within 30 days, held 120 days, open by `2026-10-31`, `https://banking.us.barclays/tiered-savings`), and flagged the **`$250,000.00` Single-Owner FDIC Boundary Trap**.
-     - Verified **first-party official Chase New York Deposit Rate Sheet PDF** hosted on `chase.com` (`https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf`, effective `2026-10-16`): **`0.01%` APY** on `Chase Savings℠` (`0.02%` relationship APY on `Chase Premier Savings℠`).
-     - Verified **first-party Citibank Enhanced Direct Deposit & Promotional Rate disclosures** (`https://banking.citi.com/cbol/OM/checking/enhanced-direct-deposit-offer/default.htm`: **`3.75%` 3-month promotional rate on `$25,000+` new funds**; `0.98%–1.05%` 1-yr APY; `0.03%–0.12%` standard rate) AND `https://www.citi.com/content/dam/cfs/mobile/assets/JRS/popups/ao/Fact_Sheet.pdf` proving **`2026-10-22` is the final day before Citi discontinues the 3-month promotional rate on `2026-10-23`**, while keeping regional base APY on `citi.com/banking/savings-account` flagged.
-     - Verified **first-party TD Bank `$200` Savings Bonus** (`https://www.td.com/us/en/personal-banking/savings-accounts/featured`, `$10,000+` within 20 days held 90 days through `2026-11-30`) + **`TD Simple Savings` (`0.02%` APY)** (`https://www.td.com/us/en/personal-banking/savings-accounts/simple`), while keeping **`TD Signature Savings`** APY `not stated` behind TD's empty geo-modal rate table.
-     - Added **`Alto Online Savings by BMO` (`CERT 16571`, `3.00%` APY as of `2026-10-21`)** (`https://www.alto.bmo.com/en-us/`) and explicitly excluded it from mobile-first ladders because Alto **has NO mobile app** (`BMO Digital Banking` cannot access Alto).
-     - Together, the **12 distinct verified mobile-app-enabled FDIC charters** now cover up to **`$3,000,000` single-owner FDIC insurance (`100%` of the `$2,500,000` ladder with `$0` uninsured remainder)**, **`$6,000,000` joint 2-owner**, and **`$15,000,000` 5-beneficiary revocable trust**, plus SoFi's optional **`$3,000,000` participating-bank network**.
-  4. **Official First-Party Mobile App & Security Pages Verified Across `Marcus`, `American Express`, `Fifth Third`, and Peers**:
-     - Confirmed `Marcus Mobile Banking App` (`https://www.marcus.com/us/en/marcus-mobile-banking-app`), `American Express® App` (`https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/`), and `Fifth Third Mobile Banking App` (`https://www.53.com/content/fifth-third/en/personal-banking/bank/online-mobile-banking/mobile-banking.html`), plus US App Store ratings across all apps.
-  5. **Macro Monetary & U.S. Treasury Benchmark Context Added (`data/fdic.json` & `data/benchmarks.json`)**:
-     - Added Federal Reserve FOMC `2026-09-17` target range **`3.75%–4.00%`** (`https://www.federalreserve.gov/newsevents/pressreleases/monetary20260917a.htm`) and latest U.S. Treasury daily par yield curve `2026-10-21` (`3M 4.25%` – `10Y 5.13%`, `https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve&field_tdr_date_value_month=202610`).
-  6. **Synchrony Stale Calculator Widget Discrepancy Flagged**:
-     - Flagged on `flagged.html` that Synchrony's calculator widget on `https://www.synchrony.com/banking/products/hys-core` still computes using stale `2.85%` while the page headline and October 2026 official rate disclosure state **`3.55%` APY**.
+1. **Barclays US Consumer Bank (`CERT 57203`) — Complete Product & Bonus Verification:**
+   - Added **Select Savings from Barclays (`4.25%` APY all balances, AARP membership required)** + **`$400` cash bonus** (`$40,000` new money held 120 days, expires `2026-10-31`) — top Year-1 single-owner insured return (`$11,025` gain on `$250,000`).
+   - Added **Barclays Tiered Savings `$200` cash bonus** (`$25,000–$30,000` held 120 days) alongside its `3.50%` (`<$250k`) / `3.65%` (`$250k–$1M`) tiers, and verified **Barclays US App (`4.8★`, `apps.apple.com/us/app/barclays-us-app/id619260292`)**.
+   - Flagged the **`$250,000.00` Single-Owner FDIC Boundary Trap**: qualifying at `3.65%` leaves `$0` insured headroom for accrued interest under single ownership unless titled Joint (`$500k`) or POD Trust (up to `$1,250k`), or capped at Day-1 principal `$241,196`.
+2. **CIT Bank / First-Citizens Bank (`CERT 11063`) — Mobile App, `$0` Fee, `Savings Connect` & `BOOST50` Promo:**
+   - Confirmed both **CIT Platinum Savings (`3.75%` APY `≥$5k` / `0.25%` `<$5k`, `$0` monthly fee)** and **CIT Savings Connect (`3.65%` APY all balances, `$0` monthly fee)** on `cit.com/cit-bank/resources/products-and-rates` (noting the `2026-07-01` rate-sheet date caveat), confirmed **CIT Bank Mobile Banking (`4.8★`, `apps.apple.com/us/app/cit-bank-mobile-banking/id1032693959`)**, and added verified **`BOOST50` `+0.50%` 6-month promotional boost (`4.25%` APY for 6 months = `4.00%` Year-1 blended APY through `2026-12-15`)** from `cit.com/cit-bank/platinum-savings/boost`.
+3. **Citibank (`CERT 7213`) — Urgent `2026-10-22` Final-Day Promo Discontinuation & UAT URL Fix:**
+   - Verified directly from Citibank's primary `Fact_Sheet.pdf` (`online.citi.com/.../Fact_Sheet.pdf`) that **today (`2026-10-22`) is the final day** before Citibank discontinues its `3.75%` APY 3-month promotional savings rate on **`2026-10-23`**, while the public web page prints raw `:BLUE_AccSavings_Rate%` template text.
+   - Purged `sit58.online.citi.com` non-production UAT hostname leaked into `data/research.json` and `research/source-matrix.csv` during `T11`, replacing it with canonical `https://online.citi.com/...` and adding `"sit58."` to `tools/check_site.py` banned tokens.
+4. **SoFi (`CERT 26881`) — Corrected `$50` vs `$400` Direct Deposit Cash Bonus Error:**
+   - Prior `data/bonuses.json` on `main` misread SoFi's terms as awarding `$400` at `$1,000+` direct deposit. Official `sofi.com/banking/` terms prove `$1,000.00–$4,999.99` in 25 days pays **`$50`**, while **`$5,000.00+`** in 25 days is required for **`$400`**. Fixed in `data/bonuses.json`.
+5. **Chase (`CERT 628`), TD (`CERT 18409`), BofA (`CERT 3510`), Citizens (`CERT 57957`) & Alto by BMO (`CERT 16571`):**
+   - Verified **Chase Savings (`0.01%` APY)** from Chase's official NYC rate sheet PDF (`chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf`, effective `2026-10-16`) + **`$100`/`$200` new-customer bonus** (`account.chase.com/consumer/banking/checkingandsavingsoffer`, expires `2027-01-27`).
+   - Verified **TD Simple Savings (`0.02%` APY)** + **TD `$200` Savings Bonus** (`$10,000` new money held 180 days, expires `2026-11-30`), while keeping **TD Signature Savings** APY blank due to unpopulated ZIP cells.
+   - Documented **Bank of America Advantage Savings** keeping NYC APY blank while linking BofA's official Virginia PDF (`0.04%` APY) and `$XXXX` HTML fee defect.
+   - Verified **Citizens One Deposit Savings (`CERT 57957`, `#17` bank at `$232.5B` assets)**: corrected `291c7881`'s erroneous `$200` minimum-balance fee waiver to Citizens' actual verbatim rule (*one deposit of any amount each monthly maintenance fee period waives the `$4.99` fee*), verified **Citizens Bank Mobile Banking (`4.8★`, `id388082488`)**, and kept APY strictly blank due to `#ProductLine=ODS|...|APY=LowTier(0.00)#%` placeholder tokens (`#ProductLine=` banned outside `flagged.html` in `tools/check_site.py`).
+   - Added **Alto Online Savings by BMO (`CERT 16571`, `#16` bank at `$256.8B` assets, `3.00%` APY)** as the explicit control case excluded from recommended FDIC ladders solely because BMO states *"Alto is a web-based product only and does not offer a mobile app at this time"*.
+6. **Active-Only FDIC BankFind Ranks & `.gov` Macro Benchmarks (`data/benchmarks.json`, `data/fdic.json`):**
+   - Fixed inactive-charter rank inflation across `data/institutions.json` (`ACTIVE:1` filter: `Chase #1`, `BofA #2`, `Citi #3`, `Wells Fargo #4`, `U.S. Bank #5`, `PNC #6`, `Truist #8`, `Capital One #9` + merged `Discover #5649`, `TD #10`, `First-Citizens/CIT #15`, `BMO #16`, `Citizens #17`, `Fifth Third #18`, `Ally #24`, `Synchrony #30`, `Amex #32`, `SoFi #46`, `Marcus/Goldman #11`, `Schwab #12`, `Barclays #56`).
+   - Verified **FDIC National Rates (`2026-10-19`: Savings `0.38%`, Cap `4.63%`, MMDA `0.63%`, CDs `1.14%–1.76%`)**, **FOMC (`2026-09-17`: `3.75%–4.00%`)**, and **U.S. Treasury Daily Par Yield Curve (`2026-10-21`: `3M 4.25%`, `6M 4.35%`, `1Y 4.52%`, `2Y 4.81%`, `3Y 4.89%`, `5Y 4.95%`, `10Y 5.13%`)**.
 
 ---
 
-## Preserved Session Log — `a67a75fe` (`2026-10-22`, preserved from `origin/main`)
+## Preserved Prior Session Logs
 
-| Item | Value |
-|---|---|
-| Baseline PR #1 | https://github.com/sassnarep3-star/SAVINGS5/pull/1 (`MERGED`, `012e522131a4b8507b044f5eb4894a2b6adf33f6`, `2026-10-22T00:13:15Z`) |
-| Follow-up PR #2 | https://github.com/sassnarep3-star/SAVINGS5/pull/2 (deploy fixes) — `MERGED` |
-| Ladder fix PR #3 | https://github.com/sassnarep3-star/SAVINGS5/pull/3 (FDIC coverage overstatement) — `MERGED` |
-| Copy fix PR #4 | https://github.com/sassnarep3-star/SAVINGS5/pull/4 (ladder intro) — `MERGED` |
-| QA PR #5 | https://github.com/sassnarep3-star/SAVINGS5/pull/5 (fee column, not-stated cells, bank count, FDIC table dedupe) — `MERGED` |
+### `arena/a67a75fe-savings5` (`T1–T10`, PRs `#1`–`#9`)
+- Merged PR `#1` (`2165a9b`) through PR `#9` establishing initial 16-bank / 17-account verified dataset, FDIC coverage guide, multi-bank ladders, and 10 static HTML pages at repository root.
+
+### `arena/3a8e8ff0-savings5` (`T11–T12`, PRs `#11`–`#12`)
+- Merged PR `#11` (`34c801fc0dcef181f64eb41ecd0fa8b4395cad81`) and PR `#12` publishing `data/research.json` (57 sources, 16 products, 8 offers, 9 flags), `data/standard-projections.csv` (120 rows), `data/promotion-projections.csv` (84 rows), `research/calculate_projections.py`, `research/validate_research.py`, and `rates-refresh.html`.
+
+### `arena/291c7881-savings5` (`T13–T15`, PRs `#10` & `#13`)
+- Merged PR `#10` (`670e59ade4f748fe7eb1593599b19760ef75165a`) and PR `#13` (`6661c6f`) preserving `data/session-291c7881/*`, `docs/*.html` redirect stubs, `cit-savings-connect`, and `citizens-one-deposit-savings`.
+
+---
+
+## Final Build, Validation & Publication Record (`arena/5f0ee759-savings5`)
+
+- `python3 tools/build_returns.py` -> **PASS** (`18` projected accounts, `6` unverified excluded accounts, `26` multi-bank FDIC ladder plans across `14` mobile-enabled distinct FDIC charters = `$3,500,000` single / `$7,000,000` joint / `$17,500,000` trust).
+- `python3 tools/build_site.py` -> **PASS** (`11` root HTML pages + `12` `docs/*.html` redirect stubs generated).
+- `python3 research/validate_research.py` -> **PASS** (`57` official sources, `16` accounts, `8` offers, `9` review flags, `120` rate projections, `84` offer projections).
+- `python3 tools/check_site.py` -> **PASS** (`11` root pages + `12` `docs/*.html` redirects, `8` JSON data files, zero broken links, official primary `https://` source link in every single `<tbody><tr>`, zero third-party aggregators, zero duplicate FDIC `CERT`s in any ladder, zero leaked placeholder tokens outside `flagged.html`).
+- Final PR URL, merge commit SHA, and live GitHub Pages HTTP verification appended immediately upon merge to `main`.

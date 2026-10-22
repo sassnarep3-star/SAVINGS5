@@ -1,0 +1,289 @@
+{
+  "meta": {
+    "retrieved_utc": "2026-10-22T00:00:00Z",
+    "purpose": "Every value that could not be confirmed from an official source, and every inconsistency found between official sources, is recorded here and published on the Flagged for Review page. Flags do not block publication.",
+    "severity_scale": {
+      "high": "A headline figure is missing or two official sources disagree on a headline figure.",
+      "medium": "A supporting figure is missing, or a figure is only valid for a location/condition that may not be yours.",
+      "low": "Presentational or labelling inconsistency; no number is in doubt."
+    }
+  },
+  "flags": [
+    {
+      "id": "F-01",
+      "severity": "high",
+      "title": "Citi publishes no readable savings APY",
+      "entity": "Citibank, N.A. (FDIC cert 7213)",
+      "field": "Citi Savings \u2014 APY, minimum deposit, monthly fee",
+      "what_happened": "Every official Citi rates URL tried returned either an empty JavaScript shell (citi.com/banking/current-interest-rates/savings-accounts), a 'page not found' redirect (online.citi.com/US/ag/banking/checking-savings-account-interest-rates, citi.com/banking/savings-accounts), or failed to load (preview.online.citi.com). Citi requires a state selection before rendering rates.",
+      "action_taken": "All Citi values left blank and marked unverified. No Citi number is published anywhere on this site.",
+      "how_to_resolve": "Open the official Citi rates page in a browser, select your state, and read the Citi Savings / Citi Accelerate Savings rows.",
+      "sources": [
+        { "label": "Citi \u2014 Current interest rates (official)", "url": "https://www.citi.com/banking/current-interest-rates" },
+        { "label": "FDIC BankFind \u2014 Citibank, N.A. (cert 7213)", "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/7213" }
+      ]
+    },
+    {
+      "id": "F-02",
+      "severity": "high",
+      "title": "Discover Bank is no longer an active FDIC-insured institution",
+      "entity": "Discover Bank (FDIC cert 5649)",
+      "field": "Institution status",
+      "what_happened": "FDIC BankFind records Discover Bank as ACTIVE=0 with an end-effective date of 05/18/2025. Independently, https://www.discover.com/online-banking/savings-account/ redirects to Capital One's 360 Performance Savings page. Discover is therefore excluded as a standalone option.",
+      "action_taken": "Discover is listed with status 'inactive' and no rate figures. Capital One's note that Capital One and Discover Bank deposit accounts opened on or after 18 May 2025 are aggregated for FDIC coverage is published on the FDIC page.",
+      "how_to_resolve": "Nothing to resolve \u2014 this is a confirmed structural change. It matters only if you were planning to treat Discover and Capital One as two separate $250,000 buckets.",
+      "sources": [
+        { "label": "FDIC BankFind API \u2014 Discover Bank record (ACTIVE 0, ENDEFYMD 05/18/2025)", "url": "https://api.fdic.gov/banks/institutions?filters=NAME:%22Discover%20Bank%22&fields=NAME,CERT,CITY,STALP,ACTIVE,ASSET,ESTYMD,ENDEFYMD&format=json" },
+        { "label": "FDIC BankFind \u2014 Discover Bank details (cert 5649)", "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/5649" },
+        { "label": "Capital One \u2014 360 Performance Savings (destination of the discover.com redirect)", "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/" }
+      ]
+    },
+    {
+      "id": "F-03",
+      "severity": "high",
+      "title": "TD Bank savings APYs did not render",
+      "entity": "TD Bank, N.A. (FDIC cert 18409)",
+      "field": "TD Simple Savings and TD Signature Savings \u2014 APY",
+      "what_happened": "TD's official savings-rates page states 'Annual Percentage Yield (APY) is accurate as of 10/21/2026' but every rate cell in both tables was empty because the page could not resolve a location ('You are viewing info for .').",
+      "action_taken": "Both TD APYs left blank and marked unverified. TD's fee and minimum-deposit terms, which did render, are published.",
+      "how_to_resolve": "Open the TD rates page, set your location, and read the Simple Savings standard APY and the Signature Savings standard/rate-bump APYs.",
+      "sources": [ { "label": "TD Bank \u2014 Savings rate information (official)", "url": "https://www.td.com/us/en/personal-banking/savings-accounts/rates" } ]
+    },
+    {
+      "id": "F-04",
+      "severity": "high",
+      "title": "Citizens savings APY table rendered as unresolved template tokens",
+      "entity": "Citizens Bank, N.A. (FDIC cert 57957)",
+      "field": "One Deposit Savings \u2014 APY (all nine balance tiers) and the rate effective date",
+      "what_happened": "Citizens' official One Deposit Savings page returned 'This product is not available in your current location' and printed every APY cell, and the rate-disclosure effective date, as raw template tokens (for example '#ProductLine=ODS|Brand=citizensbank|...|APY=LowTier(0.00)#%').",
+      "action_taken": "All Citizens APYs left blank and marked unverified. Verified Citizens terms (no minimum deposit, $4.99 fee with waivers, no transaction limits, 15-state availability) are published.",
+      "how_to_resolve": "Open the Citizens page and enter a ZIP code in one of CT, DC, DE, FL, MD, MA, MI, NH, NJ, NY, OH, PA, RI, VT or VA.",
+      "sources": [
+        { "label": "Citizens \u2014 One Deposit Savings (official)", "url": "https://www.citizensbank.com/savings/savings-accounts/one-deposit.aspx" },
+        { "label": "Citizens \u2014 Savings accounts overview (official)", "url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx" }
+      ]
+    },
+    {
+      "id": "F-05",
+      "severity": "medium",
+      "title": "PNC High Yield Savings is not available in the capture location",
+      "entity": "PNC Bank, N.A. (FDIC cert 6384)",
+      "field": "PNC High Yield Savings \u2014 APY, minimum deposit, fees, availability",
+      "what_happened": "PNC's official page title reads 'High Yield Savings Account | 3.15% Annual Percentage Yield APY', but the page body returned 'This Product Isn't Available in Your Area' and no rate table, minimum or fee rendered. No effective date was shown.",
+      "action_taken": "3.15% is published, attributed explicitly to PNC's own page title, and tagged as geographically restricted. Minimum deposit and fees are left blank and marked unverified.",
+      "how_to_resolve": "Check pnc.com with your own ZIP code to confirm whether PNC High Yield Savings is offered in your market and what the current rate and terms are.",
+      "sources": [ { "label": "PNC \u2014 High Yield Savings (official)", "url": "https://www.pnc.com/en/personal-banking/banking/savings/high-yield-savings.html" } ]
+    },
+    {
+      "id": "F-06",
+      "severity": "medium",
+      "title": "Bank of America rate sheet is for Virginia, not New York",
+      "entity": "Bank of America, N.A. (FDIC cert 3510)",
+      "field": "Advantage Savings \u2014 APY location; monthly maintenance fee and minimum balance",
+      "what_happened": "bankofamerica.com serves a county-specific rate PDF. Without a ZIP code it served 'DigitalDeposit_VA_VA_Excluding_DC.pdf' (Virginia excluding Greater DC, and states without BofA financial centers), effective 21 October 2026. A direct request for a New York equivalent returned 'Not found'. On the Advantage Savings product page the monthly fee and minimum balance rendered as placeholders ('$XXXX').",
+      "action_taken": "The 0.04% APY is published with its location stated on the row. Monthly fee and minimum balance left blank and marked unverified.",
+      "how_to_resolve": "Enter your ZIP code and county at bankofamerica.com/deposits/bank-account-interest-rates/ and open the PDF for your area.",
+      "sources": [
+        { "label": "Bank of America \u2014 Bank account interest rates (ZIP entry)", "url": "https://www.bankofamerica.com/deposits/bank-account-interest-rates/" },
+        { "label": "Bank of America \u2014 Deposit Interest Rates & APYs rate sheet (VA excl. DC), effective 10/21/2026", "url": "https://media.bac-assets.com/DigitalDeposit_VA_VA_Excluding_DC.pdf" },
+        { "label": "Bank of America \u2014 Advantage Savings product page", "url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/" }
+      ]
+    },
+    {
+      "id": "F-07",
+      "severity": "medium",
+      "title": "Wells Fargo rates shown are for ZIP 94105, not New York",
+      "entity": "Wells Fargo Bank, N.A. (FDIC cert 3511)",
+      "field": "Way2Save and Platinum Savings \u2014 APY location",
+      "what_happened": "wellsfargo.com stores the rate location in a cookie. The page displayed 'CA, 94105' and adding a ?zip=10001 query parameter did not change it. Wells Fargo also prints no effective date on its savings-rates tables.",
+      "action_taken": "The rates are published with 'CA 94105' stated on the row and no as-of date claimed.",
+      "how_to_resolve": "Open wellsfargo.com/savings-cds/rates/ in a browser, set your home ZIP code in the dialog, and re-read the three savings tables.",
+      "sources": [ { "label": "Wells Fargo \u2014 Savings and CD interest rates (official)", "url": "https://www.wellsfargo.com/savings-cds/rates/" } ]
+    },
+    {
+      "id": "F-08",
+      "severity": "medium",
+      "title": "U.S. Bank rates shown are for ZIP 55402 and may not apply to existing clients",
+      "entity": "U.S. Bank, N.A. (FDIC cert 6548)",
+      "field": "Bank Smartly Savings \u2014 APY location and eligibility",
+      "what_happened": "usbank.com defaulted to ZIP 55402 (Minneapolis) and states 'APYs may vary by location'. U.S. Bank also warns that the advertised rates may not apply to existing U.S. Bank consumer savings or money-market clients, or to anyone who closed such an account in the past 90 days. The page additionally displayed 'We're temporarily having trouble displaying our current rates' above a table that did render.",
+      "action_taken": "Rates published with location and the relationship requirement stated on the row. The standard (no-relationship) 0.05% APY is published alongside the 3.50% headline so the two are never confused.",
+      "how_to_resolve": "Set your ZIP code on the U.S. Bank rates page and, if you are an existing client, sign in to see your personalised rate.",
+      "sources": [ { "label": "U.S. Bank \u2014 Savings account interest rates (official)", "url": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html" } ]
+    },
+    {
+      "id": "F-09",
+      "severity": "medium",
+      "title": "Synchrony's own savings calculator shows a different APY from its headline",
+      "entity": "Synchrony Bank (FDIC cert 27314)",
+      "field": "High Yield Savings \u2014 APY",
+      "what_happened": "The Synchrony High Yield Savings page shows '3.55% APY' in the hero and again under 'Start saving now', with the disclosure 'All APYs are accurate as of 10/21/2026'. The embedded growth calculator on the same page simultaneously labels 'Our HYS APY 2.85%' and 'National Average 1% APY'. The 1% national-average figure also disagrees with the FDIC's published savings national rate of 0.38% as of 19 October 2026.",
+      "action_taken": "3.55% is published as the APY because it is the figure Synchrony states twice with a dated APY disclosure. The calculator discrepancy is flagged rather than averaged or ignored.",
+      "how_to_resolve": "Confirm the live rate on the Synchrony page before funding; treat the on-page calculator as unreliable.",
+      "sources": [
+        { "label": "Synchrony Bank \u2014 High Yield Savings (official)", "url": "https://www.synchrony.com/banking/products/hys-core" },
+        { "label": "FDIC \u2014 National Rates and Rate Caps, 19 October 2026", "url": "https://www.fdic.gov/national-rates-and-rate-caps" }
+      ]
+    },
+    {
+      "id": "F-10",
+      "severity": "low",
+      "title": "Marcus cites a 0.40% national average; the FDIC table for the same date says 0.38%",
+      "entity": "Goldman Sachs Bank USA (FDIC cert 33124)",
+      "field": "Marketing comparison figure (not a Marcus rate)",
+      "what_happened": "Marcus states its comparison uses 'the FDIC's published National Rates and Rate Caps for Savings deposit products, accurate as of October 19, 2026' and displays a National Average of 0.40% APY. The FDIC table dated 19 October 2026 publishes 0.38% for Savings (based on the $2,500 product tier, which is the tier Marcus says it uses).",
+      "action_taken": "This site uses the FDIC figure (0.38%) for every benchmark comparison. Marcus's own APY of 3.50% is unaffected and is published as stated.",
+      "how_to_resolve": "No action needed for a depositor; noted for accuracy.",
+      "sources": [
+        { "label": "Marcus \u2014 High Yield Savings (official)", "url": "https://www.marcus.com/us/en/savings/high-yield-savings" },
+        { "label": "FDIC \u2014 National Rates and Rate Caps, 19 October 2026", "url": "https://www.fdic.gov/national-rates-and-rate-caps" }
+      ]
+    },
+    {
+      "id": "F-11",
+      "severity": "low",
+      "title": "SoFi's competitor comparison table is out of date versus the banks' own current rates",
+      "entity": "SoFi Bank, N.A. (FDIC cert 26881)",
+      "field": "Marketing comparison figures (not SoFi rates)",
+      "what_happened": "SoFi's savings page compares itself to Bank of America (0.04%), Chase (0.02%) and Wells Fargo (0.05%), labelled 'as of 5/28/2026'. Read directly from those banks' own current sources: Chase Savings is 0.01% APY (New York rate sheet, in effect 16 October 2026), Wells Fargo Way2Save is 0.01% APY and Platinum Savings standard is 0.01% APY (ZIP 94105), and Bank of America Advantage Savings is 0.04% APY (rate sheet effective 21 October 2026). SoFi also shows a Bank of America minimum deposit of $100 and monthly fee of $8, neither of which could be confirmed from Bank of America's own page.",
+      "action_taken": "No competitor figure from SoFi's table is used anywhere on this site. Every bank's rate comes from that bank's own source.",
+      "how_to_resolve": "No action needed for a depositor; noted so the comparison is not mistaken for current data.",
+      "sources": [
+        { "label": "SoFi \u2014 High Yield Savings (official)", "url": "https://www.sofi.com/banking/high-yield-savings-account/" },
+        { "label": "Chase \u2014 Consumer Deposit Rates, New York, in effect 16 October 2026", "url": "https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf" },
+        { "label": "Wells Fargo \u2014 Savings and CD interest rates", "url": "https://www.wellsfargo.com/savings-cds/rates/" },
+        { "label": "Bank of America \u2014 rate sheet effective 21 October 2026", "url": "https://media.bac-assets.com/DigitalDeposit_VA_VA_Excluding_DC.pdf" }
+      ]
+    },
+    {
+      "id": "F-12",
+      "severity": "low",
+      "title": "Capital One's APY is only readable from the disclosure page, and the two pages carry different dates",
+      "entity": "Capital One, N.A. (FDIC cert 4297)",
+      "field": "360 Performance Savings \u2014 APY and effective date",
+      "what_happened": "The 360 Performance Savings product page renders its headline APY in JavaScript (the extracted text reads 'NaN APY') while stating 'APY is variable and effective 10/21/2026'. Capital One's official account-disclosure page, which is dated 7/15/2026 at the top, states 'The Interest Rate on your account is 3.1540% with an Annual Percentage Yield of 3.20%'.",
+      "action_taken": "3.20% APY / 3.1540% interest rate are published, sourced to the disclosure page, with the product page's 10/21/2026 effective date recorded alongside and both URLs cited.",
+      "how_to_resolve": "Load the Capital One product page in a browser to see the rendered headline APY and confirm it matches 3.20%.",
+      "sources": [
+        { "label": "Capital One \u2014 360 Performance Savings disclosures (official)", "url": "https://www.capitalone.com/bank/disclosures/savings-accounts/online-performance-savings-account/" },
+        { "label": "Capital One \u2014 360 Performance Savings product page (official)", "url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/" }
+      ]
+    },
+    {
+      "id": "F-13",
+      "severity": "low",
+      "title": "Mobile app not confirmed from an official source for six institutions",
+      "entity": "CIT Bank, Barclays, Marcus by Goldman Sachs, Wells Fargo, Truist, Citi",
+      "field": "Consumer mobile app availability",
+      "what_happened": "The requirement is that the bank has a digital app. App availability was confirmed from an official bank page or an official app-store link for Chase, Bank of America, Capital One, U.S. Bank, PNC, TD, Citizens, Ally, Synchrony, SoFi and American Express. For CIT Bank, Barclays, Marcus, Wells Fargo, Truist and Citi the pages captured did not state it, so the field is blank rather than assumed. Barclays does state secure 24/7 online access and cheque deposit 'from your computer, laptop or mobile device', which is not the same as confirming a native app.",
+      "action_taken": "App field left blank and marked unverified for those six. No app claim is published for them.",
+      "how_to_resolve": "Search the Apple App Store and Google Play for the bank's official app before opening an account, if an app is a hard requirement for you.",
+      "sources": [
+        { "label": "Barclays \u2014 Tiered Savings (states online access and cheque deposit, not an app)", "url": "https://banking.us.barclays/tiered-savings.html" },
+        { "label": "CIT Bank \u2014 Products and rates", "url": "https://www.cit.com/cit-bank/resources/products-and-rates" },
+        { "label": "Marcus \u2014 High Yield Savings", "url": "https://www.marcus.com/us/en/savings/high-yield-savings" }
+      ]
+    },
+    {
+      "id": "F-14",
+      "severity": "low",
+      "title": "Three fee and cap figures were not published by their institutions",
+      "entity": "CIT Bank, Marcus by Goldman Sachs, Chase",
+      "field": "CIT monthly fee; Marcus maximum balance; Chase Premier Savings minimum opening deposit and monthly fee",
+      "what_happened": "CIT's rates page does not state a monthly maintenance fee and refers to a separate Schedule of Fees. Marcus states 'maximum balance limits apply' and links to an FAQ anchor, but the numeric cap did not render. Chase's New York consumer rate sheet carries rates only, and no Chase Premier Savings minimum deposit or fee was displayed on the pages captured.",
+      "action_taken": "All three left blank and marked unverified.",
+      "how_to_resolve": "CIT: open the Schedule of Fees. Marcus: open the maximum-balance FAQ. Chase: open the Chase Premier Savings product page with your ZIP code.",
+      "sources": [
+        { "label": "CIT Bank \u2014 Schedule of Fees", "url": "https://www.cit.com/cit-bank/resources/schedule-of-fees" },
+        { "label": "Marcus \u2014 FAQs, maximum balance limits", "url": "https://www.marcus.com/us/en/faqs#maxlimits" },
+        { "label": "Chase \u2014 Consumer Deposit Rates, New York", "url": "https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf" }
+      ]
+    },
+    {
+      "id": "F-15",
+      "severity": "medium",
+      "title": "Expanded FDIC coverage through partner-bank networks is a program feature, not a higher FDIC limit",
+      "entity": "SoFi Bank, N.A.",
+      "field": "FDIC coverage up to $3,000,000",
+      "what_happened": "SoFi advertises 'additional FDIC-insurance up to $3M through a network of participating banks'. The FDIC's own limit is $250,000 per depositor, per insured bank, per ownership category. Coverage above that is achieved by sweeping balances to other insured banks under a program agreement, so it depends on the program working as described and on you not already holding deposits at the receiving banks.",
+      "action_taken": "SoFi's $3M figure is published with this distinction stated on the row and explained on the FDIC page.",
+      "how_to_resolve": "Read SoFi's footnotes 6 and 7 and the participating-bank list, and check whether you already bank with any receiving institution.",
+      "sources": [
+        { "label": "SoFi \u2014 High Yield Savings (official)", "url": "https://www.sofi.com/banking/high-yield-savings-account/" },
+        { "label": "FDIC \u2014 Understanding Deposit Insurance", "url": "https://www.fdic.gov/resources/deposit-insurance/understanding-deposit-insurance" }
+      ]
+    },
+    {
+      "id": "F-16",
+      "severity": "medium",
+      "title": "Every savings APY on this site is variable and can change without notice",
+      "entity": "All institutions",
+      "field": "All APYs",
+      "what_happened": "Each institution states that its savings interest rate and APY are variable and may change at any time, before or after the account is opened. Chase adds that website rates are generally updated each business day and may vary by market; Citizens adds that the variable APY may increase or decrease daily after opening.",
+      "action_taken": "Every published rate carries the institution's own stated effective date plus this site's UTC capture timestamp. All return projections are explicitly labelled as holding the APY constant, which will not happen in practice.",
+      "how_to_resolve": "Re-check the live rate on the institution's page immediately before funding an account.",
+      "sources": [
+        { "label": "Chase \u2014 Savings account interest rates", "url": "https://www.chase.com/personal/savings/savings-account/interest-rates" },
+        { "label": "Citizens \u2014 One Deposit Savings rate disclosure", "url": "https://www.citizensbank.com/savings/savings-accounts/one-deposit.aspx" },
+        { "label": "Marcus \u2014 High Yield Savings", "url": "https://www.marcus.com/us/en/savings/high-yield-savings" }
+      ]
+    },
+    {
+      "id": "F-17",
+      "severity": "medium",
+      "title": "Headline rates at three big banks require a relationship or new-money condition",
+      "entity": "U.S. Bank, Wells Fargo, Chase",
+      "field": "Headline APY vs. standard APY",
+      "what_happened": "U.S. Bank's 3.50% requires an eligible U.S. Bank checking/Safe Debit/credit card AND $25,000 in combined qualifying balances; its standard rate is 0.05%. Wells Fargo's 3.25% is for new savings customers only and requires depositing and maintaining $25,000+ within 30 days; its standard Platinum Savings rate is 0.01%. Chase Premier Savings' 0.02% is a relationship rate requiring a linked checking account and five customer-initiated transactions per statement period; the standard rate is 0.01%.",
+      "action_taken": "Both the conditional rate and the standard rate are published for each of these products, and a 'Conditions' column marks which rates are conditional.",
+      "how_to_resolve": "Decide whether you will actually meet and keep meeting the condition. If not, use the standard rate when comparing.",
+      "sources": [
+        { "label": "U.S. Bank \u2014 Savings account interest rates", "url": "https://www.usbank.com/bank-accounts/savings-accounts/bank-smartly-savings/savings-account-interest-rates.html" },
+        { "label": "Wells Fargo \u2014 Savings and CD interest rates", "url": "https://www.wellsfargo.com/savings-cds/rates/" },
+        { "label": "Chase \u2014 Consumer Deposit Rates, New York", "url": "https://www.chase.com/content/dam/chase-ux/ratesheets/pdfs/rdny1.pdf" }
+      ]
+    },
+    {
+      "id": "F-18",
+      "severity": "low",
+      "title": "Balance caps limit how much you can actually place at the top rate",
+      "entity": "Barclays, Bank of America, Marcus",
+      "field": "Maximum balance",
+      "what_happened": "Barclays caps a Tiered Savings account at $1,000,000 and allows a maximum of three such accounts per customer; Barclays' top 3.65% tier is defined as $250,000 to $1,000,000. Bank of America limits new online account opening to $250,000. Marcus states maximum balance limits apply but the figure did not render.",
+      "action_taken": "Caps are published on the account rows and factored into the FDIC deployment plan.",
+      "how_to_resolve": "Confirm caps with the bank if you intend to place $250,000 or more.",
+      "sources": [
+        { "label": "Barclays \u2014 Tiered Savings FAQs", "url": "https://banking.us.barclays/tiered-savings.html" },
+        { "label": "Bank of America \u2014 rate sheet effective 21 October 2026", "url": "https://media.bac-assets.com/DigitalDeposit_VA_VA_Excluding_DC.pdf" },
+        { "label": "Marcus \u2014 FAQs, maximum balance limits", "url": "https://www.marcus.com/us/en/faqs#maxlimits" }
+      ]
+    },
+    {
+      "id": "F-19",
+      "severity": "low",
+      "title": "Several offers have no published expiry or payout timing",
+      "entity": "SoFi, Wells Fargo, Marcus, Citizens",
+      "field": "Bonus expiry / payout timing / tier thresholds",
+      "what_happened": "SoFi's $50/$400 cash bonus and Wells Fargo's 3.25% promotional rate carry no expiry date on the pages captured. Marcus's referral promotion carries no expiry. Citizens' 'up to $3,000' bonus did not render its tier thresholds, eligibility or payout timing.",
+      "action_taken": "Those fields are left blank and marked unverified; the offers are still listed with the rules that did render.",
+      "how_to_resolve": "Read each institution's full offer terms before relying on a bonus.",
+      "sources": [
+        { "label": "SoFi \u2014 High Yield Savings", "url": "https://www.sofi.com/banking/high-yield-savings-account/" },
+        { "label": "Wells Fargo \u2014 Savings and CD interest rates", "url": "https://www.wellsfargo.com/savings-cds/rates/" },
+        { "label": "Marcus \u2014 Referral terms and conditions", "url": "https://www.marcus.com/us/en/savings/referrals#termsandconditions" },
+        { "label": "Citizens \u2014 Checking and savings bonus promotion", "url": "https://www.citizensbank.com/promo/checking/ag-move-money-chk-2026.aspx" }
+      ]
+    },
+    {
+      "id": "F-20",
+      "severity": "low",
+      "title": "Coordination: this session is pinned to a fixed branch name",
+      "entity": "Session 291c7881",
+      "field": "Branch naming convention",
+      "what_happened": "COORDINATION.md asks each session to work on a branch named session-<id>/<task>. The orchestration platform pins this session to 'arena/291c7881-savings5' and does not allow it to create or push other branches.",
+      "action_taken": "Recorded in COORDINATION.md. The intent of the rule \u2014 one exclusive branch per session, no cross-session edits \u2014 is preserved: session 291c7881 owns arena/291c7881-savings5 exclusively and touched no other branch.",
+      "how_to_resolve": "No action required. Other sessions should continue to use session-<id>/<task>.",
+      "sources": [ { "label": "COORDINATION.md in this repository", "url": "https://github.com/sassnarep3-star/SAVINGS5/blob/main/COORDINATION.md" } ]
+    }
+  ]
+}
