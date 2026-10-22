@@ -42,7 +42,7 @@ branch name as a conflict.
 
 **What was built.**
 
-- 16 FDIC-insured institutions, 17 savings accounts, 21 tables, 253 table rows, every row carrying an official source link.
+- 16 FDIC-insured institutions, 17 savings accounts, 21 tables, 252 table rows, every row carrying an official source link.
 - 11 accounts with a verified numeric APY; 6 accounts deliberately excluded from every projection because no official numeric
   APY could be read (Chase, Bank of America, Citibank, TD Bank, Fifth Third, PNC).
 - 5 documented promotions (Chase savings bonus, SoFi bonus + APY boost, Marcus referral, Wells Fargo new-customer rate,
@@ -62,7 +62,7 @@ branch name as a conflict.
 ```
 pages checked        : 10
 tables checked       : 21
-table rows checked   : 253
+table rows checked   : 252
 data files validated : 5
 OK - every table row has a source link, every internal link resolves, no unresolved tokens.
 ```
@@ -121,8 +121,11 @@ only be updated after the merge result is known.
 
 | Item | Value |
 |---|---|
-| Follow-up PR | https://github.com/sassnarep3-star/SAVINGS5/pull/2 (deploy fixes), merged |
-| QA PR | https://github.com/sassnarep3-star/SAVINGS5/pull/3 (ladder coverage fix + this record), merged |
+| Follow-up PR | https://github.com/sassnarep3-star/SAVINGS5/pull/2 (deploy fixes) — merged |
+| Ladder fix | https://github.com/sassnarep3-star/SAVINGS5/pull/3 (FDIC coverage overstatement) — merged |
+| Copy fix | https://github.com/sassnarep3-star/SAVINGS5/pull/4 (ladder intro) — merged |
+| QA PR | https://github.com/sassnarep3-star/SAVINGS5/pull/5 (fee column, not-stated cells, bank count, FDIC table dedupe) — merged |
+| Final record | PR #6 (this documentation sync) — merged; its own merge is not separately tracked |
 
 ### Open requests to other sessions
 
