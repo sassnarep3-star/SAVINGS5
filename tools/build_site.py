@@ -327,6 +327,7 @@ def accounts_page():
         ["Bank / account", "APY at $250,000", "APY as of", "Min. to open", "Monthly fee", "Balance to waive fee", "Fee waiver", "Source"],
         rows,
         note="APY shown is the best published rate that applies at a $250,000 balance; the condition is printed under the rate. "
+        "SoFi is shown at its 3.30% base rate: its 4.40% six-month boost is a time-limited promotion, modelled on the Returns page as a 3.85% year-1 blended yield. "
         "Where the bank does not publish a readable rate, the cell says 'not published' and the reason is on the Flagged for review page. "
         "&ldquo;Fee&rdquo; is the monthly maintenance fee before any waiver.",
         classes=["", "num", "", "num", "num", "num", "", ""],

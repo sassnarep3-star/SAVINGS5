@@ -256,42 +256,42 @@
           "min_usd": 0,
           "max_usd": null,
           "apy_pct": 0.05,
-          "requires": "None"
+          "requires": "No relationship required"
         },
         {
-          "label": "Relationship, combined qualifying balances under $5,000",
+          "label": "Relationship, under $5,000",
           "min_usd": 0,
           "max_usd": 4999.99,
           "apy_pct": 1.0,
-          "requires": "Own Bank Smartly Checking, Safe Debit or Bank Smartly Visa Signature"
+          "requires": "Own Bank Smartly Checking, Safe Debit or Bank Smartly Visa Signature; CQB under $5,000"
         },
         {
           "label": "Relationship, $5,000 - $24,999.99",
           "min_usd": 5000,
           "max_usd": 24999.99,
           "apy_pct": 2.0,
-          "requires": "Same qualifying product"
+          "requires": "Same relationship; CQB $5,000-$24,999.99"
         },
         {
           "label": "Relationship, $25,000 - $49,999.99",
           "min_usd": 25000,
           "max_usd": 49999.99,
           "apy_pct": 3.5,
-          "requires": "Same qualifying product"
+          "requires": "Same relationship; CQB $25,000+"
         },
         {
           "label": "Relationship, $50,000 - $99,999.99",
           "min_usd": 50000,
           "max_usd": 99999.99,
           "apy_pct": 3.5,
-          "requires": "Same qualifying product"
+          "requires": "Same relationship; CQB $25,000+"
         },
         {
           "label": "Relationship, $100,000+",
           "min_usd": 100000,
           "max_usd": null,
           "apy_pct": 3.5,
-          "requires": "Same qualifying product"
+          "requires": "Same relationship; CQB $25,000+"
         }
       ],
       "apy_promo": null,
