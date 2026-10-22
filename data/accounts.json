@@ -821,6 +821,212 @@
         "APY not published - rates quoted only in branch or by phone",
         "Mobile app not confirmed on the official savings page"
       ]
+    },
+    {
+      "id": "cit-platinum-savings",
+      "brand": "CIT Bank",
+      "institution": "First-Citizens Bank & Trust Company",
+      "cert": 11063,
+      "account_name": "CIT Bank Platinum Savings",
+      "apy_regular_pct": 0.25,
+      "apy_tiers": [
+        {
+          "label": "Balances under $5,000",
+          "apy_pct": 0.25,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": 4999.99
+        },
+        {
+          "label": "Balances of $5,000 or more",
+          "apy_pct": 3.75,
+          "requires": "Daily balance of $5,000 or more",
+          "min_usd": 5000,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-07-01",
+      "apy_status": "verified",
+      "apy_note": "CIT's own products-and-rates table publishes 3.75% APY (3.682% interest rate) on balances of $5,000 or more and 0.25% APY below that, effective 07/01/2026. CIT Bank is a division of First-Citizens Bank & Trust Company and shares FDIC certificate 11063.",
+      "min_open_usd": 100,
+      "min_balance_to_avoid_fee_usd": null,
+      "monthly_fee_usd": null,
+      "fee_waiver": null,
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online with a $100 minimum opening deposit. The 3.75% APY tier additionally requires a $5,000 daily balance.",
+      "mobile_app": {
+        "value": "not stated",
+        "note": "Not stated on the official rates page that was captured; no app claim is made here.",
+        "source": "https://www.cit.com/cit-bank/resources/products-and-rates"
+      },
+      "fdic_beyond_250k": "Not offered on the page captured; standard FDIC coverage of $250,000 per depositor, per insured bank, per ownership category applies. Note CIT shares certificate 11063 with First Citizens Bank, so balances at both brands count toward one limit.",
+      "sources": [
+        {
+          "label": "CIT Bank products and rates",
+          "url": "https://www.cit.com/cit-bank/resources/products-and-rates",
+          "as_of": "2026-07-01"
+        },
+        {
+          "label": "FDIC BankFind - First-Citizens Bank & Trust Company (cert 11063)",
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/11063",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "Monthly fee not stated on the rates page; CIT refers to a separate Schedule of Fees - left blank",
+        "CIT Bank and First Citizens Bank share FDIC certificate 11063: one $250,000 limit across both brands"
+      ]
+    },
+    {
+      "id": "cit-savings-connect",
+      "brand": "CIT Bank",
+      "institution": "First-Citizens Bank & Trust Company",
+      "cert": 11063,
+      "account_name": "CIT Bank Savings Connect",
+      "apy_regular_pct": 3.65,
+      "apy_tiers": [
+        {
+          "label": "All balances",
+          "apy_pct": 3.65,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": null
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-07-01",
+      "apy_status": "verified",
+      "apy_note": "CIT publishes 3.65% APY (3.585% interest rate) on all balances, effective 07/01/2026, with no minimum balance required to earn the APY.",
+      "min_open_usd": 100,
+      "min_balance_to_avoid_fee_usd": null,
+      "monthly_fee_usd": null,
+      "fee_waiver": null,
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online with a $100 minimum opening deposit. No minimum balance is required to earn the APY.",
+      "mobile_app": {
+        "value": "not stated",
+        "note": "Not stated on the official rates page that was captured; no app claim is made here.",
+        "source": "https://www.cit.com/cit-bank/resources/products-and-rates"
+      },
+      "fdic_beyond_250k": "Not offered on the page captured. Shares FDIC certificate 11063 with First Citizens Bank and CIT Platinum Savings.",
+      "sources": [
+        {
+          "label": "CIT Bank products and rates",
+          "url": "https://www.cit.com/cit-bank/resources/products-and-rates",
+          "as_of": "2026-07-01"
+        },
+        {
+          "label": "FDIC BankFind - First-Citizens Bank & Trust Company (cert 11063)",
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/11063",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "Monthly fee not stated on the rates page - left blank"
+      ]
+    },
+    {
+      "id": "barclays-tiered-savings",
+      "brand": "Barclays",
+      "institution": "Barclays Bank Delaware",
+      "cert": 57203,
+      "account_name": "Barclays Tiered Savings",
+      "apy_regular_pct": 3.5,
+      "apy_tiers": [
+        {
+          "label": "Balances under $250,000",
+          "apy_pct": 3.5,
+          "requires": "None",
+          "min_usd": 0,
+          "max_usd": 249999.99
+        },
+        {
+          "label": "$250,000 to $1,000,000",
+          "apy_pct": 3.65,
+          "requires": "Balance of $250,000 or more",
+          "min_usd": 250000,
+          "max_usd": 1000000
+        }
+      ],
+      "apy_promo": null,
+      "apy_as_of": "2026-10-07",
+      "apy_status": "verified",
+      "apy_note": "Barclays' Tiered Savings page publishes 3.50% APY on balances below $250,000 and 3.65% APY from $250,000 to $1,000,000, with rates stated as of 10/07/2026. No minimum opening deposit and no monthly maintenance fee.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 0,
+      "monthly_fee_usd": 0,
+      "fee_waiver": "No monthly maintenance fee and no minimum balance requirement.",
+      "withdrawal_limit": null,
+      "opening_requirements": "Open online. Barclays caps a Tiered Savings account at $1,000,000 and allows a maximum of three Tiered Savings accounts per customer.",
+      "mobile_app": {
+        "value": "not stated",
+        "note": "Barclays states secure 24/7 online access and remote cheque deposit from a computer, laptop or mobile device, which is not the same as confirming a native app. No app claim is made here.",
+        "source": "https://banking.us.barclays/tiered-savings.html"
+      },
+      "fdic_beyond_250k": "Not offered. Standard $250,000 per depositor, per insured bank, per ownership category applies - so the 3.65% tier ($250,000+) sits at or above the single-owner insured limit.",
+      "sources": [
+        {
+          "label": "Barclays Tiered Savings - rates, tiers and FAQs",
+          "url": "https://banking.us.barclays/tiered-savings.html",
+          "as_of": "2026-10-07"
+        },
+        {
+          "label": "FDIC BankFind - Barclays Bank Delaware (cert 57203)",
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57203",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "The 3.65% tier starts at $250,000, which is the FDIC single-owner insured limit: balances earning it are at or beyond full coverage at this bank",
+        "Account balance capped at $1,000,000; maximum three Tiered Savings accounts per customer",
+        "Mobile app not confirmed from an official page - left blank"
+      ]
+    },
+    {
+      "id": "citizens-one-deposit-savings",
+      "brand": "Citizens",
+      "institution": "Citizens Bank, National Association",
+      "cert": 57957,
+      "account_name": "Citizens One Deposit Savings",
+      "apy_regular_pct": null,
+      "apy_tiers": [],
+      "apy_promo": null,
+      "apy_as_of": null,
+      "apy_status": "unverified",
+      "apy_note": "Citizens' One Deposit Savings page returned \"This product is not available in your current location\" and printed every APY cell, and the rate effective date, as unresolved template tokens (for example #ProductLine=ODS|...|APY=LowTier(0.00)#%). No APY is asserted here.",
+      "min_open_usd": 0,
+      "min_balance_to_avoid_fee_usd": 200,
+      "monthly_fee_usd": 4.99,
+      "fee_waiver": "Waived with a $200 average daily balance, or for account owners under 25 or 65 and over, or with a linked Citizens checking account.",
+      "withdrawal_limit": "Citizens states there is no limit on the number of transactions.",
+      "opening_requirements": "Open online or in a branch; no minimum deposit to open. Offered in CT, DC, DE, FL, MD, MA, MI, NH, NJ, NY, OH, PA, RI, VT and VA.",
+      "mobile_app": {
+        "value": "yes",
+        "note": "Citizens names its mobile banking app on the savings accounts overview page.",
+        "source": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx"
+      },
+      "fdic_beyond_250k": "Not offered on the page captured; standard FDIC coverage applies.",
+      "sources": [
+        {
+          "label": "Citizens savings accounts overview",
+          "url": "https://www.citizensbank.com/savings/savings-accounts/overview.aspx",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "Citizens One Deposit Savings",
+          "url": "https://www.citizensbank.com/savings/savings-accounts/one-deposit.aspx",
+          "as_of": "2026-10-22"
+        },
+        {
+          "label": "FDIC BankFind - Citizens Bank, N.A. (cert 57957)",
+          "url": "https://banks.data.fdic.gov/bankfind-suite/bankfind/details/57957",
+          "as_of": "2026-10-22"
+        }
+      ],
+      "flags": [
+        "APY table renders unresolved template tokens and the product reports as unavailable in the capture location - APY left blank"
+      ]
     }
   ]
 }

@@ -242,13 +242,21 @@ def index_page():
         classes=["", "", "num", "num", "", ""],
     )
 
+    _rated = [a for a in ACCOUNTS["accounts"] if a["apy_regular_pct"] is not None]
+    _hi = max(_rated, key=lambda a: account_rate(a["id"], 250000)[0])
+    _lo = min(_rated, key=lambda a: account_rate(a["id"], 250000)[0])
+    _hi_apy, _lo_apy = account_rate(_hi["id"], 250000)[0], account_rate(_lo["id"], 250000)[0]
+    _hi_brand, _lo_brand = _hi["brand"], _lo["brand"]
+    _hi_src, _lo_src = _hi["sources"][0]["url"], _lo["sources"][0]["url"]
+
     findings = f"""<ul>
   <li><strong>The spread between the best and worst verified rate is enormous.</strong>
-    Synchrony pays {pct(3.55)} and Wells Fargo Way2Save pays {pct(0.01)} — a difference of about
-    {money(250000 * (3.55 - 0.01) / 100)} of interest on $250,000 in one year. {src("https://www.synchrony.com/banking/products/hys-core", "Synchrony")} {src("https://www.wellsfargo.com/savings-cds/way2save/", "Wells Fargo")}</li>
+    {_hi_brand} pays {pct(_hi_apy)} on {money(250000)} and {_lo_brand} pays {pct(_lo_apy)} — a difference of about
+    {money(250000 * (_hi_apy - _lo_apy) / 100)} of interest in one year. {src(_hi_src, _hi_brand)} {src(_lo_src, _lo_brand)}</li>
   <li><strong>Several of the largest banks do not publish a consumer-readable savings APY.</strong>
     Chase, Bank of America and Citibank require a ZIP code, TD serves an empty rate table, PNC replaces its page with a
-    geo-restriction notice, and Fifth Third quotes promotional rates only in a branch. All {len(RETURNS["excluded_accounts"])}
+    geo-restriction notice, Citizens prints unresolved template tokens where its APYs should be, and Fifth Third quotes
+    promotional rates only in a branch. All {len(RETURNS["excluded_accounts"])}
     of those APY cells are left blank rather than estimated. {src("https://www.chase.com/personal/savings/savings-account/interest-rates", "Chase")} {src("https://www.bankofamerica.com/deposits/bank-account-interest-rates/", "BofA")}</li>
   <li><strong>The highest rate is not always the highest first-year return.</strong>
     SoFi's {pct(3.30)} base rate plus a 1.10% six-month direct-deposit boost produces a
@@ -301,7 +309,7 @@ def index_page():
 
     body = f"""
 {page_head("Savings accounts for large balances, verified line by line",
-          f"How sixteen of the largest US banks pay on savings, what each one requires to open, what it charges, "
+          f"How {len({a[chr(39)+chr(39)] if False else a['cert'] for a in ACCOUNTS['accounts']})} of the largest US banks pay on savings, what each one requires to open, what it charges, "
           f"and what your deposit actually earns after the FDIC ceiling is applied. Every number links to the bank or "
           f"FDIC page it came from, retrieved on {OPEN_DATE}.", "Research dashboard")}
 <div class="callout warn">
@@ -1011,6 +1019,10 @@ def competitiveness_page():
     treasury = table(["Treasury maturity", "Yield", "Source"], treasury_rows, classes=["", "num", ""])
 
     best = max(account_rate(a["id"], 250000)[0] for a in ACCOUNTS["accounts"] if a["apy_regular_pct"] is not None)
+    _worst = min((a for a in ACCOUNTS["accounts"] if a["apy_regular_pct"] is not None),
+                 key=lambda a: account_rate(a["id"], 250000)[0])
+    _worst_apy = account_rate(_worst["id"], 250000)[0]
+    _worst_brand = _worst["brand"]
     body = f"""
 {page_head("How competitive are these rates?",
           f"Each APY is measured against the FDIC's own national averages and against Treasury yields, so the number can be "
@@ -1029,8 +1041,10 @@ savings account it is. Against the rest of the market it is less so: a 12-month 
   <p><strong>The honest conclusion on competitiveness.</strong> At {pct(best)}, the best savings account in this study still pays
   {(t12 - best) * 100:.0f} basis points less than a 12-month Treasury and {(t60 - best) * 100:.0f} basis points less than a 60-month
   Treasury on the FDIC's own comparison date. Savings accounts win on liquidity and on FDIC insurance, not on yield. What the
-  table does show is that the gap between the best and worst <em>savings</em> account is about
-  {(best - nat['Savings']['national_deposit_rate_pct']) * 100:.0f} basis points — which is the part you control.</p>
+  table does show is that the gap between the best and worst <em>savings</em> account in this study is about
+  {(best - _worst_apy) * 100:.0f} basis points ({_worst_brand} pays {pct(_worst_apy)}), and the gap between the best account and
+  the FDIC national savings average of {pct(nat['Savings']['national_deposit_rate_pct'])} is about
+  {(best - nat['Savings']['national_deposit_rate_pct']) * 100:.0f} basis points — that is the part you control.</p>
 </div>
 <h2>Life-span effect</h2>
 <p>A savings APY is variable. Every bank in this table reserves the right to change it, and several say so explicitly on the page

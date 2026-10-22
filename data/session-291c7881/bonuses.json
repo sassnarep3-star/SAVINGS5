@@ -1,0 +1,146 @@
+{
+  "meta": {
+    "retrieved_utc": "2026-10-22T00:00:00Z",
+    "note": "Only offers stated on the institution's own website are listed. 'Type' distinguishes a cash bonus paid for opening/funding a SAVINGS account from a promotional APY and from checking-linked offers."
+  },
+  "offers": [
+    {
+      "id": "barclays-200",
+      "institution": "Barclays Bank Delaware",
+      "brand": "Barclays",
+      "product": "Tiered Savings",
+      "type": "Cash bonus \u2014 savings account",
+      "amount": { "value": 200, "unit": "USD", "status": "verified" },
+      "deposit_required": { "value": 25000, "unit": "USD", "status": "verified" },
+      "offer_expires": { "value": "2026-10-31", "status": "verified" },
+      "days_to_fund": 30,
+      "hold_period_days": 120,
+      "payout_timing": "Approximately 60 days after the 120-day holding period is met",
+      "eligibility": "New Barclays Tiered Savings customers only. Current and previous Barclays customers with a Savings or CD are not eligible.",
+      "rules": [
+        "Open the account through 10/31/2026.",
+        "Fund the new Tiered Savings account with at least $25,000 within the first 30 days of opening.",
+        "Maintain a balance of at least $25,000 for 120 consecutive days.",
+        "The $200 bonus is added to the account approximately 60 days after that.",
+        "The bonus is applied and treated as interest for tax purposes and may trigger a Form 1099-INT.",
+        "Multiple deposits from other institutions may be combined, provided all occur no later than 30 days after opening."
+      ],
+      "source_url": "https://banking.us.barclays/tiered-savings.html",
+      "secondary_source_url": "https://banking.us.barclays/"
+    },
+    {
+      "id": "sofi-boost",
+      "institution": "SoFi Bank, National Association",
+      "brand": "SoFi",
+      "product": "SoFi Savings",
+      "type": "Promotional APY \u2014 savings account",
+      "amount": { "value": 1.10, "unit": "percentage points of APY", "status": "verified" },
+      "deposit_required": { "value": null, "unit": "USD", "status": "verified", "note": "No deposit minimum; requires eligible direct deposit, OR qualifying deposits of $5,000 every 31 days." },
+      "offer_expires": { "value": "2027-12-31", "status": "verified" },
+      "days_to_fund": 60,
+      "hold_period_days": null,
+      "payout_timing": "Boost applies for up to 6 months while the eligible direct deposit is maintained",
+      "eligibility": "Open your first SoFi Checking and Savings account by 12/31/27 and set up eligible direct deposit within 60 days.",
+      "rules": [
+        "1.10% APY boost is added on top of the standard savings APY (3.30% as of 10/20/26), giving up to 4.40% APY.",
+        "Boost lasts up to 6 months as long as the eligible direct deposit is maintained.",
+        "If the variable APY changes, the 1.10% boost still applies on top of the then-current rate.",
+        "Opening a SoFi Savings account automatically opens a SoFi Checking account."
+      ],
+      "source_url": "https://www.sofi.com/banking/high-yield-savings-account/"
+    },
+    {
+      "id": "sofi-cash",
+      "institution": "SoFi Bank, National Association",
+      "brand": "SoFi",
+      "product": "SoFi Checking and Savings",
+      "type": "Cash bonus \u2014 requires direct deposit",
+      "amount": { "value": 400, "unit": "USD", "status": "verified", "note": "$50 or $400 depending on direct-deposit amount" },
+      "deposit_required": { "value": 1000, "unit": "USD", "status": "verified", "note": "Eligible direct deposit of $1,000 or more" },
+      "offer_expires": { "value": null, "status": "unverified", "note": "No expiry date printed on the page captured." },
+      "days_to_fund": null,
+      "hold_period_days": null,
+      "payout_timing": "Not stated on the page captured",
+      "eligibility": "Open the account and set up eligible direct deposit of $1,000 or more.",
+      "rules": [
+        "Earn a $50 or $400 cash bonus with eligible direct deposit.",
+        "Also unlocks getting paid up to two days early.",
+        "Full terms are published by SoFi at sofi.com/banking under footnote 4."
+      ],
+      "source_url": "https://www.sofi.com/banking/high-yield-savings-account/"
+    },
+    {
+      "id": "wf-platinum-promo",
+      "institution": "Wells Fargo Bank, National Association",
+      "brand": "Wells Fargo",
+      "product": "Platinum Savings",
+      "type": "Promotional APY \u2014 savings account",
+      "amount": { "value": 3.25, "unit": "percent APY", "status": "verified" },
+      "deposit_required": { "value": 25000, "unit": "USD", "status": "verified" },
+      "offer_expires": { "value": null, "status": "unverified", "note": "No expiry date printed on the rates page captured." },
+      "days_to_fund": 30,
+      "hold_period_days": null,
+      "payout_timing": "Rate applies to balances of $25,000 or more; the standard APY (0.01%) applies below that",
+      "eligibility": "New Wells Fargo savings customers only.",
+      "rules": [
+        "Deposit and maintain $25,000 or more in a new Platinum Savings account within 30 days.",
+        "Rate is variable and may change.",
+        "$12 monthly service fee applies unless a $3,500 minimum daily balance is kept each fee period.",
+        "$25 minimum opening deposit."
+      ],
+      "source_url": "https://www.wellsfargo.com/savings-cds/rates/",
+      "rate_location": "CA 94105 (the location wellsfargo.com defaulted to)"
+    },
+    {
+      "id": "marcus-referral",
+      "institution": "Goldman Sachs Bank USA",
+      "brand": "Marcus by Goldman Sachs",
+      "product": "Online Savings Account",
+      "type": "Promotional APY \u2014 referral",
+      "amount": { "value": 1.00, "unit": "percentage points of APY", "status": "verified" },
+      "deposit_required": { "value": null, "unit": "USD", "status": "verified", "note": "No deposit requirement stated; requires a qualifying referral." },
+      "offer_expires": { "value": null, "status": "unverified" },
+      "days_to_fund": null,
+      "hold_period_days": null,
+      "payout_timing": "3-month promotional APY increase",
+      "eligibility": "Requires a Marcus referral.",
+      "rules": [
+        "3-month promotional APY increase of 1.00% on top of the stated Online Savings Account APY.",
+        "After 3 months the account earns the then-current standard APY.",
+        "Marcus states that with one referral in a year, assuming the standard APY is unchanged, the account would earn a combined APY of 3.75% for that year."
+      ],
+      "source_url": "https://www.marcus.com/us/en/savings/high-yield-savings",
+      "terms_url": "https://www.marcus.com/us/en/savings/referrals#termsandconditions"
+    },
+    {
+      "id": "citizens-bonus",
+      "institution": "Citizens Bank, National Association",
+      "brand": "Citizens",
+      "product": "Checking + savings bundle",
+      "type": "Cash bonus \u2014 checking-led",
+      "amount": { "value": 3000, "unit": "USD", "status": "verified", "note": "Headline 'up to $3,000'; tiered on qualifying activity" },
+      "deposit_required": { "value": null, "unit": "USD", "status": "unverified", "note": "Tier thresholds did not render during capture." },
+      "offer_expires": { "value": null, "status": "unverified" },
+      "days_to_fund": null,
+      "hold_period_days": null,
+      "payout_timing": "Not resolved during capture",
+      "eligibility": "Not resolved during capture",
+      "rules": [
+        "Citizens publishes a checking-and-savings bonus of up to $3,000 with qualifying activities.",
+        "This is a checking-led offer, not a stand-alone savings bonus.",
+        "Offer detail did not render during capture \u2014 flagged for manual review."
+      ],
+      "source_url": "https://www.citizensbank.com/promo/checking/ag-move-money-chk-2026.aspx"
+    }
+  ],
+  "no_offer_found": [
+    { "brand": "CIT Bank", "note": "No savings bonus or promotional APY was published on the official rates page captured.", "source_url": "https://www.cit.com/cit-bank/resources/products-and-rates" },
+    { "brand": "Synchrony Bank", "note": "No savings bonus was published on the official High Yield Savings page captured.", "source_url": "https://www.synchrony.com/banking/products/hys-core" },
+    { "brand": "American Express", "note": "No savings bonus was published on the official HYSA page captured.", "source_url": "https://www.americanexpress.com/en-us/banking/online-savings/high-yield-savings-account/" },
+    { "brand": "Capital One", "note": "No savings bonus was published on the official 360 Performance Savings page or disclosures captured.", "source_url": "https://www.capitalone.com/bank/savings-accounts/online-performance-savings-account/" },
+    { "brand": "Ally Bank", "note": "No savings bonus was published on the official savings page captured.", "source_url": "https://www.ally.com/bank/online-savings-account/" },
+    { "brand": "Chase", "note": "No savings bonus appears on the Chase Savings interest-rates page or the New York consumer rate sheet captured.", "source_url": "https://www.chase.com/personal/savings/savings-account/interest-rates" },
+    { "brand": "Truist", "note": "No savings bonus was published on the Truist One Savings disclosures page captured.", "source_url": "https://www.truist.com/savings/truist-one-savings/disclosures-and-fees" },
+    { "brand": "Bank of America", "note": "No savings bonus was published on the Advantage Savings page or rate sheet captured. BofA does waive the monthly maintenance fee for six months on new accounts.", "source_url": "https://www.bankofamerica.com/deposits/savings/savings-accounts/" }
+  ]
+}

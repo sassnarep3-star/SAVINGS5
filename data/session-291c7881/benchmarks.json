@@ -1,0 +1,25 @@
+{
+  "meta": {
+    "title": "FDIC Monthly National Rates and Rate Caps",
+    "publisher": "Federal Deposit Insurance Corporation",
+    "source_url": "https://www.fdic.gov/national-rates-and-rate-caps",
+    "source_type": "official",
+    "as_of_stated": "2026-10-19",
+    "retrieved_utc": "2026-10-22T00:00:00Z",
+    "page_heading": "National Rates and Rate Caps \u2013 October 2026 (Revised Rule October 19, 2026)",
+    "methodology_note": "Savings and interest-checking rates are based on the $2,500 product tier; money-market and CD rates are an average of the $10,000 and $100,000 tiers. Source: S&P Capital IQ Pro / SNL Financial Data; calculations by FDIC. The national rate cap is the higher of (1) the national rate + 75 bp, or (2) 120% of the yield on similar-maturity U.S. Treasury obligations + 75 bp. For non-maturity deposits the cap is the higher of the national rate + 75 bp or the federal funds rate + 75 bp."
+  },
+  "rates": [
+    { "product": "Savings",          "national_rate": 0.38, "rate_cap_adjusted": 1.13, "treasury_yield": 3.88, "treasury_cap_adjusted": 4.63, "national_rate_cap": 4.63 },
+    { "product": "Interest Checking","national_rate": 0.07, "rate_cap_adjusted": 0.82, "treasury_yield": 3.88, "treasury_cap_adjusted": 4.63, "national_rate_cap": 4.63 },
+    { "product": "Money Market",     "national_rate": 0.63, "rate_cap_adjusted": 1.38, "treasury_yield": 3.88, "treasury_cap_adjusted": 4.63, "national_rate_cap": 4.63 },
+    { "product": "1 month CD",       "national_rate": 0.23, "rate_cap_adjusted": 0.98, "treasury_yield": 4.02, "treasury_cap_adjusted": 5.57, "national_rate_cap": 5.57 },
+    { "product": "3 month CD",       "national_rate": 1.14, "rate_cap_adjusted": 1.89, "treasury_yield": 4.20, "treasury_cap_adjusted": 5.79, "national_rate_cap": 5.79 },
+    { "product": "6 month CD",       "national_rate": 1.39, "rate_cap_adjusted": 2.14, "treasury_yield": 4.33, "treasury_cap_adjusted": 5.95, "national_rate_cap": 5.95 },
+    { "product": "12 month CD",      "national_rate": 1.76, "rate_cap_adjusted": 2.51, "treasury_yield": 4.54, "treasury_cap_adjusted": 6.20, "national_rate_cap": 6.20 },
+    { "product": "24 month CD",      "national_rate": 1.55, "rate_cap_adjusted": 2.30, "treasury_yield": 4.88, "treasury_cap_adjusted": 6.61, "national_rate_cap": 6.61 },
+    { "product": "36 month CD",      "national_rate": 1.39, "rate_cap_adjusted": 2.14, "treasury_yield": 5.00, "treasury_cap_adjusted": 6.75, "national_rate_cap": 6.75 },
+    { "product": "48 month CD",      "national_rate": 1.31, "rate_cap_adjusted": 2.06, "treasury_yield": 5.00, "treasury_cap_adjusted": 6.75, "national_rate_cap": 6.75 },
+    { "product": "60 month CD",      "national_rate": 1.41, "rate_cap_adjusted": 2.16, "treasury_yield": 5.09, "treasury_cap_adjusted": 6.86, "national_rate_cap": 6.86 }
+  ]
+}
