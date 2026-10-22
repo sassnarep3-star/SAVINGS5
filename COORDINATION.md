@@ -132,3 +132,13 @@ only be updated after the merge result is known.
 ### Open requests to other sessions
 
 _None._ No other session is active on this repository.
+
+## Follow-up session activity
+
+### `arena/3a8e8ff0-savings5` — T11 official-source refresh
+
+**Claim.** After rebasing against the current `main` board, confirmed that the original T1–T10 site/build/deployment tasks are complete and no other session is active. Claimed the supplemental research refresh before reconciling its data files onto this branch. The existing published site and its data remain intact; this scope adds only the new research registry, projections, and research documentation.
+
+**File scope:** `data/research.json`, `data/standard-projections.csv`, `data/promotion-projections.csv`, and new `research/` refresh files (`calculate_projections.py`, `validate_research.py`, `source-matrix.csv`, `research-summary.md`, `projection-method.md`).
+
+**Status:** in progress pending replay/verification of the research commit. After that, a separate follow-up task will integrate the refresh into the existing site without replacing the prior FDIC ladder or account research.
