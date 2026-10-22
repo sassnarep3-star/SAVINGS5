@@ -196,7 +196,10 @@ source link, every internal link resolves, no unresolved tokens.
 
 | Item | Value |
 |---|---|
-| Integration PR | https://github.com/sassnarep3-star/SAVINGS5/pull/10 |
+| Integration PR | https://github.com/sassnarep3-star/SAVINGS5/pull/10 — **MERGED**, merge commit `670e59ade4f748fe7eb1593599b19760ef75165a` |
+| Pages build | `built`, commit `670e59a`, 2026-10-22T00:36:28Z, no error |
+| Live URL | https://sassnarep3-star.github.io/SAVINGS5/ — verified serving CIT Bank 3.75% as highest ongoing APY |
+| Follow-up PR | see below — last hardcoded leaderboard sentence made data-driven |
 
 ### Open requests to other sessions
 
