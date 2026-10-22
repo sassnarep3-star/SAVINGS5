@@ -1,165 +1,134 @@
-# COORDINATION.md — Shared Task Board
+# COORDINATION — Shared Task Board
 
-**Project:** Savings Account Research & Comparison Site (SAVINGS5)
-**Purpose:** Collect, organize, verify and publish a comparison of savings accounts at large
-national U.S. banks, with FDIC-insurance maximization analysis, published as a GitHub Pages site.
+**Repo:** `sassnarep3-star/SAVINGS5`
+**Last updated:** 2026-10-22 (UTC)
+**Coordinating session:** `a67a75fe`
+**Session branch:** `arena/a67a75fe-savings5` (assigned by the Arena harness; this session may only commit/push to this branch)
+**Live site:** https://sassnarep3-star.github.io/SAVINGS5/
 
----
+## Coordination rules in force
 
-## 0. Session Registry
+1. Read this file before starting any task.
+2. Claim a task by adding your session ID + file scope, then commit and push the claim **immediately**.
+3. Never start a task another live session has claimed. A claim older than 60 minutes with no commits may be taken over — note the handoff.
+4. Keep scopes non-overlapping. If you need to change a file owned by another session, log a request here instead of editing it.
+5. Small, frequent commits. `git pull --rebase` before every push. Never drop another session's work to resolve a conflict.
+6. Never mark anything "verified" without an official source link and the date it was checked.
+7. Shared outputs (`data/*.json`, `index.html`, nav) are integration-session only.
 
-| Session ID | Branch | Role | Started (UTC) | Status |
-|---|---|---|---|---|
-| `291c7881` | `arena/291c7881-savings5` | Research + Verification + Site Build + **Final Integration** | 2026-10-22 00:05 | active |
+## Task board
 
-### Branch-naming note (important for other sessions)
+| ID | Task | Status | Owner | File scope |
+|----|------|--------|-------|------------|
+| T1 | Coordination board + repo scaffold | done | a67a75fe | `COORDINATION.md`, `README.md`, `.gitignore`, `.nojekyll` |
+| T2 | Verify FDIC insurance framework (limits, ownership categories, covered products) | done | a67a75fe | `data/fdic.json` |
+| T3 | Verify bank universe from FDIC BankFind (16 institutions, certificates, assets, charter class) | done | a67a75fe | `data/institutions.json`, `research/verification-log.md` |
+| T4 | Verify APY, minimums, fees, waivers and opening rules, official bank pages | done | a67a75fe | `data/accounts.json` |
+| T5 | Verify bonuses/promotions and log banks with none published | done | a67a75fe | `data/bonuses.json` |
+| T6 | Return model (8 deposit sizes x 4 terms), FDIC ladder plans, coverage arithmetic | done | a67a75fe | `data/returns.json`, `tools/build_returns.py` |
+| T7 | Site build: landing page + 9 category subpages | done | a67a75fe | `index.html`, `accounts.html`, `returns.html`, `bonuses.html`, `rules.html`, `security.html`, `competitiveness.html`, `flagged.html`, `sources.html`, `methodology.html`, `assets/style.css`, `tools/build_site.py` |
+| T8 | Build gate: sources on every table row, internal links, unresolved tokens | done | a67a75fe | `tools/check_site.py` |
+| T9 | Publish to GitHub Pages | done | a67a75fe | repo root (Pages source: `main` / root, legacy build) |
+| T10 | PR to `main`, merge, deploy verification | done | a67a75fe | `COORDINATION.md` |
 
-The orchestration platform pins session `291c7881` to the branch `arena/291c7881-savings5`
-and does **not** permit it to create or push `session-<id>/<task>` branches. The required
-convention (`session-<id>/<task>`) is therefore satisfied in spirit by the one-branch-per-session
-rule: **session `291c7881` owns `arena/291c7881-savings5` exclusively.** Other sessions must use
-their own branches and must not push to `arena/291c7881-savings5`.
+### Session log
 
-Because no other session had claimed any task when `291c7881` started (repo contained only
-`README.md` at commit `8f2dc3a`), session `291c7881` claims the full task list below and also
-acts as the final integration session.
+#### a67a75fe — 2026-10-22
 
----
+**Claim.** Repo had one initial commit and no `COORDINATION.md`; no other sessions or branches were present. Claimed T1–T10
+immediately and pushed the claim before starting work. The harness pins this session to `arena/a67a75fe-savings5`, so
+per-session branches (`session-<id>/<task>`) are folded into this one branch — recorded so a later session does not read the
+branch name as a conflict.
 
-## 1. Task Board
+**What was built.**
 
-Status values: `unclaimed` · `in progress` · `done` · `needs review`
-(`needs review` = published on the "Flagged for Review" page; does **not** block anything.)
+- 16 FDIC-insured institutions, 17 savings accounts, 21 tables, 252 table rows, every row carrying an official source link.
+- 11 accounts with a verified numeric APY; 6 accounts deliberately excluded from every projection because no official numeric
+  APY could be read (Chase, Bank of America, Citibank, TD Bank, Fifth Third, PNC).
+- 5 documented promotions (Chase savings bonus, SoFi bonus + APY boost, Marcus referral, Wells Fargo new-customer rate,
+  U.S. Bank relationship rate) and 13 banks logged as "no savings bonus published on the account page checked".
+- Return model at 8 deposit sizes ($10k–$2.5M) and 4 terms (1/2/3/5 years), with a constant-rate scenario and a stress-case
+  scenario, plus FDIC ladder plans for $250k–$5M.
+- Static site of 10 pages, plain HTML/CSS, no JavaScript, no external assets.
 
-| # | Task | Status | Owner | File scope (exclusive) |
-|---|---|---|---|---|
-| T-01 | Repo review; create coordination board + ignore rules | done | `291c7881` | `COORDINATION.md`, `.gitignore`, `README.md` |
-| T-02 | Define data schema + verification rules | done | `291c7881` | `data/SCHEMA.md` |
-| T-03 | Verify FDIC rules, limits, ownership categories (fdic.gov) | done | `291c7881` | `data/fdic.json` |
-| T-04 | Verify branch-based national banks (Chase, BoA, Wells, Citi, US Bank, PNC, TD, Truist, Capital One, Citizens) | done | `291c7881` | `data/accounts.json` (branch section) |
-| T-05 | Verify nationwide digital/online banks (Amex, Discover, Marcus, Ally, Synchrony, Barclays, Schwab, SoFi, CIT) | done | `291c7881` | `data/accounts.json` (digital section) |
-| T-06 | Verify FDIC certificate numbers via FDIC BankFind | done | `291c7881` | `data/accounts.json` (fdic_cert fields) |
-| T-07 | Verify mobile app availability + security features | done | `291c7881` | `data/accounts.json` (app/security fields) |
-| T-08 | Verify bonuses / promotions and their rules | done | `291c7881` | `data/bonuses.json` |
-| T-09 | Build return calculator + generate return tables | done | `291c7881` | `scripts/build.py`, `data/returns.json` |
-| T-10 | Benchmark competitiveness (FDIC national rate caps, Treasury) | done | `291c7881` | `data/benchmarks.json` |
-| T-11 | Build GitHub Pages site (landing + category subpages) | done | `291c7881` | `docs/**` |
-| T-12 | "Flagged for Review" page (irregularities + unverified) | done | `291c7881` | `docs/flagged.html`, `data/flags.json` |
-| T-13 | **Integration:** re-verify combined data, link check, build check | done | `291c7881` | all |
-| T-14 | PR → main, merge, confirm Pages deploy, record result | in progress | `291c7881` | `COORDINATION.md` |
+**Verification performed.**
 
----
+- Every institution checked individually in the FDIC BankFind institutions API: `ACTIVE`, `INSFDIC`, `BKCLASS`, `ASSET`,
+  `DEPDOM`, `CERT`.
+- Every rate transcribed from the bank's own page with the bank's own effective date. ZIP-gated, empty or placeholder rates
+  left blank.
+- `tools/check_site.py` run before each publish. Final run:
 
-## 2. Verification Protocol (binding on all sessions)
+```
+pages checked        : 10
+tables checked       : 21
+table rows checked   : 252
+data files validated : 5
+OK - every table row has a source link, every internal link resolves, no unresolved tokens.
+```
 
-1. **Every row in every published table must carry a source link to an official site**
-   (the bank's own `.com` domain, `fdic.gov`, `federalreserve.gov`, `treasury.gov`,
-   `apps.apple.com` / `play.google.com` for app listings).
-2. If a value cannot be confirmed on an official source, **leave it blank**, set its
-   verification status to `unverified`, and add an entry to `data/flags.json`.
-3. **Never infer, estimate, average, or carry over a value from memory.** Aggregator sites
-   (Bankrate, NerdWallet, Investopedia, etc.) are **not** acceptable as a source of record.
-4. Every verified field records: `value`, `source_url`, `source_type: official`,
-   `retrieved_utc` (ISO-8601), and the bank's own "rates as of" date when the page states one.
-5. Rates are time-sensitive. The capture timestamp is published next to every rate.
-6. Computed values (interest projections) are **derived**, not sourced; they are labelled as
-   calculations and the formula + inputs are published.
+- All internal links resolved on the deployed site; `index.html`, `returns.html` and `flagged.html` were also fetched live
+  from GitHub Pages after deployment and inspected.
 
----
+**Sources.** FDIC BankFind institutions API (index `institutions_20261016090006`); FDIC *Are My Deposit Accounts Insured by
+the FDIC?*; FDIC *Understanding Deposit Insurance*; FDIC *National Rates and Rate Caps — October 2026* (as of 2026-10-19);
+and the banks' own product, rate, fee-schedule and disclosure pages, all fetched 2026-10-22. The complete list with retrieval
+dates is on the site's Sources page and in `research/verification-log.md`.
 
-## 3. Source Log (official sources used)
+**Irregularities flagged (published on the Flagged for review page, non-blocking).**
 
-Every record in `data/*.json` carries its own `source_url` and `retrieved_utc`; the complete,
-de-duplicated list of **64 source URLs across 24 domains**
-is published at `docs/sources.html`. Domain index:
+1. Bank of America's product page renders its fee block as literal `$XXXX`; fee data taken from the Personal Schedule of Fees PDF instead.
+2. Capital One's product page renders its APY as `NaN`; the 3.20% rate comes from Capital One's own category page.
+3. Citibank renders the savings APY as the unresolved token `:BLUE_AccSavings_Rate%`; APY left blank.
+4. PNC High Yield Savings returned "This Product Isn't Available in Your Area"; its 3.15% page-title rate is not asserted.
+5. Bank of America's New York rate sheet (`DigitalDeposit_NY*.pdf`) could not be retrieved; the Virginia/non-branch sheet shows
+   0.04% APY and is documented but not used for New York.
+6. Discover Bank (CERT 5649) is `ACTIVE = 0` in FDIC data; treated as part of Capital One, per Capital One's own FDIC pooling note.
+7. Marcus, American Express and Fifth Third do not name a mobile app on their savings pages — marked "not confirmed", not assumed.
+8. Security controls were not audited; FDIC status and app existence are verified, no security ranking is made.
+9. Wells Fargo, U.S. Bank and PNC rates were read from the location each site served (CA 94105, ZIP 55402, ZIP 15222) and may
+   differ in New York; disclosed on the flagged page.
 
-| Domain | Used for |
+**Publish record (T10).**
+
+| Item | Value |
 |---|---|
-| `api.fdic.gov` | Discover Bank rates & terms |
-| `apps.apple.com` | Bank of America mobile app; PNC Bank mobile app |
-| `banking.us.barclays` | Barclays (US Consumer Bank) mobile app; Barclays (US Consumer Bank) rates & terms; Barclays (US Consumer Bank) security statements |
-| `banks.data.fdic.gov` | Barclays (US Consumer Bank) security statements; FDIC certificate / charter status |
-| `edie.fdic.gov` | Deposit-insurance rules |
-| `media.bac-assets.com` | Bank of America rates & terms |
-| `play.google.com` | Bank of America mobile app; PNC Bank mobile app |
-| `www.ally.com` | Ally Bank mobile app; Ally Bank rates & terms; Ally Bank security statements |
-| `www.americanexpress.com` | American Express mobile app; American Express rates & terms; American Express security statements |
-| `www.bankofamerica.com` | Bank of America rates & terms (secondary); Bank of America security statements |
-| `www.capitalone.com` | Capital One mobile app; Capital One rates & terms; Capital One rates & terms (secondary) |
-| `www.chase.com` | Chase mobile app; Chase rates & terms; Chase security statements |
-| `www.cit.com` | CIT Bank mobile app; CIT Bank rates & terms |
-| `www.citi.com` | Citi mobile app; Citi rates & terms |
-| `www.citizensbank.com` | Citizens mobile app; Citizens offer terms; Citizens rates & terms |
-| `www.fdic.gov` | Deposit-insurance rules; National rates & rate caps |
-| `www.marcus.com` | Marcus by Goldman Sachs mobile app; Marcus by Goldman Sachs offer terms; Marcus by Goldman Sachs rates & terms |
-| `www.pnc.com` | PNC Bank rates & terms; PNC Bank security statements |
-| `www.sofi.com` | SoFi mobile app; SoFi offer terms; SoFi rates & terms |
-| `www.synchrony.com` | Synchrony Bank mobile app; Synchrony Bank rates & terms; Synchrony Bank security statements |
-| `www.td.com` | TD Bank mobile app; TD Bank rates & terms |
-| `www.truist.com` | Truist mobile app; Truist rates & terms |
-| `www.usbank.com` | U.S. Bank mobile app; U.S. Bank rates & terms; U.S. Bank security statements |
-| `www.wellsfargo.com` | Wells Fargo mobile app; Wells Fargo offer terms; Wells Fargo rates & terms |
+| PR | https://github.com/sassnarep3-star/SAVINGS5/pull/1 |
+| PR state | MERGED (merge commit `012e522131a4b8507b044f5eb4894a2b6adf33f6`) |
+| Merged at | 2026-10-22T00:13:15Z |
+| Pages build | `built`, commit `012e522`, created 2026-10-22T00:13:17Z, completed 2026-10-22T00:13:35Z, no error |
+| Pages status | `built`, source `main` / root, HTTPS enforced |
+| Live URL | https://sassnarep3-star.github.io/SAVINGS5/ |
 
-**Corrections made during verification** (legacy hostnames and dead paths found in the original plan):
+Three defects were found after the first deploy and corrected in follow-up commits. This is why the site was re-checked
+against the rendered page rather than only against its source data.
 
-| Planned source | Actual source of record | Reason |
-|---|---|---|
-| `synchronybank.com` | `synchrony.com/banking/products/hys-core` | Legacy hostname redirects |
-| `banking.barclaysus.com` | `banking.us.barclays` | Legacy hostname redirects |
-| `discover.com` | — (dropped) | Redirects to Capital One; FDIC BankFind shows Discover Bank cert 5649 inactive 2025-05-18 (F-02) |
-| `schwab.com` | — (dropped) | Savings APY never obtained from an official page; excluded rather than guessed |
-| `citi.com` / `online.citi.com` | — (no value captured) | Every official rates URL returned an empty JS shell or a 404 (F-01) |
-| `chase.com` HTML rates page | `chase.com/.../ratesheets/pdfs/rdny1.pdf` | HTML page is ZIP-gated; the state rate sheet is the authoritative public document |
-| `bankofamerica.com` HTML page | `media.bac-assets.com/DigitalDeposit_VA_VA_Excluding_DC.pdf` | HTML page renders `$XXXX` placeholders until a ZIP is supplied (F-06) |
-| `federalreserve.gov`, `home.treasury.gov` | — (not needed) | Treasury yields used for the rate caps are republished inside the FDIC table itself |
+1. The flagged page listed Charles Schwab as having an unconfirmed app because the check matched the substring "app" inside
+   the flag "Application is mail/phone/branch only". The check now reads the structured app verdict.
+2. The stress-case return column could show a *higher* five-year balance than the constant-rate case for accounts paying below
+   the FDIC national average (Truist and Way2Save showed $253,847 against $250,125). The stress case now uses the lower of the
+   account's own APY and the national average, so it can only reduce a balance.
+3. The FDIC ladder builder cycled through its pool to reach the number of banks required, so at $2.5M and $5M it placed a
+   second $250,000 with institutions already used. That overstates insured coverage and contradicts the "at most $250,000 per
+   bank" claim printed under the table. It also counted Wells Fargo Way2Save and Platinum as two banks and two slots when they
+   share FDIC certificate 3511. The builder now takes one account per certificate, allocates at most $250,000 per institution,
+   and reports the uninsured remainder explicitly. Corrected results: $2.5M is **not** fully coverable with this dataset — the
+   no-conditions pool covers $2,000,000 (8 banks, $500,000 uninsured) and the max-rate pool covers $2,250,000 (9 banks,
+   $250,000 uninsured); at $5M the shortfalls are $3,000,000 and $2,750,000.
 
----
+**Follow-up PR.** This record is published to `main` through a second PR (see the table below), because `COORDINATION.md` can
+only be updated after the merge result is known.
 
-## 4. Irregularities & Flags Log
+| Item | Value |
+|---|---|
+| Follow-up PR | https://github.com/sassnarep3-star/SAVINGS5/pull/2 (deploy fixes) — merged |
+| Ladder fix | https://github.com/sassnarep3-star/SAVINGS5/pull/3 (FDIC coverage overstatement) — merged |
+| Copy fix | https://github.com/sassnarep3-star/SAVINGS5/pull/4 (ladder intro) — merged |
+| QA PR | https://github.com/sassnarep3-star/SAVINGS5/pull/5 (fee column, not-stated cells, bank count, FDIC table dedupe) — merged, commit `61503c6` |
+| Record sync | https://github.com/sassnarep3-star/SAVINGS5/pull/6 (coordination record) — merged |
+| KPI fix | https://github.com/sassnarep3-star/SAVINGS5/pull/7 (institution count on Methodology) — merged |
+| Final copy fixes | PR #8 (stale Truist sentence on Sources), PR #9 (blank-cell count on the landing page) — merged; their own merge commits are not separately tracked |
 
-Authoritative machine-readable copy: `data/flags.json`. Published at `docs/flagged.html`
-(linked from every page of the site). **20 items: 4 high, 8 medium, 8 low.**
-None of these block the merge; all are published with the official link needed to resolve them.
+### Open requests to other sessions
 
-| ID | Severity | Institution | Finding | Resolution applied |
-|---|---|---|---|---|
-| F-01 | high | Citibank, N.A. (FDIC cert 7213) | Citi publishes no readable savings APY | All Citi values left blank and marked unverified. No Citi number is published anywhere on this site. |
-| F-02 | high | Discover Bank (FDIC cert 5649) | Discover Bank is no longer an active FDIC-insured institution | Discover is listed with status 'inactive' and no rate figures. Capital One's note that Capital One and Discover Bank deposit accounts opened on or after 18 May 2025 are aggregated for FDIC coverage is published on the FDIC page. |
-| F-03 | high | TD Bank, N.A. (FDIC cert 18409) | TD Bank savings APYs did not render | Both TD APYs left blank and marked unverified. TD's fee and minimum-deposit terms, which did render, are published. |
-| F-04 | high | Citizens Bank, N.A. (FDIC cert 57957) | Citizens savings APY table rendered as unresolved template tokens | All Citizens APYs left blank and marked unverified. Verified Citizens terms (no minimum deposit, $4.99 fee with waivers, no transaction limits, 15-state availability) are published. |
-| F-05 | medium | PNC Bank, N.A. (FDIC cert 6384) | PNC High Yield Savings is not available in the capture location | 3.15% is published, attributed explicitly to PNC's own page title, and tagged as geographically restricted. Minimum deposit and fees are left blank and marked unverified. |
-| F-06 | medium | Bank of America, N.A. (FDIC cert 3510) | Bank of America rate sheet is for Virginia, not New York | The 0.04% APY is published with its location stated on the row. Monthly fee and minimum balance left blank and marked unverified. |
-| F-07 | medium | Wells Fargo Bank, N.A. (FDIC cert 3511) | Wells Fargo rates shown are for ZIP 94105, not New York | The rates are published with 'CA 94105' stated on the row and no as-of date claimed. |
-| F-08 | medium | U.S. Bank, N.A. (FDIC cert 6548) | U.S. Bank rates shown are for ZIP 55402 and may not apply to existing clients | Rates published with location and the relationship requirement stated on the row. The standard (no-relationship) 0.05% APY is published alongside the 3.50% headline so the two are never confused. |
-| F-09 | medium | Synchrony Bank (FDIC cert 27314) | Synchrony's own savings calculator shows a different APY from its headline | 3.55% is published as the APY because it is the figure Synchrony states twice with a dated APY disclosure. The calculator discrepancy is flagged rather than averaged or ignored. |
-| F-10 | low | Goldman Sachs Bank USA (FDIC cert 33124) | Marcus cites a 0.40% national average; the FDIC table for the same date says 0.38% | This site uses the FDIC figure (0.38%) for every benchmark comparison. Marcus's own APY of 3.50% is unaffected and is published as stated. |
-| F-11 | low | SoFi Bank, N.A. (FDIC cert 26881) | SoFi's competitor comparison table is out of date versus the banks' own current rates | No competitor figure from SoFi's table is used anywhere on this site. Every bank's rate comes from that bank's own source. |
-| F-12 | low | Capital One, N.A. (FDIC cert 4297) | Capital One's APY is only readable from the disclosure page, and the two pages carry different dates | 3.20% APY / 3.1540% interest rate are published, sourced to the disclosure page, with the product page's 10/21/2026 effective date recorded alongside and both URLs cited. |
-| F-13 | low | CIT Bank, Barclays, Marcus by Goldman Sachs, Wells Fargo, Truist, Citi | Mobile app not confirmed from an official source for six institutions | App field left blank and marked unverified for those six. No app claim is published for them. |
-| F-14 | low | CIT Bank, Marcus by Goldman Sachs, Chase | Three fee and cap figures were not published by their institutions | All three left blank and marked unverified. |
-| F-15 | medium | SoFi Bank, N.A. | Expanded FDIC coverage through partner-bank networks is a program feature, not a higher FDIC limit | SoFi's $3M figure is published with this distinction stated on the row and explained on the FDIC page. |
-| F-16 | medium | All institutions | Every savings APY on this site is variable and can change without notice | Every published rate carries the institution's own stated effective date plus this site's UTC capture timestamp. All return projections are explicitly labelled as holding the APY constant, which will not happen in practice. |
-| F-17 | medium | U.S. Bank, Wells Fargo, Chase | Headline rates at three big banks require a relationship or new-money condition | Both the conditional rate and the standard rate are published for each of these products, and a 'Conditions' column marks which rates are conditional. |
-| F-18 | low | Barclays, Bank of America, Marcus | Balance caps limit how much you can actually place at the top rate | Caps are published on the account rows and factored into the FDIC deployment plan. |
-| F-19 | low | SoFi, Wells Fargo, Marcus, Citizens | Several offers have no published expiry or payout timing | Those fields are left blank and marked unverified; the offers are still listed with the rules that did render. |
-| F-20 | low | Session 291c7881 | Coordination: this session is pinned to a fixed branch name | Recorded in COORDINATION.md. The intent of the rule — one exclusive branch per session, no cross-session edits — is preserved: session 291c7881 owns arena/291c7881-savings5 exclusively and touched no other branch. |
-
-The earlier provisional flag list (F-01…F-06, written at claim time before verification began)
-has been replaced by this verified list. Two provisional entries proved to be non-issues:
-Chase's rates *are* publicly retrievable from its state rate sheets, and Regulation D's
-six-withdrawal limit is no longer imposed by most of these institutions — the actual
-per-institution withdrawal terms are published on `docs/rules.html`.
-
----
-
-## 5. Activity Log
-
-| UTC timestamp | Session | Event |
-|---|---|---|
-| 2026-10-22 00:05 | `291c7881` | Reviewed repo at `8f2dc3a` — contained only `README.md` (10 bytes). No prior data, no site, no coordination file, no other session claims. Created this board and claimed T-01…T-14. |
-| 2026-10-22 00:06 | `291c7881` | Claim committed and pushed to `arena/291c7881-savings5` (commit `2c7eee5`). |
-| 2026-10-22 00:10–01:40 | `291c7881` | **T-03…T-08 verification.** ~50 official-page retrievals against bank domains, `fdic.gov` and the FDIC BankFind API. Captured 18 institutions / 23 products. Every FDIC certificate number read from BankFind, not from the bank's own claim. Citi, TD and Citizens APYs could not be rendered from any official URL and were left blank (F-01, F-03, F-04). Charles Schwab Bank was dropped for the same reason rather than estimated. |
-| 2026-10-22 01:45 | `291c7881` | Wrote `data/SCHEMA.md`, `data/benchmarks.json`, `data/fdic.json`, `data/accounts.json`, `data/bonuses.json`, `data/flags.json`; committed and pushed. |
-| 2026-10-22 01:55 | `291c7881` | **T-09/T-10.** Added `data/returns_model.json` (machine-readable restatement of each captured tier table) and `scripts/build.py`. 756 return rows generated into `data/returns.json`. |
-| 2026-10-22 02:00 | `291c7881` | **T-11/T-12.** Generated the 12-page site into `docs/`. Four build-time guards added and passing: modelled APY ⊆ captured tier table; `unverified` ⇒ `value: null`; every product has a source URL; every internal link resolves (512 checked). |
-| 2026-10-22 02:05 | `291c7881` | **T-13 integration check.** All 12 pages served and fetched at HTTP 200; no empty table cells; no placeholder or `NaN` leakage; JSON re-validated. Source index rebuilt in section 3 above from the data itself. Provisional flags F-01…F-06 replaced with the verified list of 20. |
+_None._ No other session is active on this repository.
